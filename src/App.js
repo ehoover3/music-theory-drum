@@ -2,11 +2,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import drumSound from "./drum.m4a"; // You'll need to add this file to your project
+import TimeSignature from "./components/TimeSignature";
+import MusicStaff from "./components/MusicStaff";
+import Instructions from "./components/Instructions";
+import MusicInstrument from "./components/MusicInstrument";
 
 function App() {
   const [taps, setTaps] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [feedback, setFeedback] = useState("");
   const [count, setCount] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const audioRef = useRef(new Audio(drumSound));
@@ -69,7 +72,6 @@ function App() {
 
   const startGame = () => {
     setTaps([]);
-    setFeedback("");
     setCount(0);
     setIsPlaying(true);
     setStartTime(Date.now());
@@ -78,20 +80,14 @@ function App() {
   const checkRhythm = () => {
     // Simple algorithm to check if taps match expected rhythm
     // Allow for some margin of error (e.g., 200ms)
-    const margin = 200;
+    const ErrorMargin = 200;
     let correct = true;
 
     for (let i = 0; i < taps.length; i++) {
-      if (Math.abs(taps[i] - expectedRhythm[i]) > margin) {
+      if (Math.abs(taps[i] - expectedRhythm[i]) > ErrorMargin) {
         correct = false;
         break;
       }
-    }
-
-    if (correct) {
-      setFeedback("Great job! Perfect rhythm!");
-    } else {
-      setFeedback("Try again to match the rhythm more precisely.");
     }
   };
 
@@ -109,7 +105,6 @@ function App() {
     countRefs.current.forEach((audio, index) => {
       audio.onerror = () => {
         console.warn(`Count audio ${index + 1} failed to load, using speech synthesis instead`);
-        // Set up event handler to use speech synthesis instead
         if (isPlaying && count === index + 1) {
           speakCount(index + 1);
         }
@@ -120,34 +115,17 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1>Time: 4/4</h1>
+        <TimeSignature />
+        <MusicStaff count={count} />
+        <Instructions />
 
-        <div className='notation'>
-          <div className='staff-line'></div>
-          <div className='notes'>
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className={`note ${count === i ? "active" : ""}`}>
-                ♩
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <p>Tap the rhythm</p>
-
-        {isPlaying && <div className='count-display'>{count}</div>}
-
-        <div className={`drum ${isPlaying ? "active" : ""}`} onClick={handleDrumTap}>
-          🥁
-        </div>
+        <MusicInstrument isPlaying={isPlaying} handleDrumTap={handleDrumTap} />
 
         {!isPlaying && (
           <button className='start-button' onClick={startGame}>
             Start
           </button>
         )}
-
-        {feedback && <p className='feedback'>{feedback}</p>}
       </header>
     </div>
   );
