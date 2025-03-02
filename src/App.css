@@ -40,6 +40,11 @@
 .note {
   font-size: 40px;
   margin-top: -40px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.note.active {
+  transform: scale(1.5);
 }
 
 .drum {
@@ -57,10 +62,6 @@
 
 .drum.active {
   animation: pulse 1s infinite alternate;
-}
-
-.drum.beat-1 {
-  transform: scale(1.05);
 }
 
 .count-display {

@@ -1,7 +1,7 @@
 // App.js
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import drumSound from "./drum.mp3"; // You'll need to add this file to your project
+import drumSound from "./drum.m4a"; // You'll need to add this file to your project
 
 function App() {
   const [taps, setTaps] = useState([]);
@@ -13,10 +13,10 @@ function App() {
 
   // Create audio elements for counting
   const countRefs = useRef([
-    new Audio("/count1.mp3"), // You'll need to add these files to your public folder
-    new Audio("/count2.mp3"),
-    new Audio("/count3.mp3"),
-    new Audio("/count4.mp3"),
+    new Audio("/count1.m4a"), //
+    new Audio("/count2.m4a"),
+    new Audio("/count3.m4a"),
+    new Audio("/count4.m4a"),
   ]);
 
   // The expected rhythm - four quarter notes evenly spaced
@@ -125,8 +125,8 @@ function App() {
         <div className='notation'>
           <div className='staff-line'></div>
           <div className='notes'>
-            {[0, 1, 2, 3].map((i) => (
-              <div key={i} className='note'>
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className={`note ${count === i ? "active" : ""}`}>
                 ♩
               </div>
             ))}
@@ -137,7 +137,7 @@ function App() {
 
         {isPlaying && <div className='count-display'>{count}</div>}
 
-        <div className={`drum ${isPlaying ? "active" : ""} ${count === 1 || count === 2 || count === 3 || count === 4 ? "beat-" + count : ""}`} onClick={handleDrumTap}>
+        <div className={`drum ${isPlaying ? "active" : ""}`} onClick={handleDrumTap}>
           🥁
         </div>
 
