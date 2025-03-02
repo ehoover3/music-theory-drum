@@ -1,7 +1,4 @@
 /* App.css */
-.App {
-  text-align: center;
-}
 
 .App-header {
   background-color: #282c34;
@@ -53,49 +50,4 @@
   transition: transform 0.1s;
   margin: 30px 0;
   user-select: none;
-}
-
-.drum:active,
-.drum.tapped {
-  transform: scale(0.9);
-}
-
-.drum.active {
-  animation: pulse 1s infinite alternate;
-}
-
-.count-display {
-  font-size: 48px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  min-height: 60px;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1.05);
-  }
-}
-
-.start-button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 20px 0;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.feedback {
-  margin-top: 20px;
-  font-weight: bold;
 }

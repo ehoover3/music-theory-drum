@@ -1,7 +1,7 @@
 import React from "react";
 
 function TimeSignature() {
-  return <h1>Time: 4/4</h1>;
+  return <div>Time: 4/4</div>;
 }
 
 export default TimeSignature;

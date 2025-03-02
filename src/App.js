@@ -1,11 +1,12 @@
 // App.js
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import drumSound from "./drum.m4a"; // You'll need to add this file to your project
+import drumSound from "./drum.m4a";
 import TimeSignature from "./components/TimeSignature";
 import MusicStaff from "./components/MusicStaff";
 import Instructions from "./components/Instructions";
 import MusicInstrument from "./components/MusicInstrument";
+import StartPauseButton from "./components/StartPauseButton"; // Import the new component
 
 function App() {
   const [taps, setTaps] = useState([]);
@@ -14,28 +15,18 @@ function App() {
   const [startTime, setStartTime] = useState(0);
   const audioRef = useRef(new Audio(drumSound));
 
-  // Create audio elements for counting
-  const countRefs = useRef([
-    new Audio("/count1.m4a"), //
-    new Audio("/count2.m4a"),
-    new Audio("/count3.m4a"),
-    new Audio("/count4.m4a"),
-  ]);
+  const countRefs = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
 
-  // The expected rhythm - four quarter notes evenly spaced
-  const expectedRhythm = [0, 1000, 2000, 3000]; // Assuming 1000ms = 1 beat at 60 BPM
-  const beatInterval = 1000; // 1000ms = 60 BPM
+  const expectedRhythm = [0, 1000, 2000, 3000];
+  const beatInterval = 1000;
 
-  // Set up metronome
   useEffect(() => {
     let intervalId;
 
     if (isPlaying) {
-      // Start immediately with count 1
       countRefs.current[0].play();
       setCount(1);
 
-      // Set up metronome interval
       intervalId = setInterval(() => {
         setCount((prevCount) => {
           const newCount = (prevCount % 4) + 1;
@@ -53,15 +44,12 @@ function App() {
   const handleDrumTap = () => {
     if (!isPlaying) return;
 
-    // Play drum sound
     audioRef.current.currentTime = 0;
     audioRef.current.play();
 
-    // Record tap time relative to start
     const currentTime = Date.now() - startTime;
     setTaps((prevTaps) => [...prevTaps, currentTime]);
 
-    // If we have 4 taps, check the rhythm
     if (taps.length === 3) {
       setTimeout(() => {
         checkRhythm();
@@ -77,9 +65,11 @@ function App() {
     setStartTime(Date.now());
   };
 
+  const pauseGame = () => {
+    setIsPlaying(false);
+  };
+
   const checkRhythm = () => {
-    // Simple algorithm to check if taps match expected rhythm
-    // Allow for some margin of error (e.g., 200ms)
     const ErrorMargin = 200;
     let correct = true;
 
@@ -91,7 +81,6 @@ function App() {
     }
   };
 
-  // For text-to-speech fallback if audio files aren't available
   const speakCount = (num) => {
     if ("speechSynthesis" in window) {
       const utterance = new SpeechSynthesisUtterance(num.toString());
@@ -100,7 +89,6 @@ function App() {
     }
   };
 
-  // Handle loading errors for count audio files
   useEffect(() => {
     countRefs.current.forEach((audio, index) => {
       audio.onerror = () => {
@@ -115,17 +103,13 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <TimeSignature />
+        <div style={{ display: "flex", alignItems: "center", width: "80%", maxWidth: "500px" }}>
+          <TimeSignature />
+          <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
+        </div>
         <MusicStaff count={count} />
         <Instructions />
-
         <MusicInstrument isPlaying={isPlaying} handleDrumTap={handleDrumTap} />
-
-        {!isPlaying && (
-          <button className='start-button' onClick={startGame}>
-            Start
-          </button>
-        )}
       </header>
     </div>
   );
