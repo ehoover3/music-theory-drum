@@ -1,177 +1,89 @@
 /* App.css */
-.app {
+.App {
   text-align: center;
-  font-family: Arial, sans-serif;
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 20px;
 }
 
-.game-container {
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-/* Staff Styles */
-.staff-container {
+.notation {
+  margin: 30px 0;
   position: relative;
-  width: 100%;
-  height: 200px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
+  width: 80%;
+  max-width: 500px;
 }
 
 .staff-line {
-  position: relative;
+  height: 2px;
+  background-color: white;
   width: 100%;
-  height: 100%;
-}
-
-.staff {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 20px 0;
-}
-
-.staff .line-1,
-.staff .line-2,
-.staff .line-3,
-.staff .line-4,
-.staff .line-5 {
-  height: 1px;
-  background-color: #000;
-  width: 100%;
-}
-
-.notes {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.note {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 24px;
 }
 
-.note.quarter {
-  font-weight: bold;
-}
-
-.note.eighth {
-  font-weight: normal;
-}
-
-.playhead {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 2px;
-  background-color: red;
-  z-index: 10;
-}
-
-/* Controls Section */
-.controls-section {
+.notes {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 10px;
 }
 
-.score-display {
-  margin-bottom: 10px;
+.note {
+  font-size: 40px;
+  margin-top: -40px;
+}
+
+.drum {
+  font-size: 80px;
+  cursor: pointer;
+  transition: transform 0.1s;
+  margin: 30px 0;
+  user-select: none;
+}
+
+.drum:active,
+.drum.tapped {
+  transform: scale(0.9);
+}
+
+.drum.active {
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.start-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px 0;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .feedback {
-  font-size: 24px;
+  margin-top: 20px;
   font-weight: bold;
-  height: 30px;
-  color: #4CAF50;
-}
-
-/* Drum Styles */
-.drum {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #f5f5f5;
-  position: relative;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.1s;
-  margin: 20px auto;
-  border: 10px solid #d32f2f;
-}
-
-.drum.pressed {
-  transform: scale(0.95);
-  background-color: #e0e0e0;
-}
-
-.drum-head {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.drum-center {
-  width: 30%;
-  height: 30%;
-  border-radius: 50%;
-  background-color: #f5f5f5;
-  border: 1px solid #e0e0e0;
-}
-
-/* Game Controls */
-.game-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 10px;
-  width: 100%;
-  max-width: 300px;
-}
-
-.control-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.control-btn:hover {
-  background-color: #45a049;
-}
-
-.tempo-control {
-  margin-top: 10px;
-  width: 100%;
-}
-
-.tempo-control label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.tempo-control input {
-  width: 100%;
 }

@@ -1,164 +1,96 @@
-import React, { useState, useEffect, useRef } from "react";
+// App.js
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import StaffLine from "./components/StaffLine";
-import Drum from "./components/Drum";
-import GameControls from "./components/GameControls";
+import drumSound from "./drum.mp3"; // You'll need to add this file to your project
 
 function App() {
+  const [taps, setTaps] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [playheadPosition, setPlayheadPosition] = useState(0);
-  const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState("");
-  const [tempo, setTempo] = useState(80); // BPM
+  const [audio] = useState(new Audio(drumSound));
 
-  // Sheet music notation - each object represents a note
-  // position is in percentage of the staff width
-  const sheetMusic = [
-    { id: 1, position: 20, type: "quarter" },
-    { id: 2, position: 30, type: "quarter" },
-    { id: 3, position: 40, type: "quarter" },
-    { id: 4, position: 50, type: "quarter" },
-    { id: 5, position: 60, type: "eighth" },
-    { id: 6, position: 65, type: "eighth" },
-    { id: 7, position: 70, type: "quarter" },
-    { id: 8, position: 80, type: "quarter" },
-    { id: 9, position: 90, type: "quarter" },
-  ];
+  // The expected rhythm - four quarter notes evenly spaced
+  const expectedRhythm = [0, 1000, 2000, 3000]; // Assuming 1000ms = 1 beat at 60 BPM
 
-  // Reference to hold the animation frame
-  const animationRef = useRef(null);
-  // Reference to store the last timestamp
-  const lastTimeRef = useRef(0);
-  // Speed of playhead movement (percentage per second)
-  const playheadSpeed = tempo / 15; // Adjust this for desired speed
-
-  // Animation function for the playhead
-  const animate = (timestamp) => {
-    if (!lastTimeRef.current) {
-      lastTimeRef.current = timestamp;
-    }
-
-    const deltaTime = timestamp - lastTimeRef.current;
-    lastTimeRef.current = timestamp;
-
-    // Update playhead position
-    setPlayheadPosition((prev) => {
-      const newPosition = prev + (playheadSpeed * deltaTime) / 1000;
-      if (newPosition > 100) {
-        // End of staff reached
-        setIsPlaying(false);
-        return 0;
-      }
-      return newPosition;
-    });
-
-    if (isPlaying) {
-      animationRef.current = requestAnimationFrame(animate);
-    }
-  };
-
-  // Start or stop the game
-  useEffect(() => {
-    if (isPlaying) {
-      lastTimeRef.current = 0;
-      animationRef.current = requestAnimationFrame(animate);
-    } else {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isPlaying]);
-
-  // Handle drum hit
-  const handleDrumHit = () => {
+  const handleDrumTap = () => {
     if (!isPlaying) return;
 
-    // Find the closest note to the playhead
-    const closestNote = sheetMusic.reduce(
-      (closest, note) => {
-        const distance = Math.abs(note.position - playheadPosition);
-        if (distance < Math.abs(closest.position - playheadPosition)) {
-          return note;
-        }
-        return closest;
-      },
-      { position: -Infinity }
-    );
+    // Play drum sound
+    audio.currentTime = 0;
+    audio.play();
 
-    // Check if hit is within the margin of error (5% of staff width)
-    const hitDistance = Math.abs(closestNote.position - playheadPosition);
+    // Record tap time relative to start
+    const currentTime = Date.now() - startTime;
+    setTaps((prevTaps) => [...prevTaps, currentTime]);
 
-    if (hitDistance <= 5) {
-      // Perfect hit
-      setScore((prev) => prev + 100);
-      setFeedback("Perfect!");
-    } else if (hitDistance <= 10) {
-      // Good hit
-      setScore((prev) => prev + 50);
-      setFeedback("Good!");
-    } else if (hitDistance <= 15) {
-      // Okay hit
-      setScore((prev) => prev + 25);
-      setFeedback("Okay");
-    } else {
-      // Miss
-      setFeedback("Miss");
+    // If we have 4 taps, check the rhythm
+    if (taps.length === 3) {
+      setTimeout(() => {
+        checkRhythm();
+        setIsPlaying(false);
+      }, 500);
     }
-
-    // Clear feedback after 1 second
-    setTimeout(() => {
-      setFeedback("");
-    }, 1000);
   };
 
-  // Toggle play/pause
-  const togglePlay = () => {
-    if (!isPlaying) {
-      // Reset playhead position when starting
-      setPlayheadPosition(0);
-    }
-    setIsPlaying(!isPlaying);
-  };
+  const [startTime, setStartTime] = useState(0);
 
-  // Reset the game
-  const resetGame = () => {
-    setIsPlaying(false);
-    setPlayheadPosition(0);
-    setScore(0);
+  const startGame = () => {
+    setTaps([]);
     setFeedback("");
+    setIsPlaying(true);
+    setStartTime(Date.now());
   };
 
-  // Handle tempo change
-  const handleTempoChange = (newTempo) => {
-    setTempo(newTempo);
+  const checkRhythm = () => {
+    // Simple algorithm to check if taps match expected rhythm
+    // Allow for some margin of error (e.g., 200ms)
+    const margin = 200;
+    let correct = true;
+
+    for (let i = 0; i < taps.length; i++) {
+      if (Math.abs(taps[i] - expectedRhythm[i]) > margin) {
+        correct = false;
+        break;
+      }
+    }
+
+    if (correct) {
+      setFeedback("Great job! Perfect rhythm!");
+    } else {
+      setFeedback("Try again to match the rhythm more precisely.");
+    }
   };
 
   return (
-    <div className='app'>
-      <h1>Percussion Rhythm Game</h1>
+    <div className='App'>
+      <header className='App-header'>
+        <h1>Time: 4/4</h1>
 
-      <div className='game-container'>
-        <div className='staff-container'>
-          <StaffLine sheetMusic={sheetMusic} playheadPosition={playheadPosition} />
-        </div>
-
-        <div className='controls-section'>
-          <div className='score-display'>
-            <h2>Score: {score}</h2>
-            <div className='feedback'>{feedback}</div>
+        <div className='notation'>
+          <div className='staff-line'></div>
+          <div className='notes'>
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className='note'>
+                ♩
+              </div>
+            ))}
           </div>
-
-          <Drum onHit={handleDrumHit} />
-
-          <GameControls isPlaying={isPlaying} onTogglePlay={togglePlay} onReset={resetGame} tempo={tempo} onTempoChange={handleTempoChange} />
         </div>
-      </div>
+
+        <p>Tap the rhythm</p>
+
+        <div className={`drum ${isPlaying ? "active" : ""}`} onClick={handleDrumTap}>
+          🥁
+        </div>
+
+        {!isPlaying && (
+          <button className='start-button' onClick={startGame}>
+            Start
+          </button>
+        )}
+
+        {feedback && <p className='feedback'>{feedback}</p>}
+      </header>
     </div>
   );
 }

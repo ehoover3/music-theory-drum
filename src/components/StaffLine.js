@@ -1,4 +1,3 @@
-// components/StaffLine.js
 import React from "react";
 
 const StaffLine = ({ sheetMusic, playheadPosition }) => {
@@ -13,17 +12,26 @@ const StaffLine = ({ sheetMusic, playheadPosition }) => {
         <div className='staff-line line-5'></div>
       </div>
 
-      {/* Notes */}
-      <div className='notes'>
-        {sheetMusic.map((note) => (
-          <div key={note.id} className={`note ${note.type}`} style={{ left: `${note.position}%` }}>
-            {note.type === "quarter" ? "♩" : "♪"}
-          </div>
-        ))}
-      </div>
+      {/* Stationary playhead */}
+      <div className='playhead stationary'></div>
 
-      {/* Playhead */}
-      <div className='playhead' style={{ left: `${playheadPosition}%` }}></div>
+      {/* Notes that will move */}
+      <div className='notes'>
+        {sheetMusic.map((note) => {
+          // Calculate the position from left side as notes move right to left
+          const position = note.position - playheadPosition;
+
+          // Only render notes that are visible in the staff area
+          if (position >= -10 && position <= 110) {
+            return (
+              <div key={note.id} className={`note ${note.type}`} style={{ left: `${position}%` }}>
+                {note.type === "quarter" ? "♩" : "♪"}
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
     </div>
   );
 };
