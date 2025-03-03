@@ -8,6 +8,7 @@ import MusicInstrument from "./components/MusicInstrument";
 import StartPauseButton from "./components/StartPauseButton";
 import TapDots from "./components/TapDots";
 import { useDrumSound } from "./hooks/drumSound";
+import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap";
 
 function App() {
   const [taps, setTaps] = useState([]);
@@ -50,15 +51,7 @@ function App() {
     };
   }, [isPlaying]);
 
-  const handleMusicInstrumentTap = () => {
-    if (!isPlaying) return;
-    const audio = audioRef.current;
-    audio.pause();
-    audio.currentTime = 0;
-    audio.play().catch((err) => console.warn("Audio play failed:", err));
-    const currentTime = Date.now() - startTime;
-    setTaps((prevTaps) => [...prevTaps, currentTime]);
-  };
+  const handleMusicInstrumentTap = useMusicInstrumentTap(audioRef, startTime, setTaps);
 
   const startGame = () => {
     setTaps([]);
