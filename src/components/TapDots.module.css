@@ -1,13 +1,13 @@
 .tapDotsContainer {
-    position: absolute;
+    position: relative;
     width: 80%;
     max-width: 500px;
     height: 10px;
-    top: 55%;
-    transform: translateY(-50%);
+    margin: 10px auto;
     background-color: rgba(200, 200, 200, 0.2);
     border-radius: 5px;
 }
+
 
 .tapDot {
     position: absolute;
