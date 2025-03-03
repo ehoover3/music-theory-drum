@@ -21,10 +21,8 @@
 
 .correctTap {
     background-color: #4CAF50;
-    /* Green color for correct taps */
 }
 
 .incorrectTap {
     background-color: #F44336;
-    /* Red color for incorrect taps */
 }

@@ -3,32 +3,26 @@ import styles from "./TapDots.module.css";
 
 function TapDots({ taps, isPlaying, beatInterval, currentCycle }) {
   const [dots, setDots] = useState([]);
+  const MARGIN_OF_ERROR = 200; // 200 milliseconds margin of error
+  const expectedBeats = [0, beatInterval, 2 * beatInterval, 3 * beatInterval]; // Expected beat times (in ms)
 
-  // Define the margin of error in milliseconds
-  const MARGIN_OF_ERROR = 200; // 200ms margin of error
-
-  // Expected beat times (in ms)
-  const expectedBeats = [0, beatInterval, 2 * beatInterval, 3 * beatInterval];
+  const findClosestBeatIndex = (tapTime, expectedBeats) => {
+    return expectedBeats.reduce((closest, beat, index) => {
+      return Math.abs(tapTime - beat) < Math.abs(tapTime - expectedBeats[closest]) ? index : closest;
+    }, 0);
+  };
 
   useEffect(() => {
     if (!isPlaying) {
       setDots([]);
     } else {
-      // Update dots based on taps within the current cycle
       setDots(
         taps.map((tapTime) => {
-          // Find the closest expected beat time
-          const closestBeatIndex = expectedBeats.reduce((closest, beat, index) => {
-            const currentDiff = Math.abs(tapTime - beat);
-            const closestDiff = Math.abs(tapTime - expectedBeats[closest]);
-            return currentDiff < closestDiff ? index : closest;
-          }, 0);
-
-          // Calculate if the tap is within margin of error
+          const closestBeatIndex = findClosestBeatIndex(tapTime, expectedBeats);
           const isWithinMargin = Math.abs(tapTime - expectedBeats[closestBeatIndex]) <= MARGIN_OF_ERROR;
 
           return {
-            x: Math.min((tapTime / (4 * beatInterval)) * 100, 100), // Cap at 100% width
+            x: Math.min((tapTime / (4 * beatInterval)) * 100, 100),
             isCorrect: isWithinMargin,
           };
         })
