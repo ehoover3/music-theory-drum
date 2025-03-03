@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import drumSound from "./drum.m4a";
 import TimeSignature from "./components/TimeSignature";
 import MusicStaff from "./components/MusicStaff";
 import Instructions from "./components/Instructions";
@@ -17,10 +16,7 @@ function App() {
   const [startTime, setStartTime] = useState(0);
   const [currentCycle, setCurrentCycle] = useState(0);
   const audioRef = useDrumSound();
-
   const countRefs = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
-
-  const expectedRhythm = [0, 1000, 2000, 3000];
   const beatInterval = 1000;
 
   // Handle the metronome count and cycle changes
@@ -64,25 +60,6 @@ function App() {
   const pauseGame = () => {
     setIsPlaying(false);
   };
-
-  const speakCount = (num) => {
-    if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(num.toString());
-      utterance.rate = 1.0;
-      window.speechSynthesis.speak(utterance);
-    }
-  };
-
-  useEffect(() => {
-    countRefs.current.forEach((audio, index) => {
-      audio.onerror = () => {
-        console.warn(`Count audio ${index + 1} failed to load, using speech synthesis instead`);
-        if (isPlaying && count === index + 1) {
-          speakCount(index + 1);
-        }
-      };
-    });
-  }, [count, isPlaying]);
 
   return (
     <div className='App'>
