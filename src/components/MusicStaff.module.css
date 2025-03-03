@@ -1,0 +1,32 @@
+.notation {
+    margin: 30px 0;
+    position: relative;
+    width: 80%;
+    max-width: 500px;
+}
+
+.staffLine {
+    height: 2px;
+    background-color: white;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.notes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 10px;
+}
+
+.note {
+    font-size: 40px;
+    margin-top: -40px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.active {
+    transform: scale(1.5);
+}
