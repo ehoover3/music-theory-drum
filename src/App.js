@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import drumSound from "./drum.m4a";
@@ -6,13 +5,15 @@ import TimeSignature from "./components/TimeSignature";
 import MusicStaff from "./components/MusicStaff";
 import Instructions from "./components/Instructions";
 import MusicInstrument from "./components/MusicInstrument";
-import StartPauseButton from "./components/StartPauseButton"; // Import the new component
+import StartPauseButton from "./components/StartPauseButton";
+import TapDots from "./components/TapDots";
 
 function App() {
   const [taps, setTaps] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [count, setCount] = useState(0);
   const [startTime, setStartTime] = useState(0);
+  const [currentCycle, setCurrentCycle] = useState(0);
   const audioRef = useRef(new Audio(drumSound));
 
   const countRefs = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
@@ -20,6 +21,7 @@ function App() {
   const expectedRhythm = [0, 1000, 2000, 3000];
   const beatInterval = 1000;
 
+  // Handle the metronome count and cycle changes
   useEffect(() => {
     let intervalId;
 
@@ -31,9 +33,20 @@ function App() {
         setCount((prevCount) => {
           const newCount = (prevCount % 4) + 1;
           countRefs.current[newCount - 1].play();
+
+          // When we complete a 4-count cycle, reset taps and increment cycle
+          if (newCount === 1) {
+            setTaps([]);
+            setCurrentCycle((prev) => prev + 1);
+            setStartTime(Date.now());
+          }
+
           return newCount;
         });
       }, beatInterval);
+
+      // Initial start time
+      setStartTime(Date.now());
     }
 
     return () => {
@@ -50,35 +63,19 @@ function App() {
     const currentTime = Date.now() - startTime;
     setTaps((prevTaps) => [...prevTaps, currentTime]);
 
-    if (taps.length === 3) {
-      setTimeout(() => {
-        checkRhythm();
-        setIsPlaying(false);
-      }, 500);
-    }
+    // We've removed the automatic game stopping logic here
   };
 
   const startGame = () => {
     setTaps([]);
     setCount(0);
+    setCurrentCycle(0);
     setIsPlaying(true);
     setStartTime(Date.now());
   };
 
   const pauseGame = () => {
     setIsPlaying(false);
-  };
-
-  const checkRhythm = () => {
-    const ErrorMargin = 200;
-    let correct = true;
-
-    for (let i = 0; i < taps.length; i++) {
-      if (Math.abs(taps[i] - expectedRhythm[i]) > ErrorMargin) {
-        correct = false;
-        break;
-      }
-    }
   };
 
   const speakCount = (num) => {
@@ -108,6 +105,7 @@ function App() {
           <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
         </div>
         <MusicStaff count={count} />
+        <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatInterval} currentCycle={currentCycle} />
         <Instructions />
         <MusicInstrument isPlaying={isPlaying} handleDrumTap={handleDrumTap} />
       </header>

@@ -1,0 +1,21 @@
+ .tapDotsContainer {
+     position: absolute;
+     width: 80%;
+     max-width: 500px;
+     height: 10px;
+     top: 55%;
+     transform: translateY(-50%);
+     background-color: rgba(200, 200, 200, 0.2);
+     border-radius: 5px;
+ }
+
+ .tapDot {
+     position: absolute;
+     width: 8px;
+     height: 8px;
+     background-color: red;
+     border-radius: 50%;
+     top: 50%;
+     transform: translate(-50%, -50%);
+     transition: opacity 0.2s ease;
+ }
