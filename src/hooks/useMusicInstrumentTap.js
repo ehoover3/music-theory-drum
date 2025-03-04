@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export const useMusicInstrumentTap = (audioRef, startTime, setTaps) => {
   const handleMusicInstrumentTap = () => {
     if (!audioRef.current) return;

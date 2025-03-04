@@ -6,9 +6,10 @@ import Instructions from "./components/Instructions";
 import MusicInstrument from "./components/MusicInstrument";
 import StartPauseButton from "./components/StartPauseButton";
 import TapDots from "./components/TapDots";
-import { useDrumSound } from "./hooks/drumSound";
+import { useDrumSound } from "./hooks/useDrumSound";
 import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap";
 import { useMetronome } from "./hooks/useMetronome";
+import { usePlayPause } from "./hooks/usePlayPause";
 
 function App() {
   const [taps, setTaps] = useState([]);
@@ -22,18 +23,7 @@ function App() {
 
   useMetronome(isPlaying, countRefs, setCount, setTaps, setCurrentCycle, setStartTime, beatInterval);
   const handleMusicInstrumentTap = useMusicInstrumentTap(audioRef, startTime, setTaps);
-
-  const startGame = () => {
-    setTaps([]);
-    setCount(0);
-    setCurrentCycle(0);
-    setIsPlaying(true);
-    setStartTime(Date.now());
-  };
-
-  const pauseGame = () => {
-    setIsPlaying(false);
-  };
+  const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setCurrentCycle, setIsPlaying, setStartTime);
 
   return (
     <div className='App'>

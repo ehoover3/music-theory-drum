@@ -1,6 +1,4 @@
-maybe stop transforming notes for now.
 Music notation variation.
-Tap notes lined up under music notes.
 
 Progress Bar.
 Complete rhythm 4 times to complete lesson.
