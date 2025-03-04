@@ -23,10 +23,8 @@
     font-size: 40px;
     margin-top: -40px;
     transition: transform 0.075s ease-in-out;
-
-    text-align: center;
 }
 
 .active {
-    transform: scale(1.5) translateY(-4.5px);
+    transform: scale(1.5) translateY(-4.5px) translateX(12px);
 }
