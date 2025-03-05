@@ -1,8 +1,7 @@
 Music notation variation.
 
-Progress Bar.
-Complete rhythm 4 times to complete lesson.
-lesson complete screen.
+fix Progress Bar - needs to increment by 1 up to 3 times, then give a screen that the lesson is complete.
+
 Return main screen.
 
 I want to be an NPC who can walk around.

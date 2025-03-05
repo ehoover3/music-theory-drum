@@ -1,6 +1,7 @@
 .progressBarContainer {
   position: relative;
   width: 100%;
+  max-width: 500px;
   height: 10px;
   background-color: #e0e0e0;
   overflow: hidden;
