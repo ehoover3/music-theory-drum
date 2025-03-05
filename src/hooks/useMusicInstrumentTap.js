@@ -1,9 +1,9 @@
-export const useMusicInstrumentTap = (audioRef, startTime, setTaps) => {
+export const useMusicInstrumentTap = (drumBeatSound, startTime, setTaps) => {
   const handleMusicInstrumentTap = () => {
-    if (!audioRef.current) return;
+    if (!drumBeatSound.current) return;
 
     // Handle the audio play logic
-    const audio = audioRef.current;
+    const audio = drumBeatSound.current;
     audio.pause();
     audio.currentTime = 0;
     audio.play().catch((err) => console.warn("Audio play failed:", err));

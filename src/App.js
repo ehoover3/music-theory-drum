@@ -21,8 +21,8 @@ function App() {
   const [correctCycles, setCorrectCycles] = useState(0);
   const [isGameComplete, setIsGameComplete] = useState(false);
   const [lastCorrectCycle, setLastCorrectCycle] = useState(-1);
-  const audioRef = useDrumSound();
-  const countRefs = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
+  const drumBeatSound = useDrumSound();
+  const metronomeCountSounds = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
   const beatInterval = 1000;
 
   const notes = [
@@ -32,8 +32,8 @@ function App() {
     { symbol: "♩", beat: 4 },
   ];
 
-  useMetronome(isPlaying, countRefs, setCount, setTaps, setCurrentCycle, setStartTime, beatInterval);
-  const handleMusicInstrumentTap = useMusicInstrumentTap(audioRef, startTime, setTaps);
+  useMetronome(isPlaying, metronomeCountSounds, setCount, setTaps, setCurrentCycle, setStartTime, beatInterval);
+  const handleMusicInstrumentTap = useMusicInstrumentTap(drumBeatSound, startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setCurrentCycle, setIsPlaying, setStartTime);
 
   const handleCycleCompletion = (isCycleCorrect) => {
@@ -69,6 +69,7 @@ function App() {
           <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
         </div>
         <MusicStaff notes={notes} count={count} />
+        <div>correctCycles: {correctCycles}</div>
         <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatInterval} currentCycle={currentCycle} onCycleCompletion={handleCycleCompletion} />
         {isGameComplete && (
           <div className='game-complete-modal'>
