@@ -1,14 +1,7 @@
 import React from "react";
 import styles from "./MusicStaff.module.css";
 
-function MusicStaff({ count }) {
-  const notes = [
-    { symbol: "♩", beat: 1 },
-    { symbol: "♩", beat: 2 },
-    { symbol: "♩", beat: 3 },
-    { symbol: "♩", beat: 4 },
-  ];
-
+function MusicStaff({ notes, count }) {
   return (
     <div className={styles.notation}>
       <div className={styles.staffLine}></div>

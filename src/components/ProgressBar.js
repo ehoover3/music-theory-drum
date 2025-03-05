@@ -1,0 +1,12 @@
+import React from "react";
+import styles from "./ProgressBar.module.css";
+
+function ProgressBar({ correctCycles }) {
+  return (
+    <div className={styles.progressBarContainer}>
+      <div className={styles.progressBar} style={{ width: `${correctCycles * 33.33}%` }}></div>
+    </div>
+  );
+}
+
+export default ProgressBar;
