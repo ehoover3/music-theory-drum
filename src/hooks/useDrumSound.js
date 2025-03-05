@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
-import drumSound from "../drum.m4a";
 
 export function useDrumSound() {
-  const drumBeatSound = useRef(new Audio(drumSound));
+  const drumSoundURL = "/drum.m4a";
+  const drumSound = useRef(new Audio(drumSoundURL));
 
   useEffect(() => {
-    drumBeatSound.current.load();
-    drumBeatSound.current.onerror = () => console.error("Error loading drum sound");
+    drumSound.current.load();
+    drumSound.current.onerror = () => console.error("Error loading drum sound");
   }, []);
 
-  return drumBeatSound;
+  return drumSound;
 }

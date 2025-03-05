@@ -21,7 +21,7 @@ function App() {
   const [correctCycles, setCorrectCycles] = useState(0);
   const [isGameComplete, setIsGameComplete] = useState(false);
   const [lastCorrectCycle, setLastCorrectCycle] = useState(-1);
-  const drumBeatSound = useDrumSound();
+  const drumSound = useDrumSound();
   const metronomeCountSounds = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
   const beatInterval = 1000;
 
@@ -33,7 +33,7 @@ function App() {
   ];
 
   useMetronome(isPlaying, metronomeCountSounds, setCount, setTaps, setCurrentCycle, setStartTime, beatInterval);
-  const handleMusicInstrumentTap = useMusicInstrumentTap(drumBeatSound, startTime, setTaps);
+  const handleMusicInstrumentTap = useMusicInstrumentTap(drumSound, startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setCurrentCycle, setIsPlaying, setStartTime);
 
   const handleCycleCompletion = (isCycleCorrect) => {
