@@ -1,15 +1,16 @@
 // src/components/StartPauseButton.js
 import React from "react";
+import styles from "./StartPauseButton.module.css";
 
 const StartPauseButton = ({ isPlaying, startGame, pauseGame }) => {
   return (
     <>
       {!isPlaying ? (
-        <button className='start-button' onClick={startGame}>
+        <button className={styles.startButton} onClick={startGame}>
           ▶️ Start
         </button>
       ) : (
-        <button className='pause-button' onClick={pauseGame}>
+        <button className={styles.pauseButton} onClick={pauseGame}>
           ⏸️ Pause
         </button>
       )}

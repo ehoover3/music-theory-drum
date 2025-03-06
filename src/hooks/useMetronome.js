@@ -24,9 +24,6 @@ export const useMetronome = (count, setCount, isPlaying, setCurrentCycle, setSta
       intervalId = setInterval(() => {
         setCount((prevCount) => {
           const newCount = (prevCount % 4) + 1;
-          if (newCount === 1) {
-            resetCycle(setCurrentCycle, setStartTime);
-          }
           return newCount;
         });
       }, beatPerMillisecond);
@@ -35,11 +32,17 @@ export const useMetronome = (count, setCount, isPlaying, setCurrentCycle, setSta
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
-  }, [isPlaying]);
+  }, [isPlaying, beatPerMillisecond, setCount, setCurrentCycle, setStartTime]);
 
   useEffect(() => {
     if (isPlaying) {
       playSound(metronomeCountSounds, count);
+    }
+  }, [count]);
+
+  useEffect(() => {
+    if (count === 1) {
+      resetCycle(setCurrentCycle, setStartTime);
     }
   }, [count]);
 
