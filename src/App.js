@@ -23,8 +23,10 @@ function App() {
   const [lastCorrectCycle, setLastCorrectCycle] = useState(-1);
 
   const drumSound = useDrumSound();
-  const metronomeCountSounds = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
-  const beatInterval = 1000;
+  // const metronomeCountSounds = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
+
+  const beatsPerMinute = 60;
+  const beatPerMillisecond = 60000 / beatsPerMinute;
 
   const notes = [
     { symbol: "♩", beat: 1 },
@@ -33,12 +35,12 @@ function App() {
     { symbol: "♩", beat: 4 },
   ];
 
-  useMetronome(isPlaying, metronomeCountSounds, setCount, setCurrentCycle, setStartTime, beatInterval);
+  // useMetronome(isPlaying, metronomeCountSounds, count, setCount, setCurrentCycle, setStartTime, beatPerMillisecond);
+  useMetronome(isPlaying, count, setCount, setCurrentCycle, setStartTime, beatPerMillisecond);
   const handleMusicInstrumentTap = useMusicInstrumentTap(drumSound, startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setCurrentCycle, setIsPlaying, setStartTime);
 
   const handleCycleCompletion = (isCycleCorrect) => {
-    // Only increment if the current cycle is different from the last correct cycle
     if (isCycleCorrect && currentCycle !== lastCorrectCycle) {
       const newCorrectCycles = correctCycles + 1;
       setCorrectCycles(newCorrectCycles);
@@ -79,7 +81,7 @@ function App() {
         <MusicStaff notes={notes} count={count} />
         <div>count: {count}</div>
 
-        <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatInterval} currentCycle={currentCycle} onCycleCompletion={handleCycleCompletion} />
+        <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} currentCycle={currentCycle} onCycleCompletion={handleCycleCompletion} />
         {isGameComplete && (
           <div className='game-complete-modal'>
             <div className='game-complete-content'>
