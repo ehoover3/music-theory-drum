@@ -22,10 +22,7 @@ export const useMetronome = (count, setCount, isPlaying, setCurrentCycle, setSta
     if (isPlaying) {
       setCount(1);
       intervalId = setInterval(() => {
-        setCount((prevCount) => {
-          const newCount = (prevCount % 4) + 1;
-          return newCount;
-        });
+        setCount((prevCount) => (prevCount % 4) + 1);
       }, beatPerMillisecond);
       setStartTime(Date.now());
     }
