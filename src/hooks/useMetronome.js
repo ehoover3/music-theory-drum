@@ -3,11 +3,8 @@ import { useEffect, useRef } from "react";
 const playSound = (metronomeCountSounds, metronomeCountSoundsAlternate, count, currentCycle) => {
   const soundSet = currentCycle % 2 === 0 ? metronomeCountSounds : metronomeCountSoundsAlternate;
   const sound = soundSet.current[count - 1];
-  if (sound) {
-    sound.play();
-  } else {
-    console.warn("Sound not found for count:", count);
-  }
+  if (sound) sound.play();
+  else console.warn("Sound not found for count:", count);
 };
 
 const resetCycle = (setCurrentCycle, setStartTime) => {
@@ -31,15 +28,11 @@ export const useMetronome = (count, setCount, isPlaying, setCurrentCycle, setSta
   }, [isPlaying, beatPerMillisecond, setCount, setCurrentCycle, setStartTime]);
 
   useEffect(() => {
-    if (isPlaying) {
-      playSound(metronomeCountSounds, metronomeCountSoundsAlternate, count, currentCycle);
-    }
+    if (isPlaying) playSound(metronomeCountSounds, metronomeCountSoundsAlternate, count, currentCycle);
   }, [count, currentCycle]);
 
   useEffect(() => {
-    if (count === 1) {
-      resetCycle(setCurrentCycle, setStartTime);
-    }
+    if (count === 1) resetCycle(setCurrentCycle, setStartTime);
   }, [count]);
 
   return {};
