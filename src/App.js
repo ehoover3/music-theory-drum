@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import TimeSignature from "./components/TimeSignature";
 import MusicStaff from "./components/MusicStaff";
@@ -33,7 +33,7 @@ function App() {
     { symbol: "♩", beat: 4 },
   ];
 
-  useMetronome(isPlaying, metronomeCountSounds, setCount, setTaps, setCurrentCycle, setStartTime, beatInterval);
+  useMetronome(isPlaying, metronomeCountSounds, setCount, setCurrentCycle, setStartTime, beatInterval);
   const handleMusicInstrumentTap = useMusicInstrumentTap(drumSound, startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setCurrentCycle, setIsPlaying, setStartTime);
 
@@ -58,8 +58,15 @@ function App() {
     setIsGameComplete(false);
     setCorrectCycles(0);
     setLastCorrectCycle(-1);
+    setTaps([]);
     startGame();
   };
+
+  useEffect(() => {
+    if (count === 1) {
+      setTaps([]);
+    }
+  }, [count]);
 
   return (
     <div className='App'>
@@ -70,8 +77,8 @@ function App() {
           <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
         </div>
         <MusicStaff notes={notes} count={count} />
-        <div>currentCycle: {currentCycle}</div>
-        <div>lastCorrectCycle: {lastCorrectCycle}</div>
+        <div>count: {count}</div>
+
         <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatInterval} currentCycle={currentCycle} onCycleCompletion={handleCycleCompletion} />
         {isGameComplete && (
           <div className='game-complete-modal'>

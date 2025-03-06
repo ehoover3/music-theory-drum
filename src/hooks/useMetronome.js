@@ -4,13 +4,12 @@ const playSound = (metronomeCountSounds, count) => {
   metronomeCountSounds.current[count - 1].play();
 };
 
-const resetCycle = (setTaps, setCurrentCycle, setStartTime) => {
-  setTaps([]);
+const resetCycle = (setCurrentCycle, setStartTime) => {
   setCurrentCycle((prev) => prev + 1);
   setStartTime(Date.now());
 };
 
-export const useMetronome = (isPlaying, metronomeCountSounds, setCount, setTaps, setCurrentCycle, setStartTime, beatInterval) => {
+export const useMetronome = (isPlaying, metronomeCountSounds, setCount, setCurrentCycle, setStartTime, beatInterval) => {
   useEffect(() => {
     let intervalId;
     if (isPlaying) {
@@ -21,7 +20,7 @@ export const useMetronome = (isPlaying, metronomeCountSounds, setCount, setTaps,
           const newCount = (prevCount % 4) + 1;
           playSound(metronomeCountSounds, newCount);
           if (newCount === 1) {
-            resetCycle(setTaps, setCurrentCycle, setStartTime);
+            resetCycle(setCurrentCycle, setStartTime);
           }
           return newCount;
         });
@@ -32,7 +31,7 @@ export const useMetronome = (isPlaying, metronomeCountSounds, setCount, setTaps,
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
-  }, [isPlaying, metronomeCountSounds, setCount, setTaps, setCurrentCycle, setStartTime, beatInterval]);
+  }, [isPlaying, metronomeCountSounds, setCount, setCurrentCycle, setStartTime, beatInterval]);
 
   return {};
 };
