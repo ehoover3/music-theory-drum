@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./TapDots.module.css";
 
-function TapDots({ taps, isPlaying, beatInterval, currentCycle, onCycleCompletion }) {
+function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) {
   const [dots, setDots] = useState([]);
   const [isCycleCorrect, setIsCycleCorrect] = useState(false);
 
@@ -37,7 +37,7 @@ function TapDots({ taps, isPlaying, beatInterval, currentCycle, onCycleCompletio
     // Check if all taps in this cycle are correct
     const allCycleDotsCorrect = cycleDots.length === 4 && cycleDots.every((dot) => dot.isCorrect);
     setIsCycleCorrect(allCycleDotsCorrect);
-  }, [taps, isPlaying, beatInterval, currentCycle]);
+  }, [taps, isPlaying, beatInterval, measure]);
 
   // Trigger cycle completion callback when cycle is complete
   useEffect(() => {
@@ -49,7 +49,7 @@ function TapDots({ taps, isPlaying, beatInterval, currentCycle, onCycleCompletio
   return (
     <div className={styles.tapDotsContainer}>
       {dots.map((dot, index) => (
-        <div key={`${currentCycle}-${index}`} className={`${styles.tapDot} ${dot.isCorrect ? styles.correctTap : styles.incorrectTap}`} style={{ left: `${dot.x}%` }}></div>
+        <div key={`${measure}-${index}`} className={`${styles.tapDot} ${dot.isCorrect ? styles.correctTap : styles.incorrectTap}`} style={{ left: `${dot.x}%` }}></div>
       ))}
     </div>
   );

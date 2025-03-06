@@ -29,8 +29,8 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [count, setCount] = useState(1);
   const [startTime, setStartTime] = useState(0);
-  const [currentCycle, setCurrentCycle] = useState(0);
-  const [correctCycles, setCorrectCycles] = useState(0);
+  const [measure, setMeasure] = useState(0);
+  const [userTappedMeasureCorrectlyCount, setUserTappedMeasureCorrectlyCount] = useState(0);
   const [isGameComplete, setIsGameComplete] = useState(false);
   const [lastCorrectCycle, setLastCorrectCycle] = useState(-1);
 
@@ -45,29 +45,29 @@ function App() {
     { symbol: "♩", beat: 4 },
   ];
 
-  useMetronome(count, setCount, isPlaying, setCurrentCycle, setStartTime, beatPerMillisecond, currentCycle);
+  useMetronome(count, setCount, isPlaying, setMeasure, setStartTime, beatPerMillisecond, measure);
   const handleMusicInstrumentTap = useMusicInstrumentTap(drumSound, startTime, setTaps);
-  const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setCurrentCycle, setIsPlaying, setStartTime);
+  const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setMeasure, setIsPlaying, setStartTime);
 
   const handleCycleCompletion = (isCycleCorrect) => {
-    if (isCycleCorrect && currentCycle !== lastCorrectCycle) {
-      const newCorrectCycles = correctCycles + 1;
-      setCorrectCycles(newCorrectCycles);
-      setLastCorrectCycle(currentCycle);
+    if (isCycleCorrect && measure !== lastCorrectCycle) {
+      const newUserTappedMeasureCorrectlyCount = userTappedMeasureCorrectlyCount + 1;
+      setUserTappedMeasureCorrectlyCount(newUserTappedMeasureCorrectlyCount);
+      setLastCorrectCycle(measure);
 
-      if (newCorrectCycles >= 3) {
+      if (newUserTappedMeasureCorrectlyCount >= 3) {
         setIsGameComplete(true);
         pauseGame();
       }
     } else if (!isCycleCorrect) {
-      setCorrectCycles(0);
+      setUserTappedMeasureCorrectlyCount(0);
       setLastCorrectCycle(-1);
     }
   };
 
   const resetGame = () => {
     setIsGameComplete(false);
-    setCorrectCycles(0);
+    setUserTappedMeasureCorrectlyCount(0);
     setLastCorrectCycle(-1);
     setTaps([]);
     startGame();
@@ -82,16 +82,16 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <ProgressBar correctCycles={correctCycles} />
+        <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} />
         <div style={{ display: "flex", alignItems: "center", width: "80%", maxWidth: "500px" }}>
           <TimeSignature />
           <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
         </div>
         <MusicStaff notes={notes} count={count} />
         <div>count: {count}</div>
-        <div>currentCycle: {currentCycle}</div>
+        <div>measure: {measure}</div>
 
-        <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} currentCycle={currentCycle} onCycleCompletion={handleCycleCompletion} />
+        <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} onCycleCompletion={handleCycleCompletion} />
         {isGameComplete && (
           <div className='game-complete-modal'>
             <div className='game-complete-content'>
