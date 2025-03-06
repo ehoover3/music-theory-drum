@@ -32,7 +32,7 @@ function App() {
   const [measure, setMeasure] = useState(0);
   const [userTappedMeasureCorrectlyCount, setUserTappedMeasureCorrectlyCount] = useState(0);
   const [isGameComplete, setIsGameComplete] = useState(false);
-  const [lastCorrectCycle, setLastCorrectCycle] = useState(-1);
+  const [lastUserTappedMeasureCorrectly, setLastUserTappedMeasureCorrectly] = useState(-1);
 
   const drumSound = useDrumSound();
   const beatsPerMinute = 60;
@@ -50,10 +50,10 @@ function App() {
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setMeasure, setIsPlaying, setStartTime);
 
   const handleCycleCompletion = (isCycleCorrect) => {
-    if (isCycleCorrect && measure !== lastCorrectCycle) {
+    if (isCycleCorrect && measure !== lastUserTappedMeasureCorrectly) {
       const newUserTappedMeasureCorrectlyCount = userTappedMeasureCorrectlyCount + 1;
       setUserTappedMeasureCorrectlyCount(newUserTappedMeasureCorrectlyCount);
-      setLastCorrectCycle(measure);
+      setLastUserTappedMeasureCorrectly(measure);
 
       if (newUserTappedMeasureCorrectlyCount >= 3) {
         setIsGameComplete(true);
@@ -61,14 +61,14 @@ function App() {
       }
     } else if (!isCycleCorrect) {
       setUserTappedMeasureCorrectlyCount(0);
-      setLastCorrectCycle(-1);
+      setLastUserTappedMeasureCorrectly(-1);
     }
   };
 
   const resetGame = () => {
     setIsGameComplete(false);
     setUserTappedMeasureCorrectlyCount(0);
-    setLastCorrectCycle(-1);
+    setLastUserTappedMeasureCorrectly(-1);
     setTaps([]);
     startGame();
   };
