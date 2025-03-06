@@ -17,15 +17,15 @@ export const useMetronome = (count, setCount, isPlaying, setMeasure, setStartTim
   const metronomeCountSoundsAlternate = useRef([new Audio("/oneAlternate.mp3"), new Audio("/two.mp3"), new Audio("/threeAlternate.mp3"), new Audio("/four.mp3")]);
 
   useEffect(() => {
-    if (isPlaying) {
-      setCount(1);
-      setStartTime(Date.now());
-      const interval = setInterval(() => {
-        setCount((prevCount) => (prevCount % 4) + 1);
-      }, beatPerMillisecond);
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying, beatPerMillisecond, setCount, setMeasure, setStartTime]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!isPlaying) return;
+    setCount(1);
+    setStartTime(Date.now());
+    const interval = setInterval(() => {
+      setCount((prevCount) => (prevCount % 4) + 1);
+    }, beatPerMillisecond);
+    return () => clearInterval(interval);
+  }, [isPlaying, beatPerMillisecond]);
 
   useEffect(() => {
     if (isPlaying) playSound(metronomeCountSounds, metronomeCountSoundsAlternate, count, measure);
