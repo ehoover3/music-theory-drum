@@ -6,10 +6,15 @@ const resetCycle = (setCurrentCycle, setStartTime) => {
 };
 
 function playSound(metronomeCountSounds, count) {
-  metronomeCountSounds.current[count - 1].play();
+  const sound = metronomeCountSounds.current[count - 1];
+  if (sound) {
+    sound.play();
+  } else {
+    console.warn("Sound not found for count:", count);
+  }
 }
 
-export const useMetronome = (isPlaying, count, setCount, setCurrentCycle, setStartTime, beatPerMillisecond) => {
+export const useMetronome = (count, setCount, isPlaying, setCurrentCycle, setStartTime, beatPerMillisecond) => {
   const metronomeCountSounds = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
 
   useEffect(() => {
@@ -30,7 +35,7 @@ export const useMetronome = (isPlaying, count, setCount, setCurrentCycle, setSta
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
-  }, [isPlaying, setCount, setCurrentCycle, setStartTime, beatPerMillisecond]);
+  }, [isPlaying]);
 
   useEffect(() => {
     if (isPlaying) {

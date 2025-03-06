@@ -15,7 +15,7 @@ import { usePlayPause } from "./hooks/usePlayPause";
 function App() {
   const [taps, setTaps] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [startTime, setStartTime] = useState(0);
   const [currentCycle, setCurrentCycle] = useState(0);
   const [correctCycles, setCorrectCycles] = useState(0);
@@ -23,8 +23,6 @@ function App() {
   const [lastCorrectCycle, setLastCorrectCycle] = useState(-1);
 
   const drumSound = useDrumSound();
-  // const metronomeCountSounds = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
-
   const beatsPerMinute = 60;
   const beatPerMillisecond = 60000 / beatsPerMinute;
 
@@ -35,8 +33,7 @@ function App() {
     { symbol: "♩", beat: 4 },
   ];
 
-  // useMetronome(isPlaying, metronomeCountSounds, count, setCount, setCurrentCycle, setStartTime, beatPerMillisecond);
-  useMetronome(isPlaying, count, setCount, setCurrentCycle, setStartTime, beatPerMillisecond);
+  useMetronome(count, setCount, isPlaying, setCurrentCycle, setStartTime, beatPerMillisecond);
   const handleMusicInstrumentTap = useMusicInstrumentTap(drumSound, startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setCurrentCycle, setIsPlaying, setStartTime);
 

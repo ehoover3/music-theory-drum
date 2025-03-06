@@ -1,5 +1,7 @@
 Improve readability of the code, i.e. rename variables, refactor useMetronome, etc.
 
+fix bug: useMetronome.js:13 Sound not found for count: 0
+
 Add music notation variation, i.e. eigth notes, etc.
 
 fix Progress Bar - needs to increment by 1 up to 3 times, then give a screen that the lesson is complete.
