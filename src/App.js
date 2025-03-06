@@ -10,7 +10,7 @@
  * - Metronome:      A tool that provides a steady beat to help musicians maintain tempo.
  */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import TimeSignature from "./components/TimeSignature";
 import MusicStaff from "./components/MusicStaff";

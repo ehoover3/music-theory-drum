@@ -20,20 +20,20 @@ export const useMetronome = (count, setCount, isPlaying, setMeasure, setStartTim
     if (isPlaying) {
       setCount(1);
       setStartTime(Date.now());
-      const intervalId = setInterval(() => {
+      const interval = setInterval(() => {
         setCount((prevCount) => (prevCount % 4) + 1);
       }, beatPerMillisecond);
-      return () => clearInterval(intervalId);
+      return () => clearInterval(interval);
     }
   }, [isPlaying, beatPerMillisecond, setCount, setMeasure, setStartTime]);
 
   useEffect(() => {
     if (isPlaying) playSound(metronomeCountSounds, metronomeCountSoundsAlternate, count, measure);
-  }, [count, measure]);
+  }, [count, measure, isPlaying]);
 
   useEffect(() => {
     if (count === 1) resetCycle(setMeasure, setStartTime);
-  }, [count]);
+  }, [count, setMeasure, setStartTime]);
 
   return {};
 };
