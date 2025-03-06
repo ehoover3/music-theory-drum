@@ -21,6 +21,7 @@ function App() {
   const [correctCycles, setCorrectCycles] = useState(0);
   const [isGameComplete, setIsGameComplete] = useState(false);
   const [lastCorrectCycle, setLastCorrectCycle] = useState(-1);
+
   const drumSound = useDrumSound();
   const metronomeCountSounds = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
   const beatInterval = 1000;
@@ -69,7 +70,8 @@ function App() {
           <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
         </div>
         <MusicStaff notes={notes} count={count} />
-        <div>correctCycles: {correctCycles}</div>
+        <div>currentCycle: {currentCycle}</div>
+        <div>lastCorrectCycle: {lastCorrectCycle}</div>
         <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatInterval} currentCycle={currentCycle} onCycleCompletion={handleCycleCompletion} />
         {isGameComplete && (
           <div className='game-complete-modal'>
