@@ -1,3 +1,15 @@
+/**
+ * Music Terminology Reference
+ * ---------------------------
+ * - Measure (Bar):  A time segment determined by the time signature (4/4 has 4 beats per measure).
+ * - Beat:           The basic unit of time in music. In 4/4 time, each beat is typically a quarter note (♩).
+ * - Time Signature: Beats per measure and what note is 1 beat (3/4 means 3 beats per measure, quarter note is 1 beat).
+ * - Tempo:          Speed of beats, measured in beats per minute (BPM). 60 BPM means one beat per second.
+ * - Downbeat:       The first beat of a measure.
+ * - Rhythm:         A pattern of sounds and silences that occur over beats.
+ * - Metronome:      A tool that provides a steady beat to help musicians maintain tempo.
+ */
+
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import TimeSignature from "./components/TimeSignature";
@@ -33,7 +45,7 @@ function App() {
     { symbol: "♩", beat: 4 },
   ];
 
-  useMetronome(count, setCount, isPlaying, setCurrentCycle, setStartTime, beatPerMillisecond);
+  useMetronome(count, setCount, isPlaying, setCurrentCycle, setStartTime, beatPerMillisecond, currentCycle);
   const handleMusicInstrumentTap = useMusicInstrumentTap(drumSound, startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setCurrentCycle, setIsPlaying, setStartTime);
 
@@ -77,6 +89,7 @@ function App() {
         </div>
         <MusicStaff notes={notes} count={count} />
         <div>count: {count}</div>
+        <div>currentCycle: {currentCycle}</div>
 
         <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} currentCycle={currentCycle} onCycleCompletion={handleCycleCompletion} />
         {isGameComplete && (

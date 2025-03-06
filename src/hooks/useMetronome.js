@@ -5,8 +5,9 @@ const resetCycle = (setCurrentCycle, setStartTime) => {
   setStartTime(Date.now());
 };
 
-function playSound(metronomeCountSounds, count) {
-  const sound = metronomeCountSounds.current[count - 1];
+function playSound(metronomeCountSounds, metronomeCountSoundsAlternate, count, currentCycle) {
+  const soundSet = currentCycle % 2 === 0 ? metronomeCountSounds : metronomeCountSoundsAlternate;
+  const sound = soundSet.current[count - 1];
   if (sound) {
     sound.play();
   } else {
@@ -14,28 +15,26 @@ function playSound(metronomeCountSounds, count) {
   }
 }
 
-export const useMetronome = (count, setCount, isPlaying, setCurrentCycle, setStartTime, beatPerMillisecond) => {
-  const metronomeCountSounds = useRef([new Audio("/count1.m4a"), new Audio("/count2.m4a"), new Audio("/count3.m4a"), new Audio("/count4.m4a")]);
+export const useMetronome = (count, setCount, isPlaying, setCurrentCycle, setStartTime, beatPerMillisecond, currentCycle) => {
+  const metronomeCountSounds = useRef([new Audio("/one.mp3"), new Audio("/two.mp3"), new Audio("/three.mp3"), new Audio("/four.mp3")]);
+  const metronomeCountSoundsAlternate = useRef([new Audio("/oneAlternate.mp3"), new Audio("/two.mp3"), new Audio("/threeAlternate.mp3"), new Audio("/four.mp3")]);
 
   useEffect(() => {
-    let intervalId;
     if (isPlaying) {
       setCount(1);
-      intervalId = setInterval(() => {
+      setStartTime(Date.now());
+      const intervalId = setInterval(() => {
         setCount((prevCount) => (prevCount % 4) + 1);
       }, beatPerMillisecond);
-      setStartTime(Date.now());
+      return () => clearInterval(intervalId);
     }
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
   }, [isPlaying, beatPerMillisecond, setCount, setCurrentCycle, setStartTime]);
 
   useEffect(() => {
     if (isPlaying) {
-      playSound(metronomeCountSounds, count);
+      playSound(metronomeCountSounds, metronomeCountSoundsAlternate, count, currentCycle);
     }
-  }, [count]);
+  }, [count, currentCycle]);
 
   useEffect(() => {
     if (count === 1) {
