@@ -25,13 +25,13 @@ import { useMetronome } from "./hooks/useMetronome";
 import { usePlayPause } from "./hooks/usePlayPause";
 
 function App() {
-  const [taps, setTaps] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [count, setCount] = useState(1);
   const [startTime, setStartTime] = useState(0);
-  const [measure, setMeasure] = useState(0);
-  const [userTappedMeasureCorrectlyCount, setUserTappedMeasureCorrectlyCount] = useState(0);
   const [isGameComplete, setIsGameComplete] = useState(false);
+  const [measure, setMeasure] = useState(0);
+  const [count, setCount] = useState(1);
+  const [taps, setTaps] = useState([]);
+  const [userTappedMeasureCorrectlyCount, setUserTappedMeasureCorrectlyCount] = useState(0);
   const [lastUserTappedMeasureCorrectly, setLastUserTappedMeasureCorrectly] = useState(-1);
 
   const drumSound = useDrumSound();
