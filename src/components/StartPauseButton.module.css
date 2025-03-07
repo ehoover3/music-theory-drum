@@ -1,3 +1,17 @@
+  .buttonContainer {
+      background-color: antiquewhite;
+  }
+
+  /* .buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 .startButton,
 .pauseButton {
     width: 50px;
@@ -24,4 +38,4 @@
 
 .pauseButton:hover {
     background-color: #d32f2f;
-}
+} */

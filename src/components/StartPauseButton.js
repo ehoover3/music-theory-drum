@@ -6,15 +6,17 @@ import { FaPause, FaPlay } from "react-icons/fa";
 const StartPauseButton = ({ isPlaying, startGame, pauseGame }) => {
   return (
     <>
-      {!isPlaying ? (
-        <button className={styles.startButton} onClick={startGame}>
-          <FaPlay />
-        </button>
-      ) : (
-        <button className={styles.pauseButton} onClick={pauseGame}>
-          <FaPause />
-        </button>
-      )}
+      <div className={styles.buttonContainer}>
+        {!isPlaying ? (
+          <button className={styles.startButton} onClick={startGame}>
+            <FaPlay />
+          </button>
+        ) : (
+          <button className={styles.pauseButton} onClick={pauseGame}>
+            <FaPause />
+          </button>
+        )}
+      </div>
     </>
   );
 };

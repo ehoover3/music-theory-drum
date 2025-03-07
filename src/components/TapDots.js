@@ -6,7 +6,7 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
   const [isCycleCorrect, setIsCycleCorrect] = useState(false);
 
   // Define the margin of error in milliseconds
-  const ERROR_MARGIN_IN_MILLISECONDS = 150;
+  const ERROR_MARGIN_IN_MILLISECONDS = 225;
 
   // Expected beat times (in ms)
   const expectedBeats = [0, beatInterval, 2 * beatInterval, 3 * beatInterval];
@@ -51,6 +51,7 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
       {dots.map((dot, index) => (
         <div key={`${measure}-${index}`} className={`${styles.tapDot} ${dot.isCorrect ? styles.correctTap : styles.incorrectTap}`} style={{ left: `${dot.x}%` }}></div>
       ))}
+      TapDots
     </div>
   );
 }

@@ -3,7 +3,7 @@ import styles from "./MusicStaff.module.css";
 
 function MusicStaff({ notes, count }) {
   return (
-    <div className={styles.notation}>
+    <div className={styles.musicStaff}>
       <div className={styles.staffLine}></div>
       <div className={styles.notes}>
         {notes.map(({ symbol, beat }) => (

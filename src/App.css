@@ -1,12 +1,49 @@
 /* App.css */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.App {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, auto);
+  grid-template-areas:
+    "ProgressBar ProgressBar ProgressBar ProgressBar"
+    "TimeSignature StartPauseButton"
+    "MusicStaff MusicStaff MusicStaff MusicStaff"
+    "TapDots TapDots TapDots TapDots"
+    "Instructions Instructions Instructions Instructions"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument";
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.ProgressBar {
+  grid-area: ProgressBar;
+}
+
+.TimeSignature {
+  grid-area: TimeSignature;
+}
+
+.StartPauseButton {
+  grid-area: StartPauseButton;
+}
+
+.MusicStaff {
+  grid-area: MusicStaff;
+}
+
+.TapDots {
+  grid-area: TapDots;
+}
+
+.Instructions {
+  grid-area: Instructions;
+}
+
+.MusicInstrument {
+  grid-area: MusicInstrument;
 }

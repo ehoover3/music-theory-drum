@@ -12,13 +12,14 @@
 
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import TimeSignature from "./components/TimeSignature";
-import MusicStaff from "./components/MusicStaff";
+import Debug from "./components/Debug";
 import Instructions from "./components/Instructions";
 import MusicInstrument from "./components/MusicInstrument";
+import MusicStaff from "./components/MusicStaff";
+import ProgressBar from "./components/ProgressBar";
 import StartPauseButton from "./components/StartPauseButton";
 import TapDots from "./components/TapDots";
-import ProgressBar from "./components/ProgressBar";
+import TimeSignature from "./components/TimeSignature";
 import { useDrumSound } from "./hooks/useDrumSound";
 import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap";
 import { useMetronome } from "./hooks/useMetronome";
@@ -81,29 +82,14 @@ function App() {
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} />
-        <div style={{ display: "flex", alignItems: "center", width: "80%", maxWidth: "500px" }}>
-          <TimeSignature />
-          <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
-        </div>
-        <MusicStaff notes={notes} count={count} />
-        <div>count: {count}</div>
-        <div>measure: {measure}</div>
-
-        <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} onCycleCompletion={handleCycleCompletion} />
-        {isGameComplete && (
-          <div className='game-complete-modal'>
-            <div className='game-complete-content'>
-              <h2>Congratulations!</h2>
-              <p>You successfully tapped the rhythm 3 times in a row!</p>
-              <button onClick={resetGame}>Play Again</button>
-            </div>
-          </div>
-        )}
-        <Instructions />
-        <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} />
-      </header>
+      <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} className='ProgressBar' />
+      <TimeSignature className='TimeSignature' />
+      <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} className='StartPauseButton' />
+      <MusicStaff notes={notes} count={count} className='MusicStaff' />
+      <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} onCycleCompletion={handleCycleCompletion} className='TapDots' />
+      <Instructions className='Instructions' />
+      <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} className='MusicInstrument' />
+      {/* <Debug count={count} measure={measure} /> */}
     </div>
   );
 }

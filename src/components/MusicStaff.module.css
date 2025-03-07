@@ -1,4 +1,8 @@
-.notation {
+.musicStaff {
+    background-color: pink;
+}
+
+/* .musicStaff {
     position: relative;
     width: 100%;
     max-width: 500px;
@@ -27,4 +31,4 @@
 
 .active {
     transform: scale(1.5) translateY(-4.5px) translateX(12px);
-}
+} */
