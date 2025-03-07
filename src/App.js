@@ -81,14 +81,15 @@ function App() {
   }, [count]);
 
   return (
-    <div className='App'>
-      <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} className='ProgressBar' />
-      <TimeSignature className='TimeSignature' />
-      <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} className='StartPauseButton' />
-      <MusicStaff notes={notes} count={count} className='MusicStaff' />
-      <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} onCycleCompletion={handleCycleCompletion} className='TapDots' />
-      <Instructions className='Instructions' />
-      <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} className='MusicInstrument' />
+    <div className='grid-container'>
+      <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} />
+      <TimeSignature />
+      <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
+      <div className='BlankSpace'></div>
+      <MusicStaff notes={notes} count={count} />
+      <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} onCycleCompletion={handleCycleCompletion} />
+      <Instructions />
+      <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} />
       {/* <Debug count={count} measure={measure} /> */}
     </div>
   );

@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./TimeSignature.module.css";
+import "./TimeSignature.css";
 
 function TimeSignature() {
-  return <div className={styles.timeSignature}>Time: 4/4</div>;
+  return <div className='TimeSignature'>Time: 4/4</div>;
 }
 
 export default TimeSignature;

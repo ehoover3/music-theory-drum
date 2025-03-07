@@ -1,8 +1,17 @@
-.progressBarContainer {
-  background-color: lightblue;
-}
+ .ProgressBar {
+   background-color: lightblue;
+ }
 
-/* .progressBarContainer {
+ /*
+.progressBar {
+  width: 100%;
+  height: 100%;
+  background-color: #4CAF50;
+  transition: width 0.3s ease;
+  border-radius: 5px;
+} */
+
+ /* .progressBarContainer {
   position: relative;
   width: 100%;
   max-width: 500px;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./TapDots.module.css";
+import "./TapDots.css";
 
 function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) {
   const [dots, setDots] = useState([]);
@@ -47,9 +47,9 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
   }, [taps, isCycleCorrect, onCycleCompletion]);
 
   return (
-    <div className={styles.tapDotsContainer}>
+    <div className='TapDots'>
       {dots.map((dot, index) => (
-        <div key={`${measure}-${index}`} className={`${styles.tapDot} ${dot.isCorrect ? styles.correctTap : styles.incorrectTap}`} style={{ left: `${dot.x}%` }}></div>
+        <div key={`${measure}-${index}`} className={`tapDot ${dot.isCorrect ? "correctTap" : "incorrectTap"}`} style={{ left: `${dot.x}%` }}></div>
       ))}
       TapDots
     </div>

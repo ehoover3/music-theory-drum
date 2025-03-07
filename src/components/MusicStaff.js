@@ -1,13 +1,13 @@
 import React from "react";
-import styles from "./MusicStaff.module.css";
+import "./MusicStaff.css";
 
 function MusicStaff({ notes, count }) {
   return (
-    <div className={styles.musicStaff}>
-      <div className={styles.staffLine}></div>
-      <div className={styles.notes}>
+    <div className='MusicStaff'>
+      <div className='StaffLine'></div>
+      <div className='Notes'>
         {notes.map(({ symbol, beat }) => (
-          <div key={beat} className={`${styles.note} ${count === beat ? styles.active : ""}`}>
+          <div key={beat} className={`"note" ${count === beat ? "active" : ""}`}>
             {symbol}
           </div>
         ))}

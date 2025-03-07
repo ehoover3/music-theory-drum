@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Instructions.module.css";
+import "./Instructions.css";
 
 function Instructions() {
-  return <p className={styles.instructions}>Play the rhythm</p>;
+  return <p className='Instructions'>Play the rhythm</p>;
 }
 
 export default Instructions;
