@@ -1,11 +1,11 @@
-.MusicInstrument {
-    background-color: red;
-}
+ .MusicInstrument {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: red;
+     font-size: 100px;
+     cursor: pointer;
+     transition: transform 0.1s;
+     user-select: none;
 
-/* .drum {
-    font-size: 80px;
-    cursor: pointer;
-    transition: transform 0.1s;
-    margin: 30px 0;
-    user-select: none;
-} */
+ }
