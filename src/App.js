@@ -19,6 +19,7 @@ import MusicStaff from "./components/MusicStaff";
 import ProgressBar from "./components/ProgressBar";
 import StartPauseButton from "./components/StartPauseButton";
 import TapDots from "./components/TapDots";
+import Tempo from "./components/Tempo";
 import TimeSignature from "./components/TimeSignature";
 import { useDrumSound } from "./hooks/useDrumSound";
 import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap";
@@ -85,7 +86,7 @@ function App() {
       <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} />
       <TimeSignature />
       <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
-      <div className='BlankSpace'></div>
+      <Tempo />
       <MusicStaff notes={notes} count={count} />
       <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} onCycleCompletion={handleCycleCompletion} />
       <Instructions />

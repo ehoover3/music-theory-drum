@@ -12,7 +12,7 @@
   height: 100vh;
   grid-template-areas:
     "ProgressBar ProgressBar ProgressBar ProgressBar"
-    "TimeSignature StartPauseButton StartPauseButton BlankSpace"
+    "TimeSignature StartPauseButton StartPauseButton Tempo"
     "MusicStaff MusicStaff MusicStaff MusicStaff"
     "TapDots TapDots TapDots TapDots"
     "Instructions Instructions Instructions Instructions"
@@ -33,6 +33,10 @@
 
 .StartPauseButton {
   grid-area: StartPauseButton;
+}
+
+.Tempo {
+  grid-area: Tempo;
 }
 
 .BlankSpace {
