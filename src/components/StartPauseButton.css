@@ -1,41 +1,37 @@
   .StartPauseButton {
       background-color: antiquewhite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
   }
 
-  /* .buttonContainer {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 
-.startButton,
-.pauseButton {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 8px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
 
-.pauseButton {
-    background-color: #F44336;
-}
+  .startButton,
+  .pauseButton {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+  }
 
-.startButton:hover {
-    background-color: #45a049;
-}
+  .pauseButton {
+      background-color: #F44336;
+  }
 
-.pauseButton:hover {
-    background-color: #d32f2f;
-} */
+  .startButton:hover {
+      background-color: #45a049;
+  }
+
+  .pauseButton:hover {
+      background-color: #d32f2f;
+  }

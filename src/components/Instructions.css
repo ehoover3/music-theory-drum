@@ -1,11 +1,9 @@
 .Instructions {
     background-color: palevioletred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    ;
 }
-
-/* .drum {
-    font-size: 80px;
-    cursor: pointer;
-    transition: transform 0.1s;
-    margin: 30px 0;
-    user-select: none;
-} */
