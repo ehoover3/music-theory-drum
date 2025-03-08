@@ -6,16 +6,21 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: auto auto auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
   height: 100vh;
   grid-template-areas:
-    "ProgressBar ProgressBar ProgressBar"
-    "TimeSignature StartPauseButton BlankSpace"
-    "MusicStaff MusicStaff MusicStaff"
-    "TapDots TapDots TapDots"
-    "Instructions Instructions Instructions"
-    "MusicInstrument MusicInstrument MusicInstrument";
+    "ProgressBar ProgressBar ProgressBar ProgressBar"
+    "TimeSignature StartPauseButton StartPauseButton BlankSpace"
+    "MusicStaff MusicStaff MusicStaff MusicStaff"
+    "TapDots TapDots TapDots TapDots"
+    "Instructions Instructions Instructions Instructions"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument";
+
 }
 
 .ProgressBar {

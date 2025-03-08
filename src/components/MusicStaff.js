@@ -4,10 +4,9 @@ import "./MusicStaff.css";
 function MusicStaff({ notes, count }) {
   return (
     <div className='MusicStaff'>
-      <div className='StaffLine'></div>
       <div className='Notes'>
         {notes.map(({ symbol, beat }) => (
-          <div key={beat} className={`"note" ${count === beat ? "active" : ""}`}>
+          <div key={beat} className={`Note ${count === beat ? "Active" : ""}`}>
             {symbol}
           </div>
         ))}
