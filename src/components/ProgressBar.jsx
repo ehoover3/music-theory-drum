@@ -8,10 +8,7 @@ function ProgressBar({ userTappedMeasureCorrectlyCount }) {
         className='ProgressBar'
         style={{
           width: `${Math.min(userTappedMeasureCorrectlyCount * 33.33, 100)}%`,
-        }}>
-        {" "}
-        ProgressBar
-      </div>
+        }}></div>
     </div>
   );
 }

@@ -1,13 +1,17 @@
   .TapDots {
-      background-color: lightgray;
       position: relative;
       width: 100%;
       height: 15px;
       border-radius: 5px;
+      display: grid;
+      grid-template-columns: 1fr 12fr 1fr;
+      grid-template-areas:
+          ". TapDot ."
   }
 
 
   .TapDot {
+      grid-area: TapDot;
       position: absolute;
       width: 15px;
       height: 15px;
