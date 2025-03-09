@@ -5,7 +5,7 @@ function ProgressBar({ userTappedMeasureCorrectlyCount }) {
   return (
     <div className='progress-bar'>
       <div
-        className='progress-bar'
+        className='progress-bar-percent-complete'
         style={{
           width: `${Math.min(userTappedMeasureCorrectlyCount * 33.33, 100)}%`,
         }}></div>

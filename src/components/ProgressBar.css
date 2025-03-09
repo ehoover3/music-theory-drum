@@ -1,27 +1,16 @@
- .progress-bar {}
+ .progress-bar {
+   width: 100%;
+   height: 100%;
+   transition: width 0.3s ease;
+   border-radius: 5px;
+ }
 
- /*
-.progress-bar {
-  width: 100%;
-  height: 100%;
-  background-color: var(--orange);
-  transition: width 0.3s ease;
-  border-radius: 5px;
-} */
-
- /* .progress-bar-container {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  height: 10px;
-  background-color: var(--orange);
-  overflow: hidden;
-  border-radius: 5px;
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: var(--orange);
-  transition: width 0.3s ease;
-  border-radius: 5px;
-} */
+ .progress-bar-percent-complete {
+   position: relative;
+   width: 100%;
+   max-width: 500px;
+   height: 10px;
+   background-color: var(--green);
+   overflow: hidden;
+   border-radius: 5px;
+ }
