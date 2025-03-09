@@ -29,7 +29,6 @@ import { usePlayPause } from "./hooks/usePlayPause";
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [startTime, setStartTime] = useState(0);
-  const [isGameComplete, setIsGameComplete] = useState(false);
   const [measure, setMeasure] = useState(0);
   const [count, setCount] = useState(1);
   const [taps, setTaps] = useState([]);
@@ -58,21 +57,12 @@ function App() {
       setLastUserTappedMeasureCorrectly(measure);
 
       if (newUserTappedMeasureCorrectlyCount >= 3) {
-        setIsGameComplete(true);
         pauseGame();
       }
     } else if (!isCycleCorrect) {
       setUserTappedMeasureCorrectlyCount(0);
       setLastUserTappedMeasureCorrectly(-1);
     }
-  };
-
-  const resetGame = () => {
-    setIsGameComplete(false);
-    setUserTappedMeasureCorrectlyCount(0);
-    setLastUserTappedMeasureCorrectly(-1);
-    setTaps([]);
-    startGame();
   };
 
   useEffect(() => {

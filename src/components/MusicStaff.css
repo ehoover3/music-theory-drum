@@ -1,6 +1,7 @@
 .MusicStaff {
     background-color: pink;
     position: relative;
+    height: 100%;
     width: 100%;
 }
 

@@ -7,8 +7,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(15, 1fr);
   height: 100vh;
   grid-template-areas:
     "ProgressBar ProgressBar ProgressBar ProgressBar"
@@ -16,6 +16,11 @@
     "MusicStaff MusicStaff MusicStaff MusicStaff"
     "TapDots TapDots TapDots TapDots"
     "Instructions Instructions Instructions Instructions"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
+    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
     "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
     "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
     "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
