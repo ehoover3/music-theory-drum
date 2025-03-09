@@ -21,7 +21,7 @@ import StartPauseButton from "./components/StartPauseButton.jsx";
 import TapDots from "./components/TapDots.jsx";
 import Tempo from "./components/Tempo.jsx";
 import TimeSignature from "./components/TimeSignature.jsx";
-import { useDrumSound } from "./hooks/useDrumSound.js";
+import { useSound } from "./hooks/useSound.js";
 import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap.js";
 import { useMetronome } from "./hooks/useMetronome.js";
 import { usePlayPause } from "./hooks/usePlayPause.js";
@@ -35,7 +35,6 @@ function App() {
   const [userTappedMeasureCorrectlyCount, setUserTappedMeasureCorrectlyCount] = useState(0);
   const [lastUserTappedMeasureCorrectly, setLastUserTappedMeasureCorrectly] = useState(-1);
 
-  const drumSound = useDrumSound();
   const beatsPerMinute = 60;
   const beatPerMillisecond = 60000 / beatsPerMinute;
 
@@ -47,7 +46,7 @@ function App() {
   ];
 
   useMetronome(count, setCount, isPlaying, setMeasure, setStartTime, beatPerMillisecond, measure);
-  const handleMusicInstrumentTap = useMusicInstrumentTap(drumSound, startTime, setTaps);
+  const handleMusicInstrumentTap = useMusicInstrumentTap(startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setMeasure, setIsPlaying, setStartTime);
 
   const handleCycleCompletion = (isCycleCorrect) => {

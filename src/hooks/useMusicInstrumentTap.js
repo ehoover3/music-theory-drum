@@ -1,14 +1,13 @@
-export const useMusicInstrumentTap = (drumSound, startTime, setTaps) => {
+import { useSound } from "./useSound";
+
+export const useMusicInstrumentTap = (startTime, setTaps) => {
+  const drumSound = useSound("/audio/drum.m4a");
+
   const handleMusicInstrumentTap = () => {
-    if (!drumSound.current) return;
-
-    // Handle the audio play logic
-    const audio = drumSound.current;
-    audio.pause();
-    audio.currentTime = 0;
-    audio.play();
-
-    // Calculate and record the tap timing
+    if (!drumSound) return;
+    drumSound.pause();
+    drumSound.currentTime = 0;
+    drumSound.play();
     const currentTime = Date.now() - startTime;
     setTaps((prevTaps) => [...prevTaps, currentTime]);
   };

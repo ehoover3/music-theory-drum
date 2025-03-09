@@ -1,4 +1,3 @@
-// src/components/StartPauseButton.js
 import React from "react";
 import "./StartPauseButton.css";
 import { FaPause, FaPlay } from "react-icons/fa";
