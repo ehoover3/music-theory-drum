@@ -1,8 +1,10 @@
  .music-instrument {
+     margin: 10px;
+     border-radius: 15px;
+     background-color: var(--green);
      display: flex;
      justify-content: center;
      align-items: center;
-     background-color: var(--green);
      font-size: 100px;
      cursor: pointer;
      transition: transform 0.1s;
