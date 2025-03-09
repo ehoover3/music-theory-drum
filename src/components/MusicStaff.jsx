@@ -3,16 +3,16 @@ import "./MusicStaff.css";
 
 function MusicStaff({ notes, count }) {
   return (
-    <div className='MusicStaff'>
-      <div className='BlankSpace'></div>
-      <div className='Notes'>
+    <div className='music-staff'>
+      <div className='blank-space'></div>
+      <div className='notes'>
         {notes.map(({ symbol, beat }) => (
-          <div key={beat} className={`Note ${count === beat ? "Active" : ""}`}>
+          <div key={beat} className={`note ${count === beat ? "active" : ""}`}>
             {symbol}
           </div>
         ))}
       </div>
-      <div className='BlankSpace'></div>
+      <div className='blank-space'></div>
     </div>
   );
 }

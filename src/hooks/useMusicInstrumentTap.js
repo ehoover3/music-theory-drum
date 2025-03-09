@@ -6,7 +6,7 @@ export const useMusicInstrumentTap = (drumSound, startTime, setTaps) => {
     const audio = drumSound.current;
     audio.pause();
     audio.currentTime = 0;
-    audio.play().catch((err) => console.warn("Audio play failed:", err));
+    audio.play();
 
     // Calculate and record the tap timing
     const currentTime = Date.now() - startTime;

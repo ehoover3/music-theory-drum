@@ -1,5 +1,5 @@
-.Instructions {
-    background-color: palevioletred;
+.instructions {
+    background-color: var(--lime-green);
     display: flex;
     justify-content: center;
     align-items: center;

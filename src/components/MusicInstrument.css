@@ -1,8 +1,8 @@
- .MusicInstrument {
+ .music-instrument {
      display: flex;
      justify-content: center;
      align-items: center;
-     background-color: red;
+     background-color: var(--bright-green);
      font-size: 100px;
      cursor: pointer;
      transition: transform 0.1s;

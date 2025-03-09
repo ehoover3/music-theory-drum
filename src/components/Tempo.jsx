@@ -4,7 +4,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 
 function Tempo() {
   return (
-    <div className='Tempo'>
+    <div className='tempo'>
       <span>_200 bpm</span>
       <span>
         <RiArrowDropDownLine size={40} />

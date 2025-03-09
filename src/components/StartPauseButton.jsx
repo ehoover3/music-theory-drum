@@ -5,13 +5,13 @@ import { FaPause, FaPlay } from "react-icons/fa";
 
 const StartPauseButton = ({ isPlaying, startGame, pauseGame }) => {
   return (
-    <div className='StartPauseButton'>
+    <div className='start-pause-button'>
       {!isPlaying ? (
-        <button className='startButton' onClick={startGame}>
+        <button className='start-button' onClick={startGame}>
           <FaPlay />
         </button>
       ) : (
-        <button className='pauseButton' onClick={pauseGame}>
+        <button className='pause-button' onClick={pauseGame}>
           <FaPause />
         </button>
       )}

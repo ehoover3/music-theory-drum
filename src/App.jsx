@@ -12,19 +12,19 @@
 
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Debug from "./components/Debug";
-import Instructions from "./components/Instructions";
-import MusicInstrument from "./components/MusicInstrument";
-import MusicStaff from "./components/MusicStaff";
-import ProgressBar from "./components/ProgressBar";
-import StartPauseButton from "./components/StartPauseButton";
-import TapDots from "./components/TapDots";
-import Tempo from "./components/Tempo";
-import TimeSignature from "./components/TimeSignature";
-import { useDrumSound } from "./hooks/useDrumSound";
-import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap";
-import { useMetronome } from "./hooks/useMetronome";
-import { usePlayPause } from "./hooks/usePlayPause";
+import Debug from "./components/Debug.jsx";
+import Instructions from "./components/Instructions.jsx";
+import MusicInstrument from "./components/MusicInstrument.jsx";
+import MusicStaff from "./components/MusicStaff.jsx";
+import ProgressBar from "./components/ProgressBar.jsx";
+import StartPauseButton from "./components/StartPauseButton.jsx";
+import TapDots from "./components/TapDots.jsx";
+import Tempo from "./components/Tempo.jsx";
+import TimeSignature from "./components/TimeSignature.jsx";
+import { useDrumSound } from "./hooks/useDrumSound.js";
+import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap.js";
+import { useMetronome } from "./hooks/useMetronome.js";
+import { usePlayPause } from "./hooks/usePlayPause.js";
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);

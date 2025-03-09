@@ -6,7 +6,6 @@ export function useDrumSound() {
 
   useEffect(() => {
     drumSound.current.load();
-    drumSound.current.onerror = () => console.error("Error loading drum sound");
   }, []);
 
   return drumSound;

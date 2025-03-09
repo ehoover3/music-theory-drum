@@ -6,75 +6,62 @@
 }
 
 :root {
-  --limeGreen: #58cc02;
-  --brightGreen: #89e219;
-  --yellow: #ffc800;
-  --orange: #ff9600;
-  --red: #ff4b4b;
-  --purple: #ce82ff;
-  --deepBlue: #2b70c9;
-  --blue: #1cb0f6;
-  --darkGray: #4b4b4b;
-  --white: #ffffff;
+  --lime-green: rgb(88 204 2);
+  --bright-green: rgb(137 226 25);
+  --yellow: rgb(255 200 0);
+  --orange: rgb(255 150 0);
+  --red: rgb(255 75 75);
+  --purple: rgb(206 130 255);
+  --deep-blue: rgb(43 112 201);
+  --blue: rgb(28 176 246);
+  --dark-gray: rgb(75 75 75);
+  --white: rgb(255 255 255);
 }
-
-
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(15, 1fr);
   height: 100vh;
-  grid-template-areas:
-    "ProgressBar ProgressBar ProgressBar ProgressBar"
-    "TimeSignature StartPauseButton StartPauseButton Tempo"
-    "MusicStaff MusicStaff MusicStaff MusicStaff"
-    "TapDots TapDots TapDots TapDots"
-    "Instructions Instructions Instructions Instructions"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument"
-    "MusicInstrument MusicInstrument MusicInstrument MusicInstrument";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(14, 1fr);
+
 }
 
-.ProgressBar {
-  grid-area: ProgressBar;
+.progress-bar {
+  grid-column: 1 / -1;
+  grid-row: 1;
 }
 
-.TimeSignature {
-  grid-area: TimeSignature;
+.time-signature {
+  grid-column: 1 / 2;
+  grid-row: 2;
 }
 
-.StartPauseButton {
-  grid-area: StartPauseButton;
+.start-pause-button {
+  grid-column: 2 / 4;
+  grid-row: 2;
 }
 
-.Tempo {
-  grid-area: Tempo;
+.tempo {
+  grid-column: 4 / 5;
+  grid-row: 2;
 }
 
-.BlankSpace {
-  grid-area: BlankSpace;
+.music-staff {
+  grid-column: 1 / -1;
+  grid-row: 3;
 }
 
-.MusicStaff {
-  grid-area: MusicStaff;
+.tap-dots {
+  grid-column: 1 / -1;
+  grid-row: 4;
 }
 
-.TapDots {
-  grid-area: TapDots;
+.instructions {
+  grid-column: 1 / -1;
+  grid-row: 5;
 }
 
-.Instructions {
-  grid-area: Instructions;
-}
-
-.MusicInstrument {
-  grid-area: MusicInstrument;
+.music-instrument {
+  grid-column: 1 / -1;
+  grid-row: 6 / -1;
 }

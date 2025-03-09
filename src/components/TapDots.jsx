@@ -40,9 +40,9 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
   }, [taps, isCycleCorrect, onCycleCompletion]);
 
   return (
-    <div className='TapDots'>
+    <div className='tap-dots'>
       {dots.map((dot, index) => (
-        <div key={`${measure}-${index}`} className={`TapDot ${dot.isCorrect ? "CorrectTap" : "IncorrectTap"}`} style={{ left: `${dot.x}%` }}></div>
+        <div key={`${measure}-${index}`} className={`tap-dot ${dot.isCorrect ? "correct-tap" : "incorrect-tap"}`} style={{ left: `${dot.x}%` }}></div>
       ))}
     </div>
   );

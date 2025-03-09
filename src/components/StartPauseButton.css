@@ -1,15 +1,12 @@
-  .StartPauseButton {
-      background-color: antiquewhite;
+  .start-pause-button {
+      background-color: var(--dark-gray);
       display: flex;
       justify-content: center;
       align-items: center;
   }
 
-
-
-
-  .startButton,
-  .pauseButton {
+  .start-button,
+  .pause-button {
       width: 50px;
       height: 50px;
       display: flex;
@@ -17,21 +14,13 @@
       justify-content: center;
       border: none;
       border-radius: 8px;
-      background-color: #4CAF50;
-      color: white;
+      background-color: var(--lime-green);
+      color: var(--white);
       font-size: 20px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
   }
 
-  .pauseButton {
-      background-color: #F44336;
-  }
-
-  .startButton:hover {
-      background-color: #45a049;
-  }
-
-  .pauseButton:hover {
-      background-color: #d32f2f;
+  .pause-button {
+      background-color: var(--red);
   }

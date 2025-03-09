@@ -4,7 +4,6 @@ const playSound = (metronomeCountSounds, metronomeCountSoundsAlternate, count, m
   const soundSet = measure % 2 === 0 ? metronomeCountSounds : metronomeCountSoundsAlternate;
   const sound = soundSet.current[count - 1];
   if (sound) sound.play();
-  else console.warn("Sound not found for count:", count);
 };
 
 const resetCycle = (setMeasure, setStartTime) => {
@@ -17,7 +16,6 @@ export const useMetronome = (count, setCount, isPlaying, setMeasure, setStartTim
   const metronomeCountSoundsAlternate = useRef([new Audio("/oneAlternate.mp3"), new Audio("/two.mp3"), new Audio("/threeAlternate.mp3"), new Audio("/four.mp3")]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     if (!isPlaying) return;
     setCount(1);
     setStartTime(Date.now());

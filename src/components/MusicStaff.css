@@ -1,17 +1,17 @@
-.MusicStaff {
-    background-color: pink;
+.music-staff {
+    background-color: var(--yellow);
     position: relative;
     height: 100%;
     width: 100%;
 }
 
-.MusicStaff>.Notes {
+.music-staff>.notes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
 }
 
-.Note {
+.note {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +21,6 @@
     transition: transform 0.075s ease-in-out;
 }
 
-.Notes>.Active {
+.notes>.active {
     transform: scale(1.5);
 }
