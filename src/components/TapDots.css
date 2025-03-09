@@ -23,7 +23,7 @@
   }
 
   .correct-tap {
-      background-color: var(--bright-green);
+      background-color: var(--green);
   }
 
   .incorrect-tap {

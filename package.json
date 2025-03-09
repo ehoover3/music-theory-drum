@@ -14,8 +14,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "lint": "eslint 'src/**/*.{js,jsx}' && stylelint 'src/**/*.{css,scss}'",
-    "lint:fix": "eslint --fix 'src/**/*.{js,jsx}' && stylelint --fix 'src/**/*.{css,scss}'",
+    "lint": "eslint --config ./linter/.eslintrc.json 'src/**/*.{js,jsx}' && stylelint --config ./linter/.stylelintrc.json 'src/**/*.{css,scss}'",
+    "lint:fix": "eslint --config ./linter/.eslintrc.json --fix 'src/**/*.{js,jsx}' && stylelint --config ./linter/.stylelintrc.json --fix 'src/**/*.{css,scss}'",
     "start": "npm run lint && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -2,7 +2,7 @@
      display: flex;
      justify-content: center;
      align-items: center;
-     background-color: var(--bright-green);
+     background-color: var(--green);
      font-size: 100px;
      cursor: pointer;
      transition: transform 0.1s;
