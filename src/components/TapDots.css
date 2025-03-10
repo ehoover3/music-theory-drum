@@ -1,10 +1,8 @@
   .tap-dots {
       position: relative;
       height: 100%;
-      border-radius: 5px;
       display: grid;
       grid-template-columns: 1fr 12fr 1fr;
-      background-color: var(--dark-grey);
       margin-left: 10px;
       margin-right: 10px;
       border-radius: 0 0 15px 15px;

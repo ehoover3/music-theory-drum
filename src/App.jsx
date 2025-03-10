@@ -74,10 +74,10 @@ function App() {
   return (
     <div className='grid-container'>
       <NavigationBar />
-      <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} />
       <TimeSignature />
       <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
       <Tempo />
+      <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} />
       <MusicStaff notes={notes} count={count} />
       <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} onCycleCompletion={handleCycleCompletion} />
       <Instructions />

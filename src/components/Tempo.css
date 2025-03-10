@@ -6,4 +6,5 @@
     height: 100%;
     margin-right: 10px;
     background-color: var(--light-gray);
+    border-radius: 0 15px 0 0;
 }
