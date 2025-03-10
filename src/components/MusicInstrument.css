@@ -1,5 +1,7 @@
  .music-instrument {
-     margin: 10px;
+     margin-left: 10px;
+     margin-bottom: 10px;
+     margin-right: 10px;
      border-radius: 15px;
      background-color: var(--green);
      display: flex;
