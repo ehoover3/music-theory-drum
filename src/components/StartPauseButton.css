@@ -16,13 +16,9 @@
       justify-content: center;
       border: none;
       border-radius: 8px;
-      background-color: var(--dark-green);
-      color: var(--white);
+      background-color: none;
+      color: var(--blue);
       font-size: 20px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-  .pause-button {
-      background-color: var(--red);
   }
