@@ -16,6 +16,7 @@ import Debug from "./components/Debug.jsx";
 import Instructions from "./components/Instructions.jsx";
 import MusicInstrument from "./components/MusicInstrument.jsx";
 import MusicStaff from "./components/MusicStaff.jsx";
+import NavigationBar from "./components/NavigationBar.jsx";
 import ProgressBar from "./components/ProgressBar.jsx";
 import StartPauseButton from "./components/StartPauseButton.jsx";
 import TapDots from "./components/TapDots.jsx";
@@ -72,6 +73,7 @@ function App() {
 
   return (
     <div className='grid-container'>
+      <NavigationBar />
       <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} />
       <TimeSignature />
       <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />

@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -28,45 +28,129 @@
   height: 100vh;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(14, 1fr);
-
 }
 
-.progress-bar {
+.navigation-bar {
   grid-column: 1 / -1;
   grid-row: 1;
 }
 
+.progress-bar {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
 .time-signature {
   grid-column: 1 / 2;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .start-pause-button {
   grid-column: 2 / 4;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .tempo {
   grid-column: 4 / 5;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .music-staff {
   grid-column: 1 / -1;
-  grid-row: 3;
+  grid-row: 4;
 }
 
 .tap-dots {
   grid-column: 1 / -1;
-  grid-row: 4;
+  grid-row: 5;
 }
 
 .instructions {
   grid-column: 1 / -1;
-  grid-row: 5;
+  grid-row: 6;
 }
 
 .music-instrument {
   grid-column: 1 / -1;
-  grid-row: 6 / -1;
+  grid-row: 7 / -1;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+:root {
+  --dark-green: rgb(88 204 2);
+  --green: rgb(137 226 25);
+  --light-green: rgb(191 241 153);
+  --yellow: rgb(255 200 0);
+  --orange: rgb(255 150 0);
+  --dark-red: rgb(211 49 49);
+  --red: rgb(255 75 75);
+  --pink: rgb(247 200 201);
+  --dark-purple: rgb(133 73 186);
+  --purple: rgb(165 96 232);
+  --light-purple: rgb(206 130 255);
+  --deep-blue: rgb(43 112 201);
+  --blue: rgb(28 176 246);
+  --dark-gray: rgb(75 75 75);
+  --white: rgb(255 255 255);
+}
+
+.grid-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(14, minmax(0, 1fr));
+}
+
+.navigation-bar {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+}
+
+.progress-bar {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.time-signature {
+  grid-column: 1 / 2;
+  grid-row: 3;
+}
+
+.start-pause-button {
+  grid-column: 2 / 4;
+  grid-row: 3;
+}
+
+.tempo {
+  grid-column: 4 / 5;
+  grid-row: 3;
+}
+
+.music-staff {
+  grid-column: 1 / -1;
+  grid-row: 4;
+}
+
+.tap-dots {
+  grid-column: 1 / -1;
+  grid-row: 5;
+}
+
+.instructions {
+  grid-column: 1 / -1;
+  grid-row: 6;
+}
+
+.music-instrument {
+  grid-column: 1 / -1;
+  grid-row: 7 / -1;
 }
