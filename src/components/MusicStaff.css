@@ -1,7 +1,9 @@
 .music-staff {
     position: relative;
     height: 100%;
-    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: var(--light-gray);
 }
 
 .music-staff>.notes {
