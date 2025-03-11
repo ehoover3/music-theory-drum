@@ -22,7 +22,6 @@ import StartPauseButton from "./components/StartPauseButton.jsx";
 import TapDots from "./components/TapDots.jsx";
 import Tempo from "./components/Tempo.jsx";
 import TimeSignature from "./components/TimeSignature.jsx";
-import { useSound } from "./hooks/useSound.js";
 import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap.js";
 import { useMetronome } from "./hooks/useMetronome.js";
 import { usePlayPause } from "./hooks/usePlayPause.js";

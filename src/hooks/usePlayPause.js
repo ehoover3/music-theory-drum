@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 export const usePlayPause = (setTaps, setCount, setMeasure, setIsPlaying, setStartTime) => {
   const startGame = useCallback(() => {
-    setTaps([]);
+    // setTaps([]);
     setCount(0);
     setMeasure(0);
     setIsPlaying(true);
