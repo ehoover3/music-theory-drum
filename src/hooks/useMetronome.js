@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useSound } from "./useSound";
 
-const playSound = (metronomeCountSounds, metronomeCountSoundsAlternate, count, measure) => {
-  const soundSet = measure % 2 === 0 ? metronomeCountSounds : metronomeCountSoundsAlternate;
+const playSound = (metronomeCountSounds, count) => {
+  const soundSet = metronomeCountSounds;
   const sound = soundSet[count - 1];
   if (sound) sound.play();
 };
@@ -13,15 +13,12 @@ const resetCycle = (setMeasure, setStartTime) => {
 };
 
 export const useMetronome = (count, setCount, isPlaying, setMeasure, setStartTime, beatPerMillisecond, measure) => {
-  const count1 = useSound("/audio/one.mp3");
-  const count1alternate = useSound("/audio/oneAlternate.mp3");
-  const count2 = useSound("/audio/two.mp3");
-  const count3 = useSound("/audio/three.mp3");
-  const count3alternate = useSound("/audio/threeAlternate.mp3");
-  const count4 = useSound("/audio/four.mp3");
+  const count1 = useSound("/audio/numbers/1.mp3");
+  const count2 = useSound("/audio/numbers/2.mp3");
+  const count3 = useSound("/audio/numbers/3.mp3");
+  const count4 = useSound("/audio/numbers/4.mp3");
 
   const metronomeCountSounds = [count1, count2, count3, count4];
-  const metronomeCountSoundsAlternate = [count1alternate, count2, count3alternate, count4];
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -34,7 +31,7 @@ export const useMetronome = (count, setCount, isPlaying, setMeasure, setStartTim
   }, [isPlaying, beatPerMillisecond]);
 
   useEffect(() => {
-    if (isPlaying) playSound(metronomeCountSounds, metronomeCountSoundsAlternate, count, measure);
+    if (isPlaying) playSound(metronomeCountSounds, count, measure);
   }, [count, measure, isPlaying]);
 
   useEffect(() => {
