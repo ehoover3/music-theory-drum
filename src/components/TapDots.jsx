@@ -7,13 +7,18 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
   const ERROR_MARGIN_IN_MILLISECONDS = 225;
   const expectedBeatsMilliseconds = [0, beatInterval, 2 * beatInterval, 3 * beatInterval];
 
+  const findClosestBeatIndex = (tapTime) => {
+    return expectedBeatsMilliseconds.reduce((closest, beat, index) => {
+      const currentDiff = Math.abs(tapTime - beat);
+      const closestDiff = Math.abs(tapTime - expectedBeatsMilliseconds[closest]);
+      return currentDiff < closestDiff ? index : closest;
+    }, 0);
+  };
+
   useEffect(() => {
     const cycleDots = taps.map((tapTime) => {
-      const closestBeatIndex = expectedBeatsMilliseconds.reduce((closest, beat, index) => {
-        const currentDiff = Math.abs(tapTime - beat);
-        const closestDiff = Math.abs(tapTime - expectedBeatsMilliseconds[closest]);
-        return currentDiff < closestDiff ? index : closest;
-      }, 0);
+      console.log("tapTime: ", tapTime);
+      const closestBeatIndex = findClosestBeatIndex(tapTime);
       const isWithinMargin = Math.abs(tapTime - expectedBeatsMilliseconds[closestBeatIndex]) <= ERROR_MARGIN_IN_MILLISECONDS;
       return {
         x: Math.min((tapTime / (4 * beatInterval)) * 100, 100),
@@ -26,9 +31,7 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
   }, [taps, isPlaying, beatInterval, measure]);
 
   useEffect(() => {
-    if (taps.length === 4) {
-      onCycleCompletion(isCycleCorrect);
-    }
+    if (taps.length === 4) onCycleCompletion(isCycleCorrect);
   }, [taps, isCycleCorrect, onCycleCompletion]);
 
   return (
