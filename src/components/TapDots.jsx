@@ -17,7 +17,6 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
 
   useEffect(() => {
     const cycleDots = taps.map((tapTime) => {
-      console.log("tapTime: ", tapTime);
       const closestBeatIndex = findClosestBeatIndex(tapTime);
       const isWithinMargin = Math.abs(tapTime - expectedBeatsMilliseconds[closestBeatIndex]) <= ERROR_MARGIN_IN_MILLISECONDS;
       return {
