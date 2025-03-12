@@ -8,3 +8,4 @@
 8. Make TapDots dynamic to the various notes on the page.
 9. Make the music notation variation a JSON file that is picked up.
 10. Instead of a simple circle dot for TapDots, give me a lightning bolt, fire, ice, or other to make it really good UI
+11. Add a user character that rocks to the beat

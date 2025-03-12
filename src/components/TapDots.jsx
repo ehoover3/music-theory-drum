@@ -8,10 +8,6 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
   const expectedBeatsMilliseconds = [0, beatInterval, 2 * beatInterval, 3 * beatInterval];
 
   useEffect(() => {
-    if (!isPlaying) {
-      setDots([]);
-      return;
-    }
     const cycleDots = taps.map((tapTime) => {
       const closestBeatIndex = expectedBeatsMilliseconds.reduce((closest, beat, index) => {
         const currentDiff = Math.abs(tapTime - beat);
