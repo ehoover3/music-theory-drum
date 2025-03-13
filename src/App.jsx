@@ -36,11 +36,6 @@ function App() {
   const handleMusicInstrumentTap = useMusicInstrumentTap(startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setMeasure, setIsPlaying, setStartTime);
 
-  const evaluateUserTaps = (areUserTapsCorrect) => {
-    if (areUserTapsCorrect) setProgressBar(progressBar + 1);
-    else if (!areUserTapsCorrect) setProgressBar(0);
-  };
-
   useEffect(() => {
     if (count === 1) {
       setTaps([]);
@@ -56,7 +51,7 @@ function App() {
       <Tempo />
       <ProgressBar userTappedMeasureCorrectlyCount={progressBar} />
       <MusicStaff notes={notes} count={count} />
-      <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} evaluateUserTaps={evaluateUserTaps} />
+      <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} />
       <Instructions />
       <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} />
     </div>

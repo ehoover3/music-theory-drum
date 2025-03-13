@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./TapDots.css";
 
-function TapDots({ taps, beatInterval, measure, evaluateUserTaps }) {
+function TapDots({ taps, beatInterval, measure, progressBar, setProgressBar }) {
   const [dots, setDots] = useState([]);
   const [areUserTapsCorrect, setAreUserTapsCorrect] = useState(false);
   const ERROR_MARGIN_IN_MILLISECONDS = 225;
@@ -37,7 +37,8 @@ function TapDots({ taps, beatInterval, measure, evaluateUserTaps }) {
   }, [taps, beatInterval, expectedBeatsMilliseconds]);
 
   useEffect(() => {
-    if (taps.length === 4) evaluateUserTaps(areUserTapsCorrect);
+    if (taps.length === 4 && areUserTapsCorrect) setProgressBar(progressBar + 1);
+    else if (!areUserTapsCorrect) setProgressBar(0);
   }, [taps]);
 
   return (
