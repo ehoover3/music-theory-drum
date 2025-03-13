@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./TapDots.css";
 
-function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) {
+function TapDots({ taps, beatInterval, measure, evaluateUserTaps }) {
   const [dots, setDots] = useState([]);
-  const [isCycleCorrect, setIsCycleCorrect] = useState(false);
+  const [areUserTapsCorrect, setAreUserTapsCorrect] = useState(false);
   const ERROR_MARGIN_IN_MILLISECONDS = 225;
-  const expectedBeatsMilliseconds = [0, beatInterval, 2 * beatInterval, 3 * beatInterval];
+
+  const expectedBeatsMilliseconds = React.useMemo(() => [0, beatInterval, 2 * beatInterval, 3 * beatInterval], [beatInterval]);
 
   const findClosestBeatIndex = (tapTime) => {
     return expectedBeatsMilliseconds.reduce((closest, beat, index) => {
@@ -15,8 +16,9 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
     }, 0);
   };
 
-  useEffect(() => {
-    const cycleDots = taps.map((tapTime) => {
+  const updateDots = () => {
+    if (!taps.length) return;
+    const dotsInThisMeasure = taps.map((tapTime) => {
       const closestBeatIndex = findClosestBeatIndex(tapTime);
       const isWithinMargin = Math.abs(tapTime - expectedBeatsMilliseconds[closestBeatIndex]) <= ERROR_MARGIN_IN_MILLISECONDS;
       return {
@@ -24,19 +26,24 @@ function TapDots({ taps, isPlaying, beatInterval, measure, onCycleCompletion }) 
         isCorrect: isWithinMargin,
       };
     });
-    setDots(cycleDots);
-    const allCycleDotsCorrect = cycleDots.length === 4 && cycleDots.every((dot) => dot.isCorrect);
-    setIsCycleCorrect(allCycleDotsCorrect);
-  }, [taps, isPlaying, beatInterval, measure]);
+    setDots(dotsInThisMeasure);
+    let allNotesTapped = taps.length === 4;
+    let allTapsAreCorrect = dotsInThisMeasure.every((dot) => dot.isCorrect);
+    if (allNotesTapped && allTapsAreCorrect) setAreUserTapsCorrect(true);
+  };
 
   useEffect(() => {
-    if (taps.length === 4) onCycleCompletion(isCycleCorrect);
-  }, [taps, isCycleCorrect, onCycleCompletion]);
+    updateDots();
+  }, [taps, beatInterval, expectedBeatsMilliseconds]);
+
+  useEffect(() => {
+    if (taps.length === 4) evaluateUserTaps(areUserTapsCorrect);
+  }, [taps]);
 
   return (
     <div className='tap-dots'>
       {dots.map((dot, index) => (
-        <div key={`${measure}-${index}`} className={`tap-dot ${dot.isCorrect ? "correct-tap" : "incorrect-tap"}`} style={{ left: `${dot.x}%` }}></div>
+        <div key={`${measure}-${index}-${dot.x}`} className={`tap-dot ${dot.isCorrect ? "correct-tap" : "incorrect-tap"}`} style={{ left: `${dot.x}%` }}></div>
       ))}
     </div>
   );

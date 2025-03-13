@@ -20,8 +20,7 @@ function App() {
   const [measure, setMeasure] = useState(0);
   const [count, setCount] = useState(1);
   const [taps, setTaps] = useState([]);
-  const [userTappedMeasureCorrectlyCount, setUserTappedMeasureCorrectlyCount] = useState(0);
-  const [lastUserTappedMeasureCorrectly, setLastUserTappedMeasureCorrectly] = useState(-1);
+  const [progressBar, setProgressBar] = useState(0);
 
   const beatsPerMinute = 60;
   const beatPerMillisecond = 60000 / beatsPerMinute;
@@ -37,19 +36,9 @@ function App() {
   const handleMusicInstrumentTap = useMusicInstrumentTap(startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setMeasure, setIsPlaying, setStartTime);
 
-  const handleCycleCompletion = (isCycleCorrect) => {
-    if (isCycleCorrect && measure !== lastUserTappedMeasureCorrectly) {
-      const newUserTappedMeasureCorrectlyCount = userTappedMeasureCorrectlyCount + 1;
-      setUserTappedMeasureCorrectlyCount(newUserTappedMeasureCorrectlyCount);
-      setLastUserTappedMeasureCorrectly(measure);
-
-      if (newUserTappedMeasureCorrectlyCount >= 3) {
-        pauseGame();
-      }
-    } else if (!isCycleCorrect) {
-      setUserTappedMeasureCorrectlyCount(0);
-      setLastUserTappedMeasureCorrectly(-1);
-    }
+  const evaluateUserTaps = (areUserTapsCorrect) => {
+    if (areUserTapsCorrect) setProgressBar(progressBar + 1);
+    else if (!areUserTapsCorrect) setProgressBar(0);
   };
 
   useEffect(() => {
@@ -60,16 +49,16 @@ function App() {
 
   return (
     <div className='grid-container'>
+      <Debug count={count} measure={measure} progressBar={progressBar} />
       <NavigationBar />
       <TimeSignature />
       <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
       <Tempo />
-      <ProgressBar userTappedMeasureCorrectlyCount={userTappedMeasureCorrectlyCount} />
+      <ProgressBar userTappedMeasureCorrectlyCount={progressBar} />
       <MusicStaff notes={notes} count={count} />
-      <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} onCycleCompletion={handleCycleCompletion} />
+      <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} evaluateUserTaps={evaluateUserTaps} />
       <Instructions />
       <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} />
-      {/* <Debug count={count} measure={measure} /> */}
     </div>
   );
 }
