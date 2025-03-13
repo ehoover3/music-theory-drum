@@ -13,6 +13,7 @@ import TimeSignature from "./components/TimeSignature.jsx";
 import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap.js";
 import { useMetronome } from "./hooks/useMetronome.js";
 import { usePlayPause } from "./hooks/usePlayPause.js";
+import notes from "./database/rhythms.json";
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,13 +25,6 @@ function App() {
 
   const beatsPerMinute = 60;
   const beatPerMillisecond = 60000 / beatsPerMinute;
-
-  const notes = [
-    { symbol: "♩", beat: 1 },
-    { symbol: "♩", beat: 2 },
-    { symbol: "♩", beat: 3 },
-    { symbol: "♩", beat: 4 },
-  ];
 
   useMetronome(count, setCount, isPlaying, setMeasure, setStartTime, beatPerMillisecond, measure);
   const handleMusicInstrumentTap = useMusicInstrumentTap(startTime, setTaps);
