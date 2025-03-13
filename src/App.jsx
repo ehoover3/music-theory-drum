@@ -23,7 +23,7 @@ function App() {
   const [taps, setTaps] = useState([]);
   const [progressBar, setProgressBar] = useState(0);
 
-  const beatsPerMinute = 60;
+  const beatsPerMinute = 120;
   const beatPerMillisecond = 60000 / beatsPerMinute;
 
   useMetronome(count, setCount, isPlaying, setMeasure, setStartTime, beatPerMillisecond, measure);
