@@ -30,7 +30,8 @@
    display: grid;
    height: 100vh;
    grid-template-columns: repeat(4, 1fr);
-   grid-template-rows: repeat(14, minmax(0, 1fr));
+   grid-template-rows: auto auto 0.25fr repeat(18, 1fr);
+
  }
 
  .navigation-bar {
@@ -73,10 +74,10 @@
 
  .instructions {
    grid-column: 1 / -1;
-   grid-row: 6;
+   grid-row: 6 / 8;
  }
 
  .music-instrument {
    grid-column: 1 / -1;
-   grid-row: 7 / -1;
+   grid-row: 9 / -1;
  }

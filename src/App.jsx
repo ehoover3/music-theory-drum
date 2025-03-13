@@ -38,7 +38,6 @@ function App() {
 
   return (
     <div className='grid-container'>
-      <Debug count={count} measure={measure} progressBar={progressBar} />
       <NavigationBar />
       <TimeSignature />
       <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
@@ -48,6 +47,7 @@ function App() {
       <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} />
       <Instructions />
       <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} />
+      <Debug isPlaying={isPlaying} startTime={startTime} measure={measure} count={count} taps={taps} progressBar={progressBar} />
     </div>
   );
 }
