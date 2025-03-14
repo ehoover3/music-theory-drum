@@ -17,7 +17,7 @@
 📝 components/TapDots.css
 📝 components/TapDots.jsx
 📝 components/Tempo.css
-📝 components/Tempo.jsx
+📝 components/Tempo.jsx ---------- <-- User should be able to change the bpm tempo.
 📝 components/TimeSignature.css
 📝 components/TimeSignature.jsx
 📝 database/rhythms.json --------- <-- Add music notation variation, i.e. eigth notes, etc.
