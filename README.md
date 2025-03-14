@@ -26,9 +26,6 @@
 📝 components/TimeSignature.jsx
 📝 database/rhythms.json --------- <-- Add music notation variation, i.e. eigth notes, etc.
 ✅ hooks/useMetronome.jsx
-📝 hooks/useMusicInstrumentTap.jsx <-- delete this?
-📝 hooks/usePlayPause.jsx -------- <-- delete this?
-📝 hooks/useSound.jsx ------------ <-- delete this?
 
 # TODO NOTES
 

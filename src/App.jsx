@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Debug from "./components/Debug.jsx";
 import Instructions from "./components/Instructions.jsx";
@@ -10,9 +10,7 @@ import StartPauseButton from "./components/StartPauseButton.jsx";
 import TapDots from "./components/TapDots.jsx";
 import Tempo from "./components/Tempo.jsx";
 import TimeSignature from "./components/TimeSignature.jsx";
-import { useMusicInstrumentTap } from "./hooks/useMusicInstrumentTap.js";
 import { useMetronome } from "./hooks/useMetronome.js";
-import { usePlayPause } from "./hooks/usePlayPause.js";
 import notes from "./database/rhythms.json";
 
 function App() {
@@ -27,7 +25,6 @@ function App() {
   const zeroBasedNoteBeats = notes.map((note) => ({ ...note, beat: note.beat - 1 }));
 
   useMetronome(isPlaying, bpm, count, setCount);
-  const handleMusicInstrumentTap = useMusicInstrumentTap(startTime, setTaps);
 
   useEffect(() => {
     if (count === 1) {
@@ -45,7 +42,7 @@ function App() {
       <MusicStaff notes={zeroBasedNoteBeats} count={count} />
       <TapDots taps={taps} isPlaying={isPlaying} bpm={bpm} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} />
       <Instructions />
-      <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} />
+      <MusicInstrument isPlaying={isPlaying} startTime={startTime} setTaps={setTaps} />
       <Debug isPlaying={isPlaying} startTime={startTime} measure={measure} count={count} taps={taps} progressBar={progressBar} />
     </div>
   );
