@@ -17,7 +17,7 @@
 📝 components/ProgressBar.css
 📝 components/ProgressBar.jsx ---- <-- Increments by 1 up to 3 times, then give a screen that the lesson is complete
 📝 components/StartPauseButton.css
-📝 components/StartPauseButton.jsx
+✅ components/StartPauseButton.jsx
 📝 components/TapDots.css
 📝 components/TapDots.jsx
 📝 components/Tempo.css

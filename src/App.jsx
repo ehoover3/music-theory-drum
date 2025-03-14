@@ -28,7 +28,6 @@ function App() {
 
   useMetronome(isPlaying, bpm, count, setCount);
   const handleMusicInstrumentTap = useMusicInstrumentTap(startTime, setTaps);
-  const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setMeasure, setIsPlaying, setStartTime);
 
   useEffect(() => {
     if (count === 1) {
@@ -40,7 +39,7 @@ function App() {
     <div className='grid-container'>
       <NavigationBar />
       <TimeSignature />
-      <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
+      <StartPauseButton isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       <Tempo bpm={bpm} setBpm={setBpm} />
       <ProgressBar userTappedMeasureCorrectlyCount={progressBar} />
       <MusicStaff notes={zeroBasedNoteBeats} count={count} />

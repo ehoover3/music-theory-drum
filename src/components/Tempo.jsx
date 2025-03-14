@@ -1,5 +1,5 @@
 import React from "react";
-import NumberInput from "./NumberInput";
+import NumberInput from "./NumberInput.jsx";
 import "./Tempo.css";
 
 function Tempo({ bpm, setBpm }) {

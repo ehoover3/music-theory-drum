@@ -8,7 +8,7 @@ function Debug({ isPlaying, startTime, measure, count, taps, progressBar }) {
       <div>startTime={startTime}</div>
       <div>measure={measure}</div>
       <div>count={count}</div>
-      <div>taps={taps.join(", ")}</div>
+      <div>taps={taps}</div>
       <div>progressBar={progressBar}</div>
     </div>
   );
