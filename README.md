@@ -1,5 +1,7 @@
 # DONE / TODO
 
+📝 App.css
+📝 App.jsx
 📝 components/Debug.css
 ✅ components/Debug.jsx
 📝 components/Instructions.css
