@@ -24,8 +24,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [bpm, setBpm] = useState(100);
 
-  const beatsPerMinute = 120;
-  const beatPerMillisecond = 60000 / beatsPerMinute;
+  const zeroBasedNoteBeats = notes.map((note) => ({ ...note, beat: note.beat - 1 }));
 
   useMetronome(isPlaying, bpm, count, setCount);
   const handleMusicInstrumentTap = useMusicInstrumentTap(startTime, setTaps);
@@ -44,8 +43,8 @@ function App() {
       <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
       <Tempo />
       <ProgressBar userTappedMeasureCorrectlyCount={progressBar} />
-      <MusicStaff notes={notes} count={count} />
-      <TapDots taps={taps} isPlaying={isPlaying} beatInterval={beatPerMillisecond} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} />
+      <MusicStaff notes={zeroBasedNoteBeats} count={count} />
+      <TapDots taps={taps} isPlaying={isPlaying} bpm={bpm} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} />
       <Instructions />
       <MusicInstrument isPlaying={isPlaying} handleMusicInstrumentTap={handleMusicInstrumentTap} />
       <Debug isPlaying={isPlaying} startTime={startTime} measure={measure} count={count} taps={taps} progressBar={progressBar} />

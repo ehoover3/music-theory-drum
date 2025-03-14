@@ -1,15 +1,22 @@
+# DONE
+
+1. components/MusicStaff refactor complete
+2. hooks/useMetronome refactor complete
+
+# TODO
+
 1. TapDots.jsx is hard to read. Refactor for cleaner code.
-2. Fix TapDots, so that if the user pauses and restarts, then the TapDots are not erased.
-3. Fix TapDots location on the X axis
-4. Fix MusicStaff - Add line through music staff notes that works for resizing the page.
-5. Fix Progress Bar - needs to increment by 1 up to 3 times, then give a screen that the lesson is complete.
-6. Reduce grey box height and increase green box height
-7. Improve code readability, i.e. rename variables, minimize function parameters
-8. Add music notation variation, i.e. eigth notes, etc.
-9. Make TapDots dynamic to the various notes on the page.
-10. Make the music notation variation a JSON file that is picked up.
-11. Instead of a simple circle dot for TapDots, give me a lightning bolt, fire, ice, or other to make it really good UI
-12. Add a user character that rocks to the beat
+1. Fix TapDots, so that if the user pauses and restarts, then the TapDots are not erased.
+1. Fix TapDots location on the X axis
+1. Fix MusicStaff - Add line through music staff notes that works for resizing the page.
+1. Fix Progress Bar - needs to increment by 1 up to 3 times, then give a screen that the lesson is complete.
+1. Reduce grey box height and increase green box height
+1. Improve code readability, i.e. rename variables, minimize function parameters
+1. Add music notation variation, i.e. eigth notes, etc.
+1. Make TapDots dynamic to the various notes on the page.
+1. Make the music notation variation a JSON file that is picked up.
+1. Instead of a simple circle dot for TapDots, give me a lightning bolt, fire, ice, or other to make it really good UI
+1. Add a user character that rocks to the beat
 
 # Free Sound Effects
 

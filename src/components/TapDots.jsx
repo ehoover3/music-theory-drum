@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./TapDots.css";
 
-function TapDots({ taps, beatInterval, measure, progressBar, setProgressBar }) {
+function TapDots({ taps, bpm, measure, progressBar, setProgressBar }) {
+  const beatPerMillisecond = 60000 / bpm;
   const [dots, setDots] = useState([]);
   const [areUserTapsCorrect, setAreUserTapsCorrect] = useState(false);
   const ERROR_MARGIN_IN_MILLISECONDS = 225;
 
-  const expectedBeatsMilliseconds = React.useMemo(() => [0, beatInterval, 2 * beatInterval, 3 * beatInterval], [beatInterval]);
+  const expectedBeatsMilliseconds = React.useMemo(() => [0, beatPerMillisecond, 2 * beatPerMillisecond, 3 * beatPerMillisecond], [beatPerMillisecond]);
 
   const findClosestBeatIndex = (tapTime) => {
     return expectedBeatsMilliseconds.reduce((closest, beat, index) => {
@@ -22,7 +23,7 @@ function TapDots({ taps, beatInterval, measure, progressBar, setProgressBar }) {
       const closestBeatIndex = findClosestBeatIndex(tapTime);
       const isWithinMargin = Math.abs(tapTime - expectedBeatsMilliseconds[closestBeatIndex]) <= ERROR_MARGIN_IN_MILLISECONDS;
       return {
-        x: Math.min((tapTime / (4 * beatInterval)) * 100, 100),
+        x: Math.min((tapTime / (4 * beatPerMillisecond)) * 100, 100),
         isCorrect: isWithinMargin,
       };
     });
@@ -34,7 +35,7 @@ function TapDots({ taps, beatInterval, measure, progressBar, setProgressBar }) {
 
   useEffect(() => {
     updateDots();
-  }, [taps, beatInterval, expectedBeatsMilliseconds]);
+  }, [taps, beatPerMillisecond, expectedBeatsMilliseconds]);
 
   useEffect(() => {
     if (taps.length === 4 && areUserTapsCorrect) setProgressBar(progressBar + 1);
