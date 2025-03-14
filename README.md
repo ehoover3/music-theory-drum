@@ -12,6 +12,8 @@
 ✅ components/MusicStaff.jsx
 📝 components/NavigationBar.css
 📝 components/NavigationBar.jsx
+📝 components/NumberInput.css ---- <-- Fix styling so that the background color & border is removed.
+📝 components/NumberInput.jsx
 📝 components/ProgressBar.css
 📝 components/ProgressBar.jsx ---- <-- Increments by 1 up to 3 times, then give a screen that the lesson is complete
 📝 components/StartPauseButton.css
@@ -19,7 +21,7 @@
 📝 components/TapDots.css
 📝 components/TapDots.jsx
 📝 components/Tempo.css
-📝 components/Tempo.jsx ---------- <-- User should be able to change the bpm tempo.
+✅ components/Tempo.jsx
 📝 components/TimeSignature.css
 📝 components/TimeSignature.jsx
 📝 database/rhythms.json --------- <-- Add music notation variation, i.e. eigth notes, etc.

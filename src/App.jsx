@@ -22,7 +22,7 @@ function App() {
   const [taps, setTaps] = useState([]);
   const [progressBar, setProgressBar] = useState(0);
   const [count, setCount] = useState(0);
-  const [bpm, setBpm] = useState(100);
+  const [bpm, setBpm] = useState(120);
 
   const zeroBasedNoteBeats = notes.map((note) => ({ ...note, beat: note.beat - 1 }));
 
@@ -41,7 +41,7 @@ function App() {
       <NavigationBar />
       <TimeSignature />
       <StartPauseButton isPlaying={isPlaying} startGame={startGame} pauseGame={pauseGame} />
-      <Tempo />
+      <Tempo bpm={bpm} setBpm={setBpm} />
       <ProgressBar userTappedMeasureCorrectlyCount={progressBar} />
       <MusicStaff notes={zeroBasedNoteBeats} count={count} />
       <TapDots taps={taps} isPlaying={isPlaying} bpm={bpm} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} />
