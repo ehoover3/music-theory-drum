@@ -1,21 +1,40 @@
-# DONE
+# DONE / TODO
 
-1. components/MusicStaff refactor complete
-2. hooks/useMetronome refactor complete
+📝 components/Debug.css
+✅ components/Debug.jsx
+📝 components/Instructions.css
+📝 components/Instructions.jsx
+📝 components/MusicInstrument.css
+📝 components/MusicInstrument.jsx
+📝 components/MusicStaff.css ------- <-- Line through music notes needs to resize dynamically
+✅ components/MusicStaff.jsx
+📝 components/NavigationBar.css
+📝 components/NavigationBar.jsx
+📝 components/ProgressBar.css
+📝 components/ProgressBar.jsx ---- <-- Increments by 1 up to 3 times, then give a screen that the lesson is complete
+📝 components/StartPauseButton.css
+📝 components/StartPauseButton.jsx
+📝 components/TapDots.css
+📝 components/TapDots.jsx
+📝 components/Tempo.css
+📝 components/Tempo.jsx
+📝 components/TimeSignature.css
+📝 components/TimeSignature.jsx
+📝 database/rhythms.json --------- <-- Add music notation variation, i.e. eigth notes, etc.
+✅ hooks/useMetronome.jsx
+📝 hooks/useMusicInstrumentTap.jsx <-- delete this?
+📝 hooks/usePlayPause.jsx -------- <-- delete this?
+📝 hooks/useSound.jsx ------------ <-- delete this?
 
-# TODO
+# TODO NOTES
 
 1. TapDots.jsx is hard to read. Refactor for cleaner code.
-1. Fix TapDots, so that if the user pauses and restarts, then the TapDots are not erased.
-1. Fix TapDots location on the X axis
-1. Fix MusicStaff - Add line through music staff notes that works for resizing the page.
-1. Fix Progress Bar - needs to increment by 1 up to 3 times, then give a screen that the lesson is complete.
-1. Reduce grey box height and increase green box height
-1. Improve code readability, i.e. rename variables, minimize function parameters
-1. Add music notation variation, i.e. eigth notes, etc.
-1. Make TapDots dynamic to the various notes on the page.
-1. Make the music notation variation a JSON file that is picked up.
-1. Instead of a simple circle dot for TapDots, give me a lightning bolt, fire, ice, or other to make it really good UI
+1. TapDots: If user pauses/restarts, then TapDots are not erased.
+1. TapDots: TapDots location on X axis
+1. TapDots: Dynamic to various notes on the page.
+1. TapDots: Add to circle dot lightning, fire, ice, for good UI
+1. LessonComplete: Add lesson complete page if user completes progress bar.
+1. Informational: Add Information page after user completes progress bar, that shares music history, music theory, or other.
 1. Add a user character that rocks to the beat
 
 # Free Sound Effects
