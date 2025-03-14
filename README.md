@@ -11,6 +11,10 @@
 11. Instead of a simple circle dot for TapDots, give me a lightning bolt, fire, ice, or other to make it really good UI
 12. Add a user character that rocks to the beat
 
+# Free Sound Effects
+
+https://www.fesliyanstudios.com
+
 # Music Terminology Reference
 
 - Measure (Bar): A time segment determined by the time signature (4/4 has 4 beats per measure).

@@ -1,46 +1,25 @@
-import { useEffect } from "react";
-import { useSound } from "./useSound";
+import { useEffect, useRef } from "react";
 
-const playSound = (metronomeCountSounds, count) => {
-  const soundSet = metronomeCountSounds;
-  const sound = soundSet[count - 1];
-  if (sound) sound.play();
-};
+export const useMetronome = (isPlaying, bpm, count, setCount) => {
+  const audioRefs = useRef([new Audio("/audio/Hi-Hat-Closed-Hit-A1.mp3"), new Audio("/audio/Hard-Slap-A.mp3"), new Audio("/audio/Drum-Sticks-Hit-E.mp3"), new Audio("/audio/Slap-A1.mp3")]);
 
-const resetMeasureCount = (setMeasure, setStartTime) => {
-  setMeasure((prev) => prev + 1);
-  setStartTime(Date.now());
-};
+  const playAudio = (audio) => audio?.play().catch((error) => console.error("Audio play error:", error));
+  const incrementAudioIndex = (count, setCount, audioRefs) => setCount((count + 1) % audioRefs.current.length);
+  const resetAudioIndex = (audio) => audio && (audio.currentTime = 0);
+  const intervalDuration = (60 / bpm) * 1000;
 
-const startMetronome = (isPlaying, setCount, setStartTime, beatPerMillisecond) => {
-  if (!isPlaying) return;
-  setCount(1);
-  setStartTime(Date.now());
-  const interval = setInterval(() => {
-    setCount((prevCount) => (prevCount % 4) + 1);
-  }, beatPerMillisecond);
-  return () => clearInterval(interval);
-};
-
-export const useMetronome = (count, setCount, isPlaying, setMeasure, setStartTime, beatPerMillisecond, measure) => {
-  const count1 = useSound("/audio/numbers/1.mp3");
-  const count2 = useSound("/audio/numbers/2.mp3");
-  const count3 = useSound("/audio/numbers/3.mp3");
-  const count4 = useSound("/audio/numbers/4.mp3");
-  const metronomeCountSounds = [count1, count2, count3, count4];
+  const playSound = () => {
+    const audio = audioRefs.current[count];
+    playAudio(audio);
+    incrementAudioIndex(count, setCount, audioRefs);
+    resetAudioIndex(audio);
+  };
 
   useEffect(() => {
-    const intervalCleanup = startMetronome(isPlaying, setCount, setStartTime, beatPerMillisecond);
-    return intervalCleanup;
-  }, [isPlaying, beatPerMillisecond]);
-
-  useEffect(() => {
-    if (isPlaying) playSound(metronomeCountSounds, count, measure);
-  }, [count, measure, isPlaying]);
-
-  useEffect(() => {
-    if (count > 4) resetMeasureCount(setMeasure, setStartTime);
-  }, [count, setMeasure, setStartTime]);
-
-  return {};
+    let interval;
+    if (isPlaying) {
+      interval = setInterval(playSound, intervalDuration);
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying, bpm, count]);
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Debug from "./components/Debug.jsx";
 import Instructions from "./components/Instructions.jsx";
@@ -19,14 +19,15 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [startTime, setStartTime] = useState(0);
   const [measure, setMeasure] = useState(0);
-  const [count, setCount] = useState(1);
   const [taps, setTaps] = useState([]);
   const [progressBar, setProgressBar] = useState(0);
+  const [count, setCount] = useState(0);
+  const [bpm, setBpm] = useState(100);
 
   const beatsPerMinute = 120;
   const beatPerMillisecond = 60000 / beatsPerMinute;
 
-  useMetronome(count, setCount, isPlaying, setMeasure, setStartTime, beatPerMillisecond, measure);
+  useMetronome(isPlaying, bpm, count, setCount);
   const handleMusicInstrumentTap = useMusicInstrumentTap(startTime, setTaps);
   const { startGame, pauseGame } = usePlayPause(setTaps, setCount, setMeasure, setIsPlaying, setStartTime);
 
