@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 export const useMetronome = (isPlaying, bpm, count, setCount) => {
   const audioRefs = useRef([new Audio("/audio/Hi-Hat-Closed-Hit-A1.mp3"), new Audio("/audio/Hard-Slap-A.mp3"), new Audio("/audio/Drum-Sticks-Hit-E.mp3"), new Audio("/audio/Slap-A1.mp3")]);
@@ -8,12 +8,12 @@ export const useMetronome = (isPlaying, bpm, count, setCount) => {
   const resetAudioIndex = (audio) => audio && (audio.currentTime = 0);
   const intervalDuration = (60 / bpm) * 1000;
 
-  const playSound = () => {
+  const playSound = useCallback(() => {
     const audio = audioRefs.current[count];
     playAudio(audio);
     incrementAudioIndex(count, setCount, audioRefs);
     resetAudioIndex(audio);
-  };
+  }, [count, setCount]);
 
   useEffect(() => {
     let interval;
@@ -21,5 +21,5 @@ export const useMetronome = (isPlaying, bpm, count, setCount) => {
       interval = setInterval(playSound, intervalDuration);
     }
     return () => clearInterval(interval);
-  }, [isPlaying, bpm, count]);
+  }, [bpm, count, intervalDuration, isPlaying, playSound]);
 };

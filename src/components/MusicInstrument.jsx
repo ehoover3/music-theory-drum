@@ -17,9 +17,9 @@ function MusicInstrument({ isPlaying, startTime, setTaps }) {
   };
 
   return (
-    <div className={`music-instrument ${isPlaying ? "active" : ""}`} role='button' tabIndex={0} onClick={onClick}>
+    <button className={`music-instrument ${isPlaying ? "active" : ""}`} onClick={onClick} aria-label='Drum'>
       🥁
-    </div>
+    </button>
   );
 }
 

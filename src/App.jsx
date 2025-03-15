@@ -31,11 +31,11 @@ function App() {
       <StartPauseButton isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       <Tempo bpm={bpm} setBpm={setBpm} />
       <ProgressBar progressBar={progressBar} />
-      <MusicStaff notes={zeroBasedNoteBeats} count={count} />
-      <TapDots taps={taps} isPlaying={isPlaying} bpm={bpm} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} />
+      <MusicStaff count={count} notes={zeroBasedNoteBeats} />
+      <TapDots bpm={bpm} isPlaying={isPlaying} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} taps={taps} />
       <Instructions />
       <MusicInstrument isPlaying={isPlaying} startTime={timer} setTaps={setTaps} />
-      <Debug isPlaying={isPlaying} startTime={timer} measure={measure} count={count} taps={taps} progressBar={progressBar} />
+      <Debug count={count} isPlaying={isPlaying} measure={measure} progressBar={progressBar} taps={taps} timer={timer} />
     </div>
   );
 }
