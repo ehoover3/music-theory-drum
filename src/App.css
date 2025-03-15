@@ -1,4 +1,194 @@
- * {
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.app-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Metronome display styles */
+.metronome-container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.metronome-bar {
+  background-color: #e5e7eb;
+  height: 3rem;
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.progress-bar {
+  position: absolute;
+  top: a0;
+  height: 100%;
+  background-color: #93c5fd;
+  border-radius: 0.5rem;
+}
+
+.position-indicator {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1rem;
+  background-color: #3b82f6;
+  border-radius: 9999px;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.count-marker {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.125rem;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.placed-dot {
+  position: absolute;
+  top: 3rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #ef4444;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.count-display {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Controls styles */
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.metronome-button {
+  padding: 0.5rem 1rem;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.metronome-button:hover {
+  background-color: #1d4ed8;
+}
+
+.bpm-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bpm-label {
+  font-weight: 500;
+}
+
+.bpm-slider {
+  width: 8rem;
+}
+
+.bpm-value {
+  font-weight: 500;
+}
+
+/* Dot controls styles */
+.dot-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.add-dot-button {
+  padding: 0.5rem 1rem;
+  background-color: #16a34a;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.add-dot-button:hover {
+  background-color: #15803d;
+}
+
+.reset-dots-button {
+  padding: 0.5rem 1rem;
+  background-color: #dc2626;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.reset-dots-button:hover {
+  background-color: #b91c1c;
+}
+
+/* Dot legend styles */
+.dot-legend-container {
+  width: 100%;
+}
+
+.legend-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.legend-content {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.dot-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dot-list-item {
+  margin-bottom: 0.25rem;
+}
+
+/* Responsive styles */
+@media (min-width: 640px) {
+  .controls-container {
+    flex-direction: row;
+  }
+}
+
+/* * {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
@@ -79,4 +269,4 @@
  .music-instrument {
    grid-column: 1 / -1;
    grid-row: 7;
- }
+ } */
