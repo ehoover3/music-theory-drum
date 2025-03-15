@@ -1,15 +1,13 @@
 import React from "react";
 import "./Debug.css";
 
-function Debug({ isPlaying, timer, measure, count, taps, progressBar }) {
+function Debug({ count, isPlaying, progressBar, taps }) {
   return (
     <div className='debug'>
-      <div>isPlaying={isPlaying}</div>
-      <div>timer={timer}</div>
-      <div>measure={measure}</div>
       <div>count={count}</div>
-      <div>taps={taps}</div>
+      <div>isPlaying={isPlaying}</div>
       <div>progressBar={progressBar}</div>
+      <div>taps={taps}</div>
     </div>
   );
 }

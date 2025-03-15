@@ -11,7 +11,6 @@
           ". TapDot .";
   }
 
-
   .tap-dot {
       grid-area: TapDot;
       position: absolute;

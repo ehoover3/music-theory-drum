@@ -2,7 +2,7 @@ import React from "react";
 import "./NumberInput.css";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-function NumberInput({ number, setNumber, allowedNumbers }) {
+function NumberInput({ allowedNumbers, number, setNumber }) {
   return (
     <div className='number-input-container'>
       <select value={number} onChange={(e) => setNumber(Number(e.target.value))}>

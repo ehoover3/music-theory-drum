@@ -1,7 +1,7 @@
 import React from "react";
 import "./MusicInstrument.css";
 
-function MusicInstrument({ isPlaying, startTime, setTaps }) {
+function MusicInstrument({ count, isPlaying, setTaps }) {
   const drumSound = new Audio("/audio/drum.m4a");
 
   const playSound = () => {
@@ -12,7 +12,7 @@ function MusicInstrument({ isPlaying, startTime, setTaps }) {
 
   const onClick = () => {
     playSound();
-    const currentTime = Date.now() - startTime;
+    const currentTime = Math.floor(Date.now() / 1000);
     setTaps((prevTaps) => [...prevTaps, currentTime]);
   };
 

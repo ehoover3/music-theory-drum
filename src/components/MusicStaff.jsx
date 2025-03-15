@@ -1,7 +1,7 @@
 import React from "react";
 import "./MusicStaff.css";
 
-function MusicStaff({ notes, count }) {
+function MusicStaff({ count, notes }) {
   return (
     <div className='music-staff'>
       <div className='blank-space'></div>

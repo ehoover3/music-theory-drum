@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from "react";
 
-export const useMetronome = (isPlaying, bpm, count, setCount) => {
+export const useMetronome = (bpm, count, isPlaying, setCount) => {
   const audioRefs = useRef([new Audio("/audio/Hi-Hat-Closed-Hit-A1.mp3"), new Audio("/audio/Hard-Slap-A.mp3"), new Audio("/audio/Drum-Sticks-Hit-E.mp3"), new Audio("/audio/Slap-A1.mp3")]);
 
   const playAudio = (audio) => audio?.play().catch((error) => console.error("Audio play error:", error));
