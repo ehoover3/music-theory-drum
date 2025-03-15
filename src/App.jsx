@@ -14,7 +14,7 @@ import { useMetronome } from "./hooks/useMetronome.js";
 import UserDots from "./components/UserDots.jsx";
 
 function App() {
-  const [bpm, setBpm] = useState(120);
+  const [bpm, setBpm] = useState(60);
   const [count, setCount] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progressBar, setProgressBar] = useState(0);
