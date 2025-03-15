@@ -14,23 +14,15 @@ import { useMetronome } from "./hooks/useMetronome.js";
 import notes from "./database/rhythms.json";
 
 function App() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [startTime, setStartTime] = useState(0);
-  const [measure, setMeasure] = useState(0);
-  const [taps, setTaps] = useState([]);
-  const [progressBar, setProgressBar] = useState(0);
-  const [count, setCount] = useState(0);
   const [bpm, setBpm] = useState(120);
-
+  const [count, setCount] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [measure, setMeasure] = useState(0);
+  const [progressBar, setProgressBar] = useState(0);
+  const [taps, setTaps] = useState([]);
+  const [timer, setTimer] = useState(0);
   const zeroBasedNoteBeats = notes.map((note) => ({ ...note, beat: note.beat - 1 }));
-
   useMetronome(isPlaying, bpm, count, setCount);
-
-  useEffect(() => {
-    if (count === 1) {
-      setTaps([]);
-    }
-  }, [count]);
 
   return (
     <div className='grid-container'>
@@ -38,12 +30,12 @@ function App() {
       <TimeSignature />
       <StartPauseButton isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       <Tempo bpm={bpm} setBpm={setBpm} />
-      <ProgressBar userTappedMeasureCorrectlyCount={progressBar} />
+      <ProgressBar progressBar={progressBar} />
       <MusicStaff notes={zeroBasedNoteBeats} count={count} />
       <TapDots taps={taps} isPlaying={isPlaying} bpm={bpm} measure={measure} progressBar={progressBar} setProgressBar={setProgressBar} />
       <Instructions />
-      <MusicInstrument isPlaying={isPlaying} startTime={startTime} setTaps={setTaps} />
-      <Debug isPlaying={isPlaying} startTime={startTime} measure={measure} count={count} taps={taps} progressBar={progressBar} />
+      <MusicInstrument isPlaying={isPlaying} startTime={timer} setTaps={setTaps} />
+      <Debug isPlaying={isPlaying} startTime={timer} measure={measure} count={count} taps={taps} progressBar={progressBar} />
     </div>
   );
 }

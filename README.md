@@ -23,7 +23,7 @@
 📝 components/Tempo.css
 ✅ components/Tempo.jsx
 📝 components/TimeSignature.css
-📝 components/TimeSignature.jsx
+✅ components/TimeSignature.jsx
 📝 database/rhythms.json --------- <-- Add music notation variation, i.e. eigth notes, etc.
 ✅ hooks/useMetronome.jsx
 
