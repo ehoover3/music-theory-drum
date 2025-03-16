@@ -17,10 +17,12 @@ const App = () => {
   const containerRef = useRef(null);
   const requestRef = useRef(null);
   const startTimeRef = useRef(0);
-  const previousTimeRef = useRef(0);
 
   // Calculate the time for one complete cycle (0 to 4)
   const cycleDuration = (60 / bpm) * 5 * 1000; // 5 beats at the current BPM in ms
+  // Normalize the position to 0-4 range for display
+  const normalizedPosition = XPosition % 5;
+  const positionPercentage = (normalizedPosition / 4) * 100;
 
   const animate = (timestamp) => {
     if (!startTimeRef.current) startTimeRef.current = timestamp;
@@ -69,10 +71,6 @@ const App = () => {
   }, [XPosition]);
 
   useEffect(() => () => requestRef.current && cancelAnimationFrame(requestRef.current), []);
-
-  // Normalize the position to 0-4 range for display
-  const normalizedPosition = XPosition % 5;
-  const positionPercentage = (normalizedPosition / 4) * 100;
 
   return (
     <div className='app-container'>
