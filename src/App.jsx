@@ -17,16 +17,16 @@ const App = () => {
   const containerRef = useRef(null);
   const requestRef = useRef(null);
   const startTimeRef = useRef(0);
-  const beats = 5;
-  const MILLISECONDS_PER_SECOND = 1000;
+  const BEATS = 5;
   const CYCLE_RESET_THRESHOLD = 75;
-  const cycleDuration = (60 / bpm) * beats * MILLISECONDS_PER_SECOND;
-  const normalizedPosition = XPosition % beats;
-  const positionPercent = (normalizedPosition / (beats - 1)) * 100;
+  const MILLISECONDS_PER_SECOND = 1000;
+  const cycleDuration = (60 / bpm) * BEATS * MILLISECONDS_PER_SECOND;
+  const normalizedPosition = XPosition % BEATS;
+  const metronomeXPositionPercent = (normalizedPosition / (BEATS - 1)) * 100;
 
   const resetDots = (elapsed) => elapsed % cycleDuration < CYCLE_RESET_THRESHOLD && setDots([]);
   const updatePosition = (elapsed) => {
-    const position = ((elapsed % cycleDuration) / cycleDuration) * beats;
+    const position = ((elapsed % cycleDuration) / cycleDuration) * BEATS;
     setXPosition(position);
   };
 
@@ -42,9 +42,7 @@ const App = () => {
     if (!isRunning) {
       startTimeRef.current = 0;
       requestRef.current = requestAnimationFrame(animate);
-    } else {
-      cancelAnimationFrame(requestRef.current);
-    }
+    } else cancelAnimationFrame(requestRef.current);
     setIsRunning(!isRunning);
   };
 
@@ -59,9 +57,9 @@ const App = () => {
 
   const addDot = () => {
     if (!containerRef.current) return;
-    const normalizedPosition = XPosition % beats;
+    const normalizedPosition = XPosition % BEATS;
     const width = containerRef.current.offsetWidth;
-    const pixelPosition = (normalizedPosition / (beats - 1)) * width;
+    const pixelPosition = (normalizedPosition / (BEATS - 1)) * width;
     setDots([...dots, { position: pixelPosition }]);
   };
 
@@ -81,16 +79,8 @@ const App = () => {
           <div
             className='progress-bar'
             style={{
-              width: `${positionPercent}%`,
+              width: `${metronomeXPositionPercent}%`,
               transition: isRunning ? "none" : "width 0.1s ease-out",
-            }}
-          />
-
-          <div
-            className='position-indicator'
-            style={{
-              left: `${positionPercent}%`,
-              transition: isRunning ? "none" : "left 0.1s ease-out",
             }}
           />
 

@@ -16,12 +16,7 @@
   --gray: rgb(207 207 207);
   --light-gray: rgb(240 240 240);
   --white: rgb(255 255 255);
-
-  font-family: Arial, "Noto Music", Bravura, "Segoe UI Symbol", sans-serif;
-
 }
-
-
 
 .app-container {
   align-items: center;
@@ -33,19 +28,13 @@
   padding: 2rem;
 }
 
-.app-title {
-  font-size: 1.875rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-}
-
 .metronome-container {
   margin-bottom: 2rem;
   width: 100%;
 }
 
 .metronome-bar {
-  background-color: var(--white);
+  background-color: var(--gray);
   border-radius: 0.5rem;
   height: 3rem;
   margin-bottom: 0.5rem;
@@ -59,17 +48,6 @@
   height: 100%;
   position: absolute;
   top: 0;
-}
-
-.position-indicator {
-  background-color: var(--deep-blue);
-  border-radius: 9999px;
-  height: 100%;
-  position: absolute;
-  transform: translateX(-50%);
-  top: 0;
-  width: 1rem;
-  z-index: 20;
 }
 
 .count-marker {
@@ -101,29 +79,6 @@
   text-align: center;
 }
 
-.controls-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  width: 100%;
-}
-
-.metronome-button {
-  background-color: var(--blue);
-  border: none;
-  border-radius: 0.5rem;
-  color: var(--white);
-  cursor: pointer;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-}
-
-.metronome-button:hover {
-  background-color: var(--deep-blue);
-}
-
 .bpm-control {
   align-items: center;
   display: flex;
@@ -140,66 +95,6 @@
 
 .bpm-value {
   font-weight: 500;
-}
-
-.dot-controls {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.add-dot-button {
-  background-color: var(--green);
-  border: none;
-  border-radius: 0.5rem;
-  color: var(--white);
-  cursor: pointer;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-}
-
-.add-dot-button:hover {
-  background-color: var(--dark-green);
-}
-
-.reset-dots-button {
-  background-color: var(--red);
-  border: none;
-  border-radius: 0.5rem;
-  color: var(--white);
-  cursor: pointer;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-}
-
-.reset-dots-button:hover {
-  background-color: var(--dark-red);
-}
-
-.dot-legend-container {
-  width: 100%;
-}
-
-.legend-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.legend-content {
-  background-color: var(--white);
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
-
-.dot-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.dot-list-item {
-  margin-bottom: 0.25rem;
 }
 
 @media (width >=640px) {
