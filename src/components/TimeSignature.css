@@ -1,10 +1,10 @@
 .time-signature {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
-    margin-left: 10px;
     background-color: var(--light-gray);
     border-radius: 15px 0 0;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    margin-left: 10px;
+    width: 100%;
 }

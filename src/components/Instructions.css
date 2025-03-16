@@ -1,8 +1,7 @@
 .instructions {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
     font-weight: bold;
+    justify-content: center;
     text-transform: uppercase;
-    ;
 }

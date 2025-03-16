@@ -19,13 +19,13 @@
 }
 
 .app-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 2rem;
   max-width: 42rem;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 .app-title {
@@ -34,87 +34,85 @@
   margin-bottom: 1.5rem;
 }
 
-/* Metronome display styles */
 .metronome-container {
-  width: 100%;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 .metronome-bar {
   background-color: var(--white);
-  height: 3rem;
-  width: 100%;
-  position: relative;
-  margin-bottom: 0.5rem;
   border-radius: 0.5rem;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  width: 100%;
 }
 
 .progress-bar {
-  position: absolute;
-  top: 0;
-  height: 100%;
   background-color: var(--blue);
   border-radius: 0.5rem;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 
 .position-indicator {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 1rem;
   background-color: var(--deep-blue);
   border-radius: 9999px;
+  height: 100%;
+  position: absolute;
   transform: translateX(-50%);
+  top: 0;
+  width: 1rem;
   z-index: 20;
 }
 
 .count-marker {
+  align-items: center;
+  display: flex;
+  font-size: 1.125rem;
+  font-weight: bold;
+  height: 100%;
+  justify-content: center;
   position: absolute;
   top: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.125rem;
-  z-index: 10;
   transform: translateX(-50%);
+  z-index: 10;
 }
 
 .placed-dot {
-  position: absolute;
-  top: 3rem;
-  width: 1rem;
-  height: 1rem;
   background-color: var(--red);
   border-radius: 50%;
+  height: 1rem;
+  position: absolute;
+  top: 3rem;
   transform: translateX(-50%);
+  width: 1rem;
 }
 
 .count-display {
-  text-align: center;
   font-size: 1.25rem;
   font-weight: bold;
+  text-align: center;
 }
 
-/* Controls styles */
 .controls-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 1rem;
+  justify-content: center;
   margin-bottom: 1.5rem;
   width: 100%;
 }
 
 .metronome-button {
-  padding: 0.5rem 1rem;
   background-color: var(--blue);
-  color: var(--white);
-  border-radius: 0.5rem;
-  font-weight: 500;
   border: none;
+  border-radius: 0.5rem;
+  color: var(--white);
   cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
 }
 
 .metronome-button:hover {
@@ -122,8 +120,8 @@
 }
 
 .bpm-control {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 0.5rem;
 }
 
@@ -139,7 +137,6 @@
   font-weight: 500;
 }
 
-/* Dot controls styles */
 .dot-controls {
   display: flex;
   gap: 1rem;
@@ -147,13 +144,13 @@
 }
 
 .add-dot-button {
-  padding: 0.5rem 1rem;
   background-color: var(--green);
-  color: var(--white);
-  border-radius: 0.5rem;
-  font-weight: 500;
   border: none;
+  border-radius: 0.5rem;
+  color: var(--white);
   cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
 }
 
 .add-dot-button:hover {
@@ -161,20 +158,19 @@
 }
 
 .reset-dots-button {
-  padding: 0.5rem 1rem;
   background-color: var(--red);
-  color: var(--white);
-  border-radius: 0.5rem;
-  font-weight: 500;
   border: none;
+  border-radius: 0.5rem;
+  color: var(--white);
   cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
 }
 
 .reset-dots-button:hover {
   background-color: var(--dark-red);
 }
 
-/* Dot legend styles */
 .dot-legend-container {
   width: 100%;
 }
@@ -187,21 +183,20 @@
 
 .legend-content {
   background-color: var(--white);
-  padding: 1rem;
   border-radius: 0.5rem;
+  padding: 1rem;
 }
 
 .dot-list {
   list-style-type: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .dot-list-item {
   margin-bottom: 0.25rem;
 }
 
-/* Responsive styles */
 @media (width >=640px) {
   .controls-container {
     flex-direction: row;

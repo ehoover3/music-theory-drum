@@ -1,17 +1,17 @@
  .progress-bar {
+   background-color: var(--light-gray);
    height: 100%;
-   transition: width 0.3s ease;
    margin-left: 10px;
    margin-right: 10px;
-   background-color: var(--light-gray);
+   transition: width 0.3s ease;
  }
 
  .progress-bar-percent-complete {
-   position: relative;
-   width: 100%;
-   max-width: 500px;
-   height: 10px;
    background-color: var(--green);
-   overflow: hidden;
    border-radius: 5px;
+   height: 10px;
+   max-width: 500px;
+   position: relative;
+   overflow: hidden;
+   width: 100%;
  }

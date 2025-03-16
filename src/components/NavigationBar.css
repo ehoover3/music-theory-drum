@@ -6,10 +6,10 @@
 
 .return-button,
 .gear {
-    font-size: 1.5rem;
+    align-items: center;
     cursor: pointer;
     display: flex;
-    align-items: center;
+    font-size: 1.5rem;
     justify-content: center;
 }
 

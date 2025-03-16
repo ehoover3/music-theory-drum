@@ -1,14 +1,14 @@
  .music-instrument {
-     margin-left: 10px;
-     margin-bottom: 10px;
-     margin-right: 10px;
-     border-radius: 15px;
-     background-color: var(--green);
-     display: flex;
-     justify-content: center;
      align-items: center;
-     font-size: 100px;
+     background-color: var(--green);
+     border-radius: 15px;
      cursor: pointer;
+     display: flex;
+     font-size: 100px;
+     justify-content: center;
+     margin-bottom: 10px;
+     margin-left: 10px;
+     margin-right: 10px;
      transition: transform 0.1s;
      user-select: none;
 

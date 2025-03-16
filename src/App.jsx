@@ -108,7 +108,7 @@ const App = () => {
           />
 
           {/* Count markers */}
-          {[0, 1, 2, 3, 4].map((marker) => (
+          {[0, "♩", 2, 3, 4].map((marker) => (
             <div
               key={marker}
               className='count-marker'
