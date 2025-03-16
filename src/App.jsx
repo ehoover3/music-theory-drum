@@ -5,7 +5,7 @@ import TimeSignature from "./components/TimeSignature.jsx";
 import StartPauseButton from "./components/StartPauseButton.jsx";
 import Tempo from "./components/Tempo.jsx";
 
-const MetronomeApp = () => {
+const App = () => {
   const [count, setCount] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [bpm, setBpm] = useState(60);
@@ -168,7 +168,7 @@ const MetronomeApp = () => {
   );
 };
 
-export default MetronomeApp;
+export default App;
 
 // import React, { useState, useEffect } from "react";
 // import "./App.css";
