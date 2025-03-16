@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css"; // Import the CSS file we'll create
 import NavigationBar from "./components/NavigationBar.jsx";
+import TimeSignature from "./components/TimeSignature.jsx";
+import StartPauseButton from "./components/StartPauseButton.jsx";
+import Tempo from "./components/Tempo.jsx";
 
 const MetronomeApp = () => {
   const [count, setCount] = useState(0);
@@ -89,6 +92,11 @@ const MetronomeApp = () => {
   return (
     <div className='app-container'>
       <NavigationBar />
+      <div style={{ display: "flex" }}>
+        <TimeSignature />
+        <StartPauseButton isRunning={isRunning} toggleMetronome={toggleMetronome} />
+        <Tempo bpm={bpm} handleBpmChange={handleBpmChange} />
+      </div>
       {/* Metronome display */}
       <div className='metronome-container'>
         <div className='metronome-bar' ref={containerRef}>
@@ -128,21 +136,6 @@ const MetronomeApp = () => {
           ))}
         </div>
         <div className='count-display'>Count: {normalizedPosition.toFixed(2)}</div>
-      </div>
-
-      {/* Controls */}
-      <div className='controls-container'>
-        <button onClick={toggleMetronome} className='metronome-button'>
-          {isRunning ? "Stop" : "Start"} Metronome
-        </button>
-
-        <div className='bpm-control'>
-          <label htmlFor='bpm' className='bpm-label'>
-            BPM:
-          </label>
-          <input id='bpm' type='range' min='30' max='240' value={bpm} onChange={handleBpmChange} className='bpm-slider' />
-          <span className='bpm-value'>{bpm}</span>
-        </div>
       </div>
 
       {/* Dot controls */}
@@ -186,9 +179,6 @@ export default MetronomeApp;
 
 // import notes from "./database/rhythms.json";
 // import ProgressBar from "./components/ProgressBar.jsx";
-// import StartPauseButton from "./components/StartPauseButton.jsx";
-// import Tempo from "./components/Tempo.jsx";
-// import TimeSignature from "./components/TimeSignature.jsx";
 // import { useMetronome } from "./hooks/useMetronome.js";
 // import UserDots from "./components/UserDots.jsx";
 
@@ -204,9 +194,6 @@ export default MetronomeApp;
 //   return (
 //     <div className='grid-container'>
 
-//       <TimeSignature />
-//       <StartPauseButton isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-//       <Tempo bpm={bpm} setBpm={setBpm} />
 //       <ProgressBar progressBar={progressBar} />
 //       <MusicStaff count={count} notes={zeroBasedNoteBeats} />
 //       <UserDots />
