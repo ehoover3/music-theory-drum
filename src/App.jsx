@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
+
+import Dots from "./components/Dots.jsx";
 import Instructions from "./components/Instructions.jsx";
 import MusicInstrument from "./components/MusicInstrument.jsx";
 import NavigationBar from "./components/NavigationBar.jsx";
@@ -8,11 +10,11 @@ import Tempo from "./components/Tempo.jsx";
 import TimeSignature from "./components/TimeSignature.jsx";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
   const [bpm, setBpm] = useState(60);
+  const [count, setCount] = useState(0);
   const [dots, setDots] = useState([]);
   const [exactPosition, setExactPosition] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
   const containerRef = useRef(null);
   const requestRef = useRef(null);
   const startTimeRef = useRef(0);
@@ -34,7 +36,6 @@ const App = () => {
     requestRef.current = requestAnimationFrame(animate);
   };
 
-  // Start/stop the metronome
   const toggleMetronome = () => {
     if (!isRunning) {
       startTimeRef.current = 0; // Reset start time
@@ -56,7 +57,6 @@ const App = () => {
     }
   };
 
-  // Add a dot at the current exact position
   const addDot = () => {
     if (!containerRef.current) return;
 
@@ -73,19 +73,8 @@ const App = () => {
     ]);
   };
 
-  // Reset all dots
-  const resetDots = () => {
-    setDots([]);
-  };
-
-  // Clean up animation frame on unmount
-  useEffect(() => {
-    return () => {
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
-    };
-  }, []);
+  const resetDots = () => setDots([]);
+  useEffect(() => () => requestRef.current && cancelAnimationFrame(requestRef.current), []);
 
   // Normalize the position to 0-4 range for display
   const normalizedPosition = exactPosition % 5;
@@ -99,10 +88,9 @@ const App = () => {
         <StartPauseButton isRunning={isRunning} toggleMetronome={toggleMetronome} />
         <Tempo bpm={bpm} handleBpmChange={handleBpmChange} />
       </div>
-      {/* Metronome display */}
+
       <div className='metronome-container'>
         <div className='metronome-bar' ref={containerRef}>
-          {/* Progress bar */}
           <div
             className='progress-bar'
             style={{
@@ -111,7 +99,6 @@ const App = () => {
             }}
           />
 
-          {/* Current position indicator */}
           <div
             className='position-indicator'
             style={{
@@ -131,11 +118,7 @@ const App = () => {
               {marker}
             </div>
           ))}
-
-          {/* Dots */}
-          {dots.map((dot, index) => (
-            <div key={index} className='placed-dot' style={{ left: dot.position }} title={`Dot at count: ${dot.exactCount}`} />
-          ))}
+          <Dots dots={dots} />
         </div>
         <div className='count-display'>Count: {normalizedPosition.toFixed(2)}</div>
       </div>
