@@ -11,9 +11,8 @@ import TimeSignature from "./components/TimeSignature.jsx";
 
 const App = () => {
   const [bpm, setBpm] = useState(60);
-  const [count, setCount] = useState(0);
   const [dots, setDots] = useState([]);
-  const [exactPosition, setExactPosition] = useState(0);
+  const [XPosition, setXPosition] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const containerRef = useRef(null);
   const requestRef = useRef(null);
@@ -23,16 +22,11 @@ const App = () => {
   // Calculate the time for one complete cycle (0 to 4)
   const cycleDuration = (60 / bpm) * 5 * 1000; // 5 beats at the current BPM in ms
 
-  // Animation loop for the metronome
   const animate = (timestamp) => {
     if (!startTimeRef.current) startTimeRef.current = timestamp;
-
     const elapsed = timestamp - startTimeRef.current;
     const position = ((elapsed % cycleDuration) / cycleDuration) * 5; // 0 to 5 range
-
-    setExactPosition(position);
-    setCount(Math.floor(position) % 5); // Ensures we loop back to 0 after 4
-
+    setXPosition(position);
     requestRef.current = requestAnimationFrame(animate);
   };
 
@@ -46,7 +40,6 @@ const App = () => {
     setIsRunning(!isRunning);
   };
 
-  // Handle BPM change
   const handleBpmChange = (e) => {
     setBpm(parseInt(e.target.value, 10));
     // Reset timing when BPM changes
@@ -59,11 +52,9 @@ const App = () => {
 
   const addDot = () => {
     if (!containerRef.current) return;
-
-    const normalizedPosition = exactPosition % 5; // Ensure we're in 0-4 range
+    const normalizedPosition = XPosition % 5; // Ensure we're in 0-4 range
     const width = containerRef.current.offsetWidth;
     const pixelPosition = (normalizedPosition / 4) * width;
-
     setDots([
       ...dots,
       {
@@ -73,11 +64,15 @@ const App = () => {
     ]);
   };
 
+  useEffect(() => {
+    if (XPosition <= 0.01) setDots([]);
+  }, [XPosition]);
+
   const resetDots = () => setDots([]);
   useEffect(() => () => requestRef.current && cancelAnimationFrame(requestRef.current), []);
 
   // Normalize the position to 0-4 range for display
-  const normalizedPosition = exactPosition % 5;
+  const normalizedPosition = XPosition % 5;
   const positionPercentage = (normalizedPosition / 4) * 100;
 
   return (
@@ -108,7 +103,7 @@ const App = () => {
           />
 
           {/* Count markers */}
-          {[0, "♩", 2, 3, 4].map((marker) => (
+          {[0, 1, 2, 3, 4].map((marker) => (
             <div
               key={marker}
               className='count-marker'
@@ -127,7 +122,6 @@ const App = () => {
         Reset Dots
       </button>
       <Instructions />
-
       <MusicInstrument addDot={addDot} />
     </div>
   );
