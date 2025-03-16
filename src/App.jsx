@@ -68,7 +68,6 @@ const App = () => {
     if (XPosition <= 0.01) setDots([]);
   }, [XPosition]);
 
-  const resetDots = () => setDots([]);
   useEffect(() => () => requestRef.current && cancelAnimationFrame(requestRef.current), []);
 
   // Normalize the position to 0-4 range for display
