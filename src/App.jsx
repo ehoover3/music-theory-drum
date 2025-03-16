@@ -59,7 +59,7 @@ const App = () => {
     if (!containerRef.current) return;
     const normalizedPosition = XPosition % BEATS;
     const width = containerRef.current.offsetWidth;
-    const pixelPosition = (normalizedPosition / (BEATS - 1)) * width;
+    const pixelPosition = (normalizedPosition / BEATS) * width;
     setDots([...dots, { position: pixelPosition }]);
   };
 
