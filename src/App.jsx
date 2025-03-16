@@ -118,9 +118,6 @@ const App = () => {
         <div className='count-display'>Count: {normalizedPosition.toFixed(2)}</div>
       </div>
 
-      <button onClick={resetDots} className='reset-dots-button'>
-        Reset Dots
-      </button>
       <Instructions />
       <MusicInstrument addDot={addDot} />
     </div>
