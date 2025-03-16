@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css"; // Import the CSS file we'll create
+import NavigationBar from "./components/NavigationBar.jsx";
 
 const MetronomeApp = () => {
   const [count, setCount] = useState(0);
@@ -87,8 +88,7 @@ const MetronomeApp = () => {
 
   return (
     <div className='app-container'>
-      <h1 className='app-title'>Precision Metronome</h1>
-
+      <NavigationBar />
       {/* Metronome display */}
       <div className='metronome-container'>
         <div className='metronome-bar' ref={containerRef}>
@@ -160,7 +160,7 @@ const MetronomeApp = () => {
       <div className='dot-legend-container'>
         <h2 className='legend-title'>Placed Dots:</h2>
         <div className='legend-content'>
-          {dots.length > 0 ? (
+          {
             <ul className='dot-list'>
               {dots.map((dot, index) => (
                 <li key={index} className='dot-list-item'>
@@ -168,9 +168,7 @@ const MetronomeApp = () => {
                 </li>
               ))}
             </ul>
-          ) : (
-            <p>No dots placed yet. Press Add Dot button to place a dot at the current exact position.</p>
-          )}
+          }
         </div>
       </div>
     </div>
@@ -185,7 +183,7 @@ export default MetronomeApp;
 // import Instructions from "./components/Instructions.jsx";
 // import MusicInstrument from "./components/MusicInstrument.jsx";
 // import MusicStaff from "./components/MusicStaff.jsx";
-// import NavigationBar from "./components/NavigationBar.jsx";
+
 // import notes from "./database/rhythms.json";
 // import ProgressBar from "./components/ProgressBar.jsx";
 // import StartPauseButton from "./components/StartPauseButton.jsx";
@@ -205,7 +203,7 @@ export default MetronomeApp;
 
 //   return (
 //     <div className='grid-container'>
-//       <NavigationBar />
+
 //       <TimeSignature />
 //       <StartPauseButton isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
 //       <Tempo bpm={bpm} setBpm={setBpm} />
