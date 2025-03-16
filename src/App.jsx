@@ -17,12 +17,12 @@ const App = () => {
   const containerRef = useRef(null);
   const requestRef = useRef(null);
   const startTimeRef = useRef(0);
-  const BEATS = 5;
+  const BEATS = 4;
   const CYCLE_RESET_THRESHOLD = 75;
   const MILLISECONDS_PER_SECOND = 1000;
   const cycleDuration = (60 / bpm) * BEATS * MILLISECONDS_PER_SECOND;
   const normalizedPosition = XPosition % BEATS;
-  const metronomeXPositionPercent = (normalizedPosition / (BEATS - 1)) * 100;
+  const metronomeXPositionPercent = (normalizedPosition / BEATS) * 100;
 
   const resetDots = (elapsed) => elapsed % cycleDuration < CYCLE_RESET_THRESHOLD && setDots([]);
   const updatePosition = (elapsed) => {
