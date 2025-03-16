@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./App.css"; // Import the CSS file we'll create
+import "./App.css";
+import Instructions from "./components/Instructions.jsx";
+import MusicInstrument from "./components/MusicInstrument.jsx";
 import NavigationBar from "./components/NavigationBar.jsx";
-import TimeSignature from "./components/TimeSignature.jsx";
 import StartPauseButton from "./components/StartPauseButton.jsx";
 import Tempo from "./components/Tempo.jsx";
+import TimeSignature from "./components/TimeSignature.jsx";
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -138,32 +140,12 @@ const App = () => {
         <div className='count-display'>Count: {normalizedPosition.toFixed(2)}</div>
       </div>
 
-      {/* Dot controls */}
-      <div className='dot-controls'>
-        <button onClick={addDot} className='add-dot-button'>
-          Add Dot at Current Position
-        </button>
+      <button onClick={resetDots} className='reset-dots-button'>
+        Reset Dots
+      </button>
+      <Instructions />
 
-        <button onClick={resetDots} className='reset-dots-button'>
-          Reset Dots
-        </button>
-      </div>
-
-      {/* Dot legend */}
-      <div className='dot-legend-container'>
-        <h2 className='legend-title'>Placed Dots:</h2>
-        <div className='legend-content'>
-          {
-            <ul className='dot-list'>
-              {dots.map((dot, index) => (
-                <li key={index} className='dot-list-item'>
-                  Dot {index + 1}: Count {dot.exactCount}
-                </li>
-              ))}
-            </ul>
-          }
-        </div>
-      </div>
+      <MusicInstrument addDot={addDot} />
     </div>
   );
 };
@@ -173,14 +155,10 @@ export default App;
 // import React, { useState, useEffect } from "react";
 // import "./App.css";
 // import Debug from "./components/Debug.jsx";
-// import Instructions from "./components/Instructions.jsx";
-// import MusicInstrument from "./components/MusicInstrument.jsx";
 // import MusicStaff from "./components/MusicStaff.jsx";
 
 // import notes from "./database/rhythms.json";
 // import ProgressBar from "./components/ProgressBar.jsx";
-// import { useMetronome } from "./hooks/useMetronome.js";
-// import UserDots from "./components/UserDots.jsx";
 
 // function App() {
 //   const [bpm, setBpm] = useState(60);
@@ -196,9 +174,6 @@ export default App;
 
 //       <ProgressBar progressBar={progressBar} />
 //       <MusicStaff count={count} notes={zeroBasedNoteBeats} />
-//       <UserDots />
-//       <Instructions />
-//       <MusicInstrument count={count} isPlaying={isPlaying} setTaps={setTaps} />
 //       <Debug count={count} isPlaying={isPlaying} progressBar={progressBar} taps={taps} />
 //     </div>
 //   );
