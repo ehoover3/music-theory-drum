@@ -16,7 +16,12 @@
   --gray: rgb(207 207 207);
   --light-gray: rgb(240 240 240);
   --white: rgb(255 255 255);
+
+  font-family: Arial, "Noto Music", Bravura, "Segoe UI Symbol", sans-serif;
+
 }
+
+
 
 .app-container {
   align-items: center;

@@ -17,24 +17,30 @@ const App = () => {
   const containerRef = useRef(null);
   const requestRef = useRef(null);
   const startTimeRef = useRef(0);
+  const beats = 5;
+  const MILLISECONDS_PER_SECOND = 1000;
+  const CYCLE_RESET_THRESHOLD = 75;
+  const cycleDuration = (60 / bpm) * beats * MILLISECONDS_PER_SECOND;
+  const normalizedPosition = XPosition % beats;
+  const positionPercent = (normalizedPosition / (beats - 1)) * 100;
 
-  // Calculate the time for one complete cycle (0 to 4)
-  const cycleDuration = (60 / bpm) * 5 * 1000; // 5 beats at the current BPM in ms
-  // Normalize the position to 0-4 range for display
-  const normalizedPosition = XPosition % 5;
-  const positionPercentage = (normalizedPosition / 4) * 100;
+  const resetDots = (elapsed) => elapsed % cycleDuration < CYCLE_RESET_THRESHOLD && setDots([]);
+  const updatePosition = (elapsed) => {
+    const position = ((elapsed % cycleDuration) / cycleDuration) * beats;
+    setXPosition(position);
+  };
 
   const animate = (timestamp) => {
     if (!startTimeRef.current) startTimeRef.current = timestamp;
     const elapsed = timestamp - startTimeRef.current;
-    const position = ((elapsed % cycleDuration) / cycleDuration) * 5; // 0 to 5 range
-    setXPosition(position);
+    resetDots(elapsed);
+    updatePosition(elapsed);
     requestRef.current = requestAnimationFrame(animate);
   };
 
   const toggleMetronome = () => {
     if (!isRunning) {
-      startTimeRef.current = 0; // Reset start time
+      startTimeRef.current = 0;
       requestRef.current = requestAnimationFrame(animate);
     } else {
       cancelAnimationFrame(requestRef.current);
@@ -44,7 +50,6 @@ const App = () => {
 
   const handleBpmChange = (e) => {
     setBpm(parseInt(e.target.value, 10));
-    // Reset timing when BPM changes
     if (isRunning) {
       cancelAnimationFrame(requestRef.current);
       startTimeRef.current = 0;
@@ -54,21 +59,11 @@ const App = () => {
 
   const addDot = () => {
     if (!containerRef.current) return;
-    const normalizedPosition = XPosition % 5; // Ensure we're in 0-4 range
+    const normalizedPosition = XPosition % beats;
     const width = containerRef.current.offsetWidth;
-    const pixelPosition = (normalizedPosition / 4) * width;
-    setDots([
-      ...dots,
-      {
-        position: pixelPosition,
-        exactCount: normalizedPosition.toFixed(2),
-      },
-    ]);
+    const pixelPosition = (normalizedPosition / (beats - 1)) * width;
+    setDots([...dots, { position: pixelPosition }]);
   };
-
-  useEffect(() => {
-    if (XPosition <= 0.01) setDots([]);
-  }, [XPosition]);
 
   useEffect(() => () => requestRef.current && cancelAnimationFrame(requestRef.current), []);
 
@@ -86,7 +81,7 @@ const App = () => {
           <div
             className='progress-bar'
             style={{
-              width: `${positionPercentage}%`,
+              width: `${positionPercent}%`,
               transition: isRunning ? "none" : "width 0.1s ease-out",
             }}
           />
@@ -94,27 +89,33 @@ const App = () => {
           <div
             className='position-indicator'
             style={{
-              left: `${positionPercentage}%`,
+              left: `${positionPercent}%`,
               transition: isRunning ? "none" : "left 0.1s ease-out",
             }}
           />
 
           {/* Count markers */}
-          {[0, 1, 2, 3, 4].map((marker) => (
+          {[
+            { symbol: "0", position: 0 },
+            { symbol: "♩", position: 1 },
+            { symbol: "2", position: 2 },
+            { symbol: "♩", position: 3 },
+            { symbol: "4", position: 4 },
+          ].map((marker) => (
             <div
               key={marker}
               className='count-marker'
               style={{
-                left: `${(marker / 4) * 100}%`,
+                left: `${(marker.position / 4) * 100}%`,
               }}>
-              {marker}
+              {marker.symbol}
             </div>
           ))}
+
           <Dots dots={dots} />
         </div>
-        <div className='count-display'>Count: {normalizedPosition.toFixed(2)}</div>
+        <div className='count-display'>XPosition: {normalizedPosition.toFixed(1)}</div>
       </div>
-
       <Instructions />
       <MusicInstrument addDot={addDot} />
     </div>
