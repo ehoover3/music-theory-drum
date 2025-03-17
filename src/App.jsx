@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Debug from "./components/Debug.jsx";
 import "./App.css";
 
-import Dots from "./components/Dots.jsx";
 import Instructions from "./components/Instructions.jsx";
 import MetronomeBar from "./components/MetronomeBar.jsx";
 import MusicInstrument from "./components/MusicInstrument.jsx";
