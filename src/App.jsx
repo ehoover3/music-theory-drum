@@ -4,6 +4,7 @@ import "./App.css";
 
 import Dots from "./components/Dots.jsx";
 import Instructions from "./components/Instructions.jsx";
+import MetronomeBar from "./components/MetronomeBar.jsx";
 import MusicInstrument from "./components/MusicInstrument.jsx";
 import NavigationBar from "./components/NavigationBar.jsx";
 import StartPauseButton from "./components/StartPauseButton.jsx";
@@ -74,43 +75,7 @@ const App = () => {
         <StartPauseButton isRunning={isRunning} toggleMetronome={toggleMetronome} />
         <Tempo bpm={bpm} handleBpmChange={handleBpmChange} />
       </div>
-
-      <div className='metronome-container'>
-        <div className='metronome-bar' ref={containerRef}>
-          <div
-            className='progress-bar'
-            style={{
-              width: `${metronomeXPositionPercent}%`,
-              transition: isRunning ? "none" : "width 0.1s ease-out",
-            }}
-          />
-
-          {/* Count markers */}
-          {[
-            { symbol: "1", position: 0 },
-            { symbol: "♩", position: 1 },
-            { symbol: "3", position: 2 },
-            { symbol: "♩", position: 3 },
-          ].map((marker) => {
-            const isActive = normalizedPosition.toFixed(1) == marker.position;
-
-            return (
-              <div
-                key={marker.position}
-                className={`count-marker ${isActive ? "active-marker" : ""}`}
-                style={{
-                  left: `${(marker.position / 4) * 100}%`,
-                  transform: isActive ? "scale(1.50)" : "scale(1)",
-                  transition: "transform 0.1s ease-out",
-                }}>
-                {marker.symbol}
-              </div>
-            );
-          })}
-
-          <Dots dots={dots} />
-        </div>
-      </div>
+      <MetronomeBar metronomeXPositionPercent={metronomeXPositionPercent} isRunning={isRunning} normalizedPosition={normalizedPosition} dots={dots} containerRef={containerRef} />
       <Instructions />
       <MusicInstrument addDot={addDot} />
       <Debug normalizedPosition={normalizedPosition} />
