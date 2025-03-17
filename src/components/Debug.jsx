@@ -1,13 +1,10 @@
 import React from "react";
 import "./Debug.css";
 
-function Debug({ count, isPlaying, progressBar, taps }) {
+function Debug({ normalizedPosition }) {
   return (
     <div className='debug'>
-      <div>count={count}</div>
-      <div>isPlaying={isPlaying}</div>
-      <div>progressBar={progressBar}</div>
-      <div>taps={taps}</div>
+      <div className='count-display'>XPosition: {Number(normalizedPosition.toFixed(1))}</div>
     </div>
   );
 }

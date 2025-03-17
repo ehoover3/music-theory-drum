@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Debug from "./components/Debug.jsx";
 import "./App.css";
 
 import Dots from "./components/Dots.jsx";
@@ -86,11 +87,10 @@ const App = () => {
 
           {/* Count markers */}
           {[
-            { symbol: "0", position: 0 },
+            { symbol: "1", position: 0 },
             { symbol: "♩", position: 1 },
-            { symbol: "2", position: 2 },
+            { symbol: "3", position: 2 },
             { symbol: "♩", position: 3 },
-            { symbol: "4", position: 4 },
           ].map((marker) => {
             const isActive = normalizedPosition.toFixed(1) == marker.position;
 
@@ -110,10 +110,10 @@ const App = () => {
 
           <Dots dots={dots} />
         </div>
-        <div className='count-display'>XPosition: {normalizedPosition.toFixed(1)}</div>
       </div>
       <Instructions />
       <MusicInstrument addDot={addDot} />
+      <Debug normalizedPosition={normalizedPosition} />
     </div>
   );
 };
