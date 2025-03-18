@@ -24,10 +24,10 @@ const App = () => {
   const cycleDuration = (60 / bpm) * BEATS * MILLISECONDS_PER_SECOND;
   const normalizedPosition = XPosition % BEATS;
   const musicNotes = [
-    { symbol: "1", position: 0 },
-    { symbol: "♩", position: 1 },
-    { symbol: "3", position: 2 },
-    { symbol: "♩", position: 3 },
+    { symbol: "1", position: 0.25 },
+    { symbol: "♩", position: 1.25 },
+    { symbol: "3", position: 2.25 },
+    { symbol: "♩", position: 3.25 },
   ];
 
   const resetDots = (elapsed) => elapsed % cycleDuration < CYCLE_RESET_THRESHOLD && setDots([]);
