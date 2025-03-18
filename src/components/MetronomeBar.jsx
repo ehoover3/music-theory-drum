@@ -1,7 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 import Dots from "./Dots.jsx";
 
-const MetronomeBar = ({ metronomeXPositionPercent, isRunning, normalizedPosition, dots, containerRef }) => {
+const MetronomeBar = ({ musicNotes, BEATS, XPosition, isRunning, dots, containerRef }) => {
+  const normalizedPosition = XPosition % BEATS;
+  const metronomeXPositionPercent = (normalizedPosition / BEATS) * 100;
+
   return (
     <div className='metronome-container'>
       <div className='metronome-bar' ref={containerRef}>
@@ -13,12 +16,7 @@ const MetronomeBar = ({ metronomeXPositionPercent, isRunning, normalizedPosition
           }}
         />
 
-        {[
-          { symbol: "1", position: 0 },
-          { symbol: "♩", position: 1 },
-          { symbol: "3", position: 2 },
-          { symbol: "♩", position: 3 },
-        ].map((marker) => {
+        {musicNotes.map((marker) => {
           const isActive = normalizedPosition.toFixed(1) == marker.position;
 
           return (

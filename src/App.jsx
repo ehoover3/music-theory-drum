@@ -23,7 +23,12 @@ const App = () => {
   const MILLISECONDS_PER_SECOND = 1000;
   const cycleDuration = (60 / bpm) * BEATS * MILLISECONDS_PER_SECOND;
   const normalizedPosition = XPosition % BEATS;
-  const metronomeXPositionPercent = (normalizedPosition / BEATS) * 100;
+  const musicNotes = [
+    { symbol: "1", position: 0 },
+    { symbol: "♩", position: 1 },
+    { symbol: "3", position: 2 },
+    { symbol: "♩", position: 3 },
+  ];
 
   const resetDots = (elapsed) => elapsed % cycleDuration < CYCLE_RESET_THRESHOLD && setDots([]);
   const updatePosition = (elapsed) => {
@@ -61,7 +66,14 @@ const App = () => {
     const normalizedPosition = XPosition % BEATS;
     const width = containerRef.current.offsetWidth;
     const pixelPosition = (normalizedPosition / BEATS) * width;
-    setDots([...dots, { position: pixelPosition }]);
+
+    // Convert BEAT positions to milliseconds
+    const beatDuration = cycleDuration / BEATS;
+    const currentTimePosition = normalizedPosition * beatDuration;
+
+    // Check if dot placement is within 200ms of a note position
+    const isOnBeat = musicNotes.some((note) => Math.abs(note.position * beatDuration - currentTimePosition) <= 200);
+    setDots([...dots, { position: pixelPosition, isOnBeat }]);
   };
 
   useEffect(() => () => requestRef.current && cancelAnimationFrame(requestRef.current), []);
@@ -74,7 +86,7 @@ const App = () => {
         <StartPauseButton isRunning={isRunning} toggleMetronome={toggleMetronome} />
         <Tempo bpm={bpm} handleBpmChange={handleBpmChange} />
       </div>
-      <MetronomeBar metronomeXPositionPercent={metronomeXPositionPercent} isRunning={isRunning} normalizedPosition={normalizedPosition} dots={dots} containerRef={containerRef} />
+      <MetronomeBar musicNotes={musicNotes} BEATS={BEATS} XPosition={XPosition} isRunning={isRunning} dots={dots} containerRef={containerRef} />
       <Instructions />
       <MusicInstrument addDot={addDot} />
       <Debug normalizedPosition={normalizedPosition} />

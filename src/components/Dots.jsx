@@ -1,13 +1,14 @@
 import React from "react";
+import "./Dots.css";
 
-function Dots({ dots }) {
+const Dots = ({ dots }) => {
   return (
-    <div>
+    <>
       {dots.map((dot, index) => (
-        <div key={index} className='placed-dot' style={{ left: dot.position }} />
+        <div key={index} className={`placed-dot ${dot.isOnBeat ? "green-dot" : "red-dot"}`} style={{ left: `${dot.position}px` }} />
       ))}
-    </div>
+    </>
   );
-}
+};
 
 export default Dots;

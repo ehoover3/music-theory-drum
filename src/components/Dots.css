@@ -1,0 +1,7 @@
+.green-dot {
+    background-color: var(--green);
+}
+
+.red-dot {
+    background-color: var(--red);
+}
