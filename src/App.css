@@ -18,6 +18,29 @@
   --white: rgb(255 255 255);
 }
 
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  width: 500px;
+  outline: 1px solid var(--black);
+}
+
+.progression-bar {
+  flex-grow: 1;
+  height: 10px;
+  background: var(--red);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--green);
+  transition: width 0.3s ease-in-out;
+}
+
 .app-container {
   align-items: center;
   display: flex;

@@ -15,6 +15,8 @@ const App = () => {
   const [dots, setDots] = useState([]);
   const [XPosition, setXPosition] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [completed, setCompleted] = useState(false);
   const containerRef = useRef(null);
   const requestRef = useRef(null);
   const startTimeRef = useRef(0);
@@ -29,6 +31,14 @@ const App = () => {
     { symbol: "3", position: 2.25 },
     { symbol: "♩", position: 3.25 },
   ];
+
+  const handleProgressIncrement = () => {
+    setProgress((prev) => {
+      const newProgress = prev + 1 / 3;
+      if (newProgress >= 1) setCompleted(true);
+      return newProgress;
+    });
+  };
 
   const resetDots = (elapsed) => elapsed % cycleDuration < CYCLE_RESET_THRESHOLD && setDots([]);
   const updatePosition = (elapsed) => {
@@ -81,6 +91,21 @@ const App = () => {
   return (
     <div className='app-container'>
       <NavigationBar />
+
+      <div className='progress-container'>
+        <div className='progression-bar'>
+          <div className='progress-fill' style={{ width: `${progress * 100}%` }}></div>
+        </div>
+        <button onClick={handleProgressIncrement}>Increment</button>
+      </div>
+
+      {/* <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px" }}>
+        <div style={{ flexGrow: 1, height: "10px", background: "#ddd", borderRadius: "5px", overflow: "hidden" }}>
+          <div style={{ width: `${progress * 100}%`, height: "100%", background: "red" }}></div>
+        </div>
+        <button onClick={handleProgressIncrement}>Increment</button>
+      </div> */}
+
       <div style={{ display: "flex" }}>
         <TimeSignature />
         <StartPauseButton isRunning={isRunning} toggleMetronome={toggleMetronome} />
