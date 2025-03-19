@@ -6,6 +6,7 @@ import Instructions from "./components/Instructions.jsx";
 import MetronomeBar from "./components/MetronomeBar.jsx";
 import MusicInstrument from "./components/MusicInstrument.jsx";
 import NavigationBar from "./components/NavigationBar.jsx";
+import ProgressBar from "./components/ProgressBar.jsx";
 import StartPauseButton from "./components/StartPauseButton.jsx";
 import Tempo from "./components/Tempo.jsx";
 import TimeSignature from "./components/TimeSignature.jsx";
@@ -91,26 +92,12 @@ const App = () => {
   return (
     <div className='app-container'>
       <NavigationBar />
-
-      <div className='progress-container'>
-        <div className='progression-bar'>
-          <div className='progress-fill' style={{ width: `${progress * 100}%` }}></div>
-        </div>
-        <button onClick={handleProgressIncrement}>Increment</button>
-      </div>
-
-      {/* <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px" }}>
-        <div style={{ flexGrow: 1, height: "10px", background: "#ddd", borderRadius: "5px", overflow: "hidden" }}>
-          <div style={{ width: `${progress * 100}%`, height: "100%", background: "red" }}></div>
-        </div>
-        <button onClick={handleProgressIncrement}>Increment</button>
-      </div> */}
-
       <div style={{ display: "flex" }}>
         <TimeSignature />
         <StartPauseButton isRunning={isRunning} toggleMetronome={toggleMetronome} />
         <Tempo bpm={bpm} handleBpmChange={handleBpmChange} />
       </div>
+      <ProgressBar progress={progress} handleProgressIncrement={handleProgressIncrement} />
       <MetronomeBar musicNotes={musicNotes} BEATS={BEATS} XPosition={XPosition} isRunning={isRunning} dots={dots} containerRef={containerRef} />
       <Instructions />
       <MusicInstrument addDot={addDot} />
