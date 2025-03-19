@@ -1,5 +1,6 @@
 import React from "react";
 import Dots from "./Dots.jsx";
+import "./MetronomeBar.css";
 
 const MetronomeBar = ({ musicNotes, BEATS, XPosition, isRunning, dots, containerRef }) => {
   const normalizedPosition = XPosition % BEATS;
@@ -9,7 +10,7 @@ const MetronomeBar = ({ musicNotes, BEATS, XPosition, isRunning, dots, container
     <div className='metronome-container'>
       <div className='metronome-bar' ref={containerRef}>
         <div
-          className='progress-bar'
+          className='metronome-progress-bar'
           style={{
             width: `${metronomeXPositionPercent}%`,
             transition: isRunning ? "none" : "width 0.1s ease-out",

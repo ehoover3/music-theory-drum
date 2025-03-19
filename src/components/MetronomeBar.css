@@ -1,0 +1,21 @@
+.metronome-container {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.metronome-bar {
+    background-color: var(--gray);
+    border-radius: 0.5rem;
+    height: 3rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.metronome-progress-bar {
+    background-color: var(--blue);
+    border-radius: 0.5rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}

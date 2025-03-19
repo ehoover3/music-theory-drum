@@ -12,63 +12,27 @@
   --light-purple: rgb(206 130 255);
   --deep-blue: rgb(43 112 201);
   --blue: rgb(28 176 246);
-  --dark-gray: rgb(75 75 75);
-  --gray: rgb(207 207 207);
-  --light-gray: rgb(240 240 240);
   --white: rgb(255 255 255);
-}
+  --gray: rgb(207 207 207);
+  --very-light-gray: rgb(247 247 247);
+  --light-gray: rgb(229 229 229);
+  --medium-gray: rgb(175 175 175);
+  --dark-gray: rgb(119 119 119);
+  --very-dark-gray: rgb(75 75 75);
+  --border-gray: rgb(55 70 79);
+  --hover-border-gray: rgb(32 47 54);
+  --black: rgb(18, 31, 37);
 
-.progress-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  width: 500px;
-  outline: 1px solid var(--black);
-}
-
-.progression-bar {
-  flex-grow: 1;
-  height: 10px;
-  background: var(--red);
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: var(--green);
-  transition: width 0.3s ease-in-out;
+  background-color: var(--black);
 }
 
 .app-container {
+  color: var(--white);
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 20px;
-}
-
-.metronome-container {
-  margin-bottom: 2rem;
-  width: 100%;
-}
-
-.metronome-bar {
-  background-color: var(--gray);
-  border-radius: 0.5rem;
-  height: 3rem;
-  margin-bottom: 0.5rem;
-  position: relative;
-  width: 100%;
-}
-
-.progress-bar {
-  background-color: var(--blue);
-  border-radius: 0.5rem;
-  height: 100%;
-  position: absolute;
-  top: 0;
 }
 
 .count-marker {
@@ -123,70 +87,3 @@
     flex-direction: row;
   }
 }
-
-
-
-/* * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: Arial, Helvetica, sans-serif;
-   overflow: hidden;
- }
-
-
-
- .grid-container {
-   display: grid;
-   height: 100vh;
-   grid-template-columns: repeat(4, 1fr);
-   grid-template-rows: 1fr 1fr 0.25fr 1fr .5fr 1fr 10fr
- }
-
- .navigation-bar {
-   grid-column: 1 / -1;
-   grid-row: 1;
-   display: grid;
-   grid-template-columns: 1fr 2fr 1fr;
-   align-items: center;
- }
-
- .time-signature {
-   grid-column: 1 / 2;
-   grid-row: 2;
- }
-
- .start-pause-button {
-   grid-column: 2 / 4;
-   grid-row: 2;
- }
-
- .tempo {
-   grid-column: 4 / 5;
-   grid-row: 2;
- }
-
- .progress-bar {
-   grid-column: 1 / -1;
-   grid-row: 3;
- }
-
- .music-staff {
-   grid-column: 1 / -1;
-   grid-row: 4;
- }
-
- .tap-dots {
-   grid-column: 1 / -1;
-   grid-row: 5;
- }
-
- .instructions {
-   grid-column: 1 / -1;
-   grid-row: 6;
- }
-
- .music-instrument {
-   grid-column: 1 / -1;
-   grid-row: 7;
- } */
