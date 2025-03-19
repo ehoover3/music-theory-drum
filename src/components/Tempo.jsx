@@ -2,8 +2,6 @@ import React from "react";
 import "./Tempo.css";
 
 function Tempo({ bpm, handleBpmChange }) {
-  const allowedNumbers = [60, 70, 80, 90, 100, 110, 120];
-
   return (
     <div className='tempo'>
       <div className='bpm-control'>

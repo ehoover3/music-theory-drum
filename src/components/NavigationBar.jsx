@@ -1,6 +1,6 @@
 import React from "react";
 import "./NavigationBar.css";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./ProgressBar.jsx";
 import { FaX } from "react-icons/fa6";
 import { GoGear } from "react-icons/go";
 function NavigationBar({ progress, handleProgressIncrement }) {
