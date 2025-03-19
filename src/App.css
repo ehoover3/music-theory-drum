@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 :root {
   --dark-green: rgb(88 204 2);
   --green: rgb(137 226 25);
@@ -21,9 +23,11 @@
   --very-dark-gray: rgb(75 75 75);
   --border-gray: rgb(55 70 79);
   --hover-border-gray: rgb(32 47 54);
-  --black: rgb(18, 31, 37);
+  --black: rgb(18 31 37);
 
   background-color: var(--black);
+  font-family: Poppins, sans-serif;
+  font-size: 25px;
 }
 
 .app-container {

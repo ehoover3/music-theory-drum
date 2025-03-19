@@ -91,13 +91,12 @@ const App = () => {
 
   return (
     <div className='app-container'>
-      <NavigationBar />
+      <NavigationBar progress={progress} handleProgressIncrement={handleProgressIncrement} />
       <div style={{ display: "flex" }}>
         <TimeSignature />
         <StartPauseButton isRunning={isRunning} toggleMetronome={toggleMetronome} />
         <Tempo bpm={bpm} handleBpmChange={handleBpmChange} />
       </div>
-      <ProgressBar progress={progress} handleProgressIncrement={handleProgressIncrement} />
       <MetronomeBar musicNotes={musicNotes} BEATS={BEATS} XPosition={XPosition} isRunning={isRunning} dots={dots} containerRef={containerRef} />
       <Instructions />
       <MusicInstrument addDot={addDot} />

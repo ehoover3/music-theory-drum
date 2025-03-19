@@ -1,13 +1,13 @@
 import React from "react";
 import "./NavigationBar.css";
+import ProgressBar from "./ProgressBar";
+import { FaX } from "react-icons/fa6";
 import { GoGear } from "react-icons/go";
-import { IoReturnDownBackOutline } from "react-icons/io5";
-
-function NavigationBar() {
+function NavigationBar({ progress, handleProgressIncrement }) {
   return (
     <div className='navigation-bar'>
-      <IoReturnDownBackOutline className='return-button' />
-      <div className='blank'></div>
+      <FaX className='return-button' />
+      <ProgressBar progress={progress} handleProgressIncrement={handleProgressIncrement} />
       <GoGear className='gear' />
     </div>
   );
