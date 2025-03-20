@@ -18,7 +18,7 @@ const MetronomeBar = ({ musicNotes, BEATS, XPosition, isRunning, dots, container
         />
 
         {musicNotes.map((marker) => {
-          const isActive = normalizedPosition.toFixed(1) == marker.position;
+          const isActive = normalizedPosition.toFixed(1) === marker.position;
 
           return (
             <div

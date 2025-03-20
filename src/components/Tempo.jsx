@@ -2,14 +2,21 @@ import React from "react";
 import "./Tempo.css";
 
 function Tempo({ bpm, handleBpmChange }) {
+  const bpmOptions = Array.from({ length: (240 - 30) / 10 + 1 }, (_, i) => 30 + i * 10);
+
   return (
     <div className='tempo'>
       <div className='bpm-control'>
         <label htmlFor='bpm' className='bpm-label'>
           BPM:
         </label>
-        <input id='bpm' type='range' min='30' max='240' value={bpm} onChange={handleBpmChange} className='bpm-slider' />
-        <span className='bpm-value'>{bpm}</span>
+        <select id='bpm' value={bpm} onChange={handleBpmChange} className='bpm-dropdown'>
+          {bpmOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

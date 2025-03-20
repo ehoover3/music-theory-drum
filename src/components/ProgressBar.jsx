@@ -1,14 +1,14 @@
 import React from "react";
 import "./ProgressBar.css";
 
-function ProgressBar({ progress, handleProgressIncrement }) {
+function ProgressBar({ progress, incrementProgress }) {
   return (
-    <div className='progress-container'>
+    <button className='progress-container' onClick={incrementProgress}>
+      {/* remove onClick={incrementProgress} in the future */}
       <div className='progression-bar'>
         <div className='progress-fill' style={{ width: `${progress * 100}%` }}></div>
       </div>
-      <button onClick={handleProgressIncrement}>Increment</button>
-    </div>
+    </button>
   );
 }
 

@@ -1,16 +1,17 @@
 import React from "react";
-import "./NavigationBar.css";
+import "./Header.css";
 import ProgressBar from "./ProgressBar.jsx";
 import { FaX } from "react-icons/fa6";
 import { GoGear } from "react-icons/go";
-function NavigationBar({ progress, handleProgressIncrement }) {
+
+function Header({ progress, incrementProgress }) {
   return (
-    <div className='navigation-bar'>
+    <div className='header'>
       <FaX className='return-button' />
-      <ProgressBar progress={progress} handleProgressIncrement={handleProgressIncrement} />
+      <ProgressBar progress={progress} incrementProgress={incrementProgress} />
       <GoGear className='gear' />
     </div>
   );
 }
 
-export default NavigationBar;
+export default Header;
