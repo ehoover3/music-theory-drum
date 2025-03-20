@@ -5,3 +5,13 @@
 .red-dot {
     background-color: var(--red);
 }
+
+.placed-dot {
+    background-color: var(--red);
+    border-radius: 50%;
+    height: 1rem;
+    position: absolute;
+    top: 3rem;
+    transform: translateX(-50%);
+    width: 1rem;
+}

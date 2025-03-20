@@ -6,3 +6,9 @@
   width: 100%;
   z-index: 9999;
 }
+
+.count-display {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}

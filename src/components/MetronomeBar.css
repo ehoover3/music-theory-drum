@@ -19,3 +19,16 @@
     position: absolute;
     top: 0;
 }
+
+.count-marker {
+    align-items: center;
+    display: flex;
+    font-size: 2rem;
+    font-weight: bold;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    z-index: 10;
+}

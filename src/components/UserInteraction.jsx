@@ -1,5 +1,5 @@
 import React from "react";
-import MusicInstrument from "./MusicInstrument";
+import MusicInstrument from "./MusicInstrument.jsx";
 
 function UserInteraction({ addDot }) {
   return (
