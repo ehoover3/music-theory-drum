@@ -1,84 +1,52 @@
 import React, { useState, useEffect, useRef } from "react";
-import Debug from "./components/Debug.jsx";
 import "./App.css";
 
-import Header from "./components/Header.jsx";
-import GameDisplay from "./components/GameDisplay.jsx";
-import UserInteraction from "./components/UserInteraction.jsx";
+import ProgressBar from "./components/ProgressBar.jsx";
+import NavigationBar from "./components/NavigationBar.jsx";
+import MusicInstrument from "./components/MusicInstrument.jsx";
 
 const App = () => {
-  const [bpm, setBpm] = useState(60);
-  const [dots, setDots] = useState([]);
-  const [XPosition, setXPosition] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
   const [progress, setProgress] = useState(0);
-  const containerRef = useRef(null);
-  const requestRef = useRef(null);
-  const startTimeRef = useRef(0);
-  const BEATS = 4;
-  const CYCLE_RESET_THRESHOLD = 75;
-  const MILLISECONDS_PER_SECOND = 1000;
-  const cycleDuration = (60 / bpm) * BEATS * MILLISECONDS_PER_SECOND;
-  const musicNotes = [
-    { symbol: "1", position: 0.25 },
-    { symbol: "♩", position: 1.25 },
-    { symbol: "3", position: 2.25 },
-    { symbol: "♩", position: 3.25 },
-  ];
+  const [notes, setNotes] = useState([]);
+  const gameAreaRef = useRef(null);
+  const targetLine = 50; // The target line position (percentage)
 
-  const incrementProgress = () => {
-    setProgress((prev) => prev + 1 / 3);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNotes((prevNotes) => [...prevNotes, { id: Date.now(), position: 100 }]);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
-  const resetDots = (elapsed) => elapsed % cycleDuration < CYCLE_RESET_THRESHOLD && setDots([]);
-  const updatePosition = (elapsed) => {
-    const position = ((elapsed % cycleDuration) / cycleDuration) * BEATS;
-    setXPosition(position);
-  };
+  useEffect(() => {
+    const moveNotes = setInterval(() => {
+      setNotes((prevNotes) => prevNotes.map((note) => ({ ...note, position: note.position - 2 })).filter((note) => note.position > 0));
+    }, 50);
+    return () => clearInterval(moveNotes);
+  }, []);
 
-  const animate = (timestamp) => {
-    if (!startTimeRef.current) startTimeRef.current = timestamp;
-    const elapsed = timestamp - startTimeRef.current;
-    resetDots(elapsed);
-    updatePosition(elapsed);
-    requestRef.current = requestAnimationFrame(animate);
+  const handleDrumHit = () => {
+    setNotes((prevNotes) => {
+      return prevNotes.filter((note) => {
+        if (Math.abs(note.position - targetLine) < 5) {
+          setProgress((prev) => Math.min(prev + 10, 100));
+          return false; // Remove note on hit
+        }
+        return true;
+      });
+    });
   };
-
-  const toggleMetronome = () => {
-    if (!isRunning) {
-      startTimeRef.current = 0;
-      requestRef.current = requestAnimationFrame(animate);
-    } else cancelAnimationFrame(requestRef.current);
-    setIsRunning(!isRunning);
-  };
-
-  const handleBpmChange = (e) => {
-    setBpm(parseInt(e.target.value, 10));
-    if (isRunning) {
-      cancelAnimationFrame(requestRef.current);
-      startTimeRef.current = 0;
-      requestRef.current = requestAnimationFrame(animate);
-    }
-  };
-
-  const addDot = () => {
-    if (!containerRef.current) return;
-    const normalizedPosition = XPosition % BEATS;
-    const width = containerRef.current.offsetWidth;
-    const pixelPosition = (normalizedPosition / BEATS) * width;
-    const beatDuration = cycleDuration / BEATS;
-    const currentTimePosition = normalizedPosition * beatDuration;
-    const isOnBeat = musicNotes.some((note) => Math.abs(note.position * beatDuration - currentTimePosition) <= 200);
-    setDots([...dots, { position: pixelPosition, isOnBeat }]);
-  };
-  useEffect(() => () => requestRef.current && cancelAnimationFrame(requestRef.current), []);
 
   return (
     <div className='app-container'>
-      <Header progress={progress} incrementProgress={incrementProgress} />
-      <GameDisplay BEATS={BEATS} bpm={bpm} containerRef={containerRef} dots={dots} handleBpmChange={handleBpmChange} isRunning={isRunning} toggleMetronome={toggleMetronome} musicNotes={musicNotes} XPosition={XPosition} />
-      <UserInteraction addDot={addDot} />
-      {/* <Debug normalizedPosition={normalizedPosition} /> */}
+      <ProgressBar progress={progress} />
+      <div ref={gameAreaRef} className='game-area'>
+        {notes.map((note) => (
+          <div key={note.id} className='music-note' style={{ left: `${note.position}%` }}></div>
+        ))}
+        <div className='target-line'></div>
+      </div>
+      <MusicInstrument onDrumHit={handleDrumHit} />
     </div>
   );
 };

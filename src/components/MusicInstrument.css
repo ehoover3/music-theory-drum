@@ -1,24 +1,16 @@
- .music-instrument {
-     align-items: center;
-     background-color: var(--black);
-     border: 2px solid var(--border-gray);
-     border-radius: 16px;
-     border-bottom: 6px solid var(--border-gray);
-     cursor: pointer;
-     display: flex;
-     font-size: 100px;
-     height: 248px;
-     justify-content: center;
-     margin-bottom: 10px;
-     margin-left: 10px;
-     margin-right: 10px;
-     padding: 12px 16px;
-     transition: all 0.1s;
-     user-select: none;
-     width: 190px;
+.instrument-container {
+    margin-top: 20px;
+}
 
- }
+.drum-button {
+    padding: 15px 30px;
+    font-size: 20px;
+    background: orange;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
- .music-instrument:hover {
-     background-color: var(--hover-border-gray);
- }
+.drum-button:hover {
+    background: darkorange;
+}

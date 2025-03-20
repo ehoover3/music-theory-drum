@@ -1,12 +1,14 @@
 import React from "react";
 import "./MusicInstrument.css";
 
-function MusicInstrument({ addDot }) {
+const MusicInstrument = ({ onDrumHit }) => {
   return (
-    <button className='music-instrument' onClick={addDot}>
-      🥁
-    </button>
+    <div className='instrument-container'>
+      <button className='drum-button' onClick={onDrumHit}>
+        Hit Drum
+      </button>
+    </div>
   );
-}
+};
 
 export default MusicInstrument;

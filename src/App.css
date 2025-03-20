@@ -24,17 +24,42 @@
   --border-gray: rgb(55 70 79);
   --hover-border-gray: rgb(32 47 54);
   --black: rgb(18 31 37);
-
-  background-color: var(--black);
-  font-family: Poppins, sans-serif;
-  font-size: 25px;
 }
 
 .app-container {
-  color: var(--white);
-  align-items: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin: 20px;
+  height: 100vh;
+  background-color: var(--white);
+}
+
+.game-area {
+  position: relative;
+  width: 80%;
+  height: 200px;
+  background: var(--white);
+  border: 2px solid var(--black);
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.music-note {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: var(--red);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.target-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--black);
 }

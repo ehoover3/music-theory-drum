@@ -38,6 +38,10 @@
 1. Informational: Add Information page after user completes progress bar, that shares music history, music theory, or other.
 1. Add a user character that rocks to the beat
 
+# IDEAS
+
+- Have the notes comes towards me.
+
 # Free Sound Effects
 
 https://www.fesliyanstudios.com

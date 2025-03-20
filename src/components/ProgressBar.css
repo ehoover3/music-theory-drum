@@ -1,25 +1,14 @@
 .progress-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    width: 500px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-.progression-bar {
-    flex-grow: 1;
-    height: 16px;
-    background: var(--dark-gray);
-    border-radius: 8px;
+    width: 80%;
+    height: 20px;
+    background: lightgray;
+    border-radius: 10px;
     overflow: hidden;
+    margin-top: 20px;
 }
 
-.progress-fill {
+.progress-bar {
     height: 100%;
-    background: var(--green);
-    transition: width 0.3s ease-in-out;
+    background: green;
+    transition: width 0.2s;
 }
