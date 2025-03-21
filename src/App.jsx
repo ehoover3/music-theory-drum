@@ -15,7 +15,6 @@ const App = () => {
   // Every 2 seconds, a new note is added to the notes state.
   // Each note starts at position: 100
   // Date.now() is used as a unique id.
-
   useEffect(() => {
     const interval = setInterval(() => {
       setNotes((prevNotes) => [...prevNotes, { id: Date.now(), position: 100 }]);
@@ -49,10 +48,10 @@ const App = () => {
 
   return (
     <div className='app-container'>
-      <ProgressBar progress={progress} />
-      <InformationBar />
-      <MusicNotes gameAreaRef={gameAreaRef} notes={notes} />
-      <MusicInstrument onDrumHit={handleDrumHit} />
+      <ProgressBar className='progress-bar' progress={progress} />
+      <InformationBar className='information-bar' />
+      <MusicNotes className='music-notes' gameAreaRef={gameAreaRef} notes={notes} />
+      <MusicInstrument className='music-instrument' onDrumHit={handleDrumHit} />
     </div>
   );
 };

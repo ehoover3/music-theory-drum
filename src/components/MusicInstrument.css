@@ -1,16 +1,12 @@
-.instrument-container {
-    margin-top: 20px;
-}
+ .drum-button {
+     padding: 15px 30px;
+     font-size: 20px;
+     background: var(--orange);
+     border: none;
+     border-radius: 10px;
+     cursor: pointer;
+ }
 
-.drum-button {
-    padding: 15px 30px;
-    font-size: 20px;
-    background: var(--orange);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.drum-button:hover {
-    background: var(--red);
-}
+ .drum-button:hover {
+     background: var(--red);
+ }

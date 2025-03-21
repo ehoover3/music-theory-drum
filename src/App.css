@@ -24,13 +24,19 @@
   --border-gray: rgb(55 70 79);
   --hover-border-gray: rgb(32 47 54);
   --black: rgb(18 31 37);
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--black);
 }
 
 .app-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-template-columns: 1fr;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   width: 740px;
   height: 360px;
   background-color: var(--white);
