@@ -9,7 +9,11 @@ const App = () => {
   const [progress, setProgress] = useState(0);
   const [notes, setNotes] = useState([]);
   const gameAreaRef = useRef(null);
-  const targetLine = 50; // The target line position (percentage)
+  const targetLine = 10; // The target line position (percentage)
+
+  // Every 2 seconds, a new note is added to the notes state.
+  // Each note starts at position: 100
+  // Date.now() is used as a unique id.
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,6 +22,9 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Runs every 50ms to update each note's position.
+  // Notes move by decreasing position by 2 on each tick.
+  //  Notes are removed when they move past position > 0.
   useEffect(() => {
     const moveNotes = setInterval(() => {
       setNotes((prevNotes) => prevNotes.map((note) => ({ ...note, position: note.position - 2 })).filter((note) => note.position > 0));
@@ -25,6 +32,8 @@ const App = () => {
     return () => clearInterval(moveNotes);
   }, []);
 
+  // When the player hits the drum, the function checks for notes close to targetLine (±5 range).
+  // If a note is hit: It is removed from notes. progress increases by 10, up to a maximum of 100.
   const handleDrumHit = () => {
     setNotes((prevNotes) => {
       return prevNotes.filter((note) => {

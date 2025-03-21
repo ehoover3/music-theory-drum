@@ -9,7 +9,7 @@
 
  .target-line {
      position: absolute;
-     left: 50%;
+     left: 10%;
      top: 0;
      bottom: 0;
      width: 2px;
@@ -21,21 +21,18 @@
  .game-area::before {
      content: "";
      position: absolute;
-     top: 0;
-     left: 0;
-     right: 0;
-     bottom: 0;
+     inset: 0;
      background-image: linear-gradient(to bottom,
              transparent 40%,
-             #000 40%, #000 41%,
+             var(--black) 40%, var(--black) 41%,
              transparent 41%, transparent 47.5%,
-             #000 47.5%, #000 48.5%,
+             var(--black) 47.5%, var(--black) 48.5%,
              transparent 48.5%, transparent 55%,
-             #000 55%, #000 56%,
+             var(--black) 55%, var(--black) 56%,
              transparent 56%, transparent 62.5%,
-             #000 62.5%, #000 63.5%,
+             var(--black) 62.5%, var(--black) 63.5%,
              transparent 63.5%, transparent 70%,
-             #000 70%, #000 71%,
+             var(--black) 70%, var(--black) 71%,
              transparent 71%);
      z-index: 1;
  }
@@ -66,34 +63,34 @@
  }
 
  /* Note position */
- .music-note.C4 {
+ .music-note.c4 {
      top: 70%;
  }
 
- .music-note.D4 {
+ .music-note.d4 {
      top: 63%;
  }
 
- .music-note.E4 {
+ .music-note.e4 {
      top: 56%;
  }
 
- .music-note.F4 {
+ .music-note.f4 {
      top: 49%;
  }
 
- .music-note.G4 {
+ .music-note.g4 {
      top: 42%;
  }
 
- .music-note.A4 {
+ .music-note.a4 {
      top: 35%;
  }
 
- .music-note.B4 {
+ .music-note.b4 {
      top: 28%;
  }
 
- .music-note.C5 {
+ .music-note.c5 {
      top: 21%;
  }
