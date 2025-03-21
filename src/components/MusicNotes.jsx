@@ -11,6 +11,7 @@ function MusicNotes({ gameAreaRef, notes }) {
       {notes.map((note) => (
         <div key={note.id} className={getNoteClassName(note.pitch || "F4")} style={{ left: `${note.position}%` }}></div>
       ))}
+      <div className='treble-clef'>&#119070;</div>
       <div className='target-line'></div>
     </div>
   );

@@ -7,6 +7,11 @@
      margin: 20px 0;
  }
 
+ .treble-clef {
+     font-size: 170px
+ }
+
+
  .target-line {
      position: absolute;
      left: 10%;
