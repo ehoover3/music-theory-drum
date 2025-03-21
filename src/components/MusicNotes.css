@@ -1,0 +1,99 @@
+ .game-area {
+     position: relative;
+     width: 100%;
+     height: 200px;
+     background: var(--white);
+     overflow: hidden;
+     margin: 20px 0;
+ }
+
+ .target-line {
+     position: absolute;
+     left: 50%;
+     top: 0;
+     bottom: 0;
+     width: 2px;
+     background: var(--black);
+     z-index: 3;
+ }
+
+ /* Staff lines */
+ .game-area::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-image: linear-gradient(to bottom,
+             transparent 40%,
+             #000 40%, #000 41%,
+             transparent 41%, transparent 47.5%,
+             #000 47.5%, #000 48.5%,
+             transparent 48.5%, transparent 55%,
+             #000 55%, #000 56%,
+             transparent 56%, transparent 62.5%,
+             #000 62.5%, #000 63.5%,
+             transparent 63.5%, transparent 70%,
+             #000 70%, #000 71%,
+             transparent 71%);
+     z-index: 1;
+ }
+
+
+ .music-note {
+     position: absolute;
+     top: 50%;
+     width: 20px;
+     height: 20px;
+     background: var(--black);
+     border-radius: 50%;
+     transform: translateY(-50%);
+     z-index: 2;
+ }
+
+ /* quarter note's line */
+ .music-note::after {
+     content: "";
+     position: absolute;
+     width: 4px;
+     height: 40px;
+     background: var(--black);
+     top: -29px;
+     left: 92%;
+     transform: translateX(-50%);
+     z-index: 5;
+ }
+
+ /* Note position */
+ .music-note.C4 {
+     top: 70%;
+ }
+
+ .music-note.D4 {
+     top: 63%;
+ }
+
+ .music-note.E4 {
+     top: 56%;
+ }
+
+ .music-note.F4 {
+     top: 49%;
+ }
+
+ .music-note.G4 {
+     top: 42%;
+ }
+
+ .music-note.A4 {
+     top: 35%;
+ }
+
+ .music-note.B4 {
+     top: 28%;
+ }
+
+ .music-note.C5 {
+     top: 21%;
+ }

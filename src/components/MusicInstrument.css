@@ -5,12 +5,12 @@
 .drum-button {
     padding: 15px 30px;
     font-size: 20px;
-    background: orange;
+    background: var(--orange);
     border: none;
     border-radius: 10px;
     cursor: pointer;
 }
 
 .drum-button:hover {
-    background: darkorange;
+    background: var(--red);
 }

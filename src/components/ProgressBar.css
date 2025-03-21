@@ -1,7 +1,7 @@
 .progress-container {
     width: 80%;
     height: 20px;
-    background: lightgray;
+    background: var(--lightgray);
     border-radius: 10px;
     overflow: hidden;
     margin-top: 20px;
@@ -9,6 +9,6 @@
 
 .progress-bar {
     height: 100%;
-    background: green;
+    background: var(--green);
     transition: width 0.2s;
 }

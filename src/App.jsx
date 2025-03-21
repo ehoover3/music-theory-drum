@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 import ProgressBar from "./components/ProgressBar.jsx";
-import NavigationBar from "./components/NavigationBar.jsx";
+import MusicNotes from "./components/MusicNotes.jsx";
 import MusicInstrument from "./components/MusicInstrument.jsx";
 
 const App = () => {
@@ -40,12 +40,7 @@ const App = () => {
   return (
     <div className='app-container'>
       <ProgressBar progress={progress} />
-      <div ref={gameAreaRef} className='game-area'>
-        {notes.map((note) => (
-          <div key={note.id} className='music-note' style={{ left: `${note.position}%` }}></div>
-        ))}
-        <div className='target-line'></div>
-      </div>
+      <MusicNotes gameAreaRef={gameAreaRef} notes={notes} />
       <MusicInstrument onDrumHit={handleDrumHit} />
     </div>
   );
