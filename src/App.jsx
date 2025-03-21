@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 import ProgressBar from "./components/ProgressBar.jsx";
+import InformationBar from "./components/InformationBar.jsx";
 import MusicNotes from "./components/MusicNotes.jsx";
 import MusicInstrument from "./components/MusicInstrument.jsx";
 
@@ -49,6 +50,7 @@ const App = () => {
   return (
     <div className='app-container'>
       <ProgressBar progress={progress} />
+      <InformationBar />
       <MusicNotes gameAreaRef={gameAreaRef} notes={notes} />
       <MusicInstrument onDrumHit={handleDrumHit} />
     </div>
